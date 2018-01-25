@@ -1,0 +1,9 @@
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\bin\Debug\MergeBios.exe.config
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\bin\Debug\MergeBios.exe
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\bin\Debug\MergeBios.pdb
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.frm_mainScreen.resources
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.Properties.Resources.resources
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.csproj.GenerateResource.Cache
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.exe
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.pdb
+C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.csprojResolveAssemblyReference.cache
