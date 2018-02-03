@@ -24,7 +24,11 @@ namespace MergeBios
         int arch;               // arch option
         int preboot;
 
-
+        /// <summary>
+        /// Main form load event, setup code here only
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void frm_mainScreen_Load(object sender , EventArgs e)
         {
             platform = new Platform_Info();            
@@ -182,8 +186,7 @@ namespace MergeBios
 
             arch = (int)ARCH_TYPE.noarch;
             preboot = 255;
-
-            txt_platform_name.Text = cmb_platform.Text;
+            
 
 
         }
@@ -329,7 +332,7 @@ namespace MergeBios
                     break;
             }
 
-            txt_arch_name.Text = radio_x32.Text;
+            //txt_arch_name.Text = radio_x32.Text;
 
         }
 
@@ -382,7 +385,7 @@ namespace MergeBios
                     break;
             }
 
-            txt_arch_name.Text = radio_x64.Text;
+            //txt_arch_name.Text = radio_x64.Text;
 
         }
 
@@ -424,7 +427,7 @@ namespace MergeBios
                     break;
             }
 
-            txt_preboot_prefix.Text = platform.preboot_names[(int) PREBOOT_TYPES_ID.gop];
+            //txt_preboot_prefix.Text = platform.preboot_names[(int) PREBOOT_TYPES_ID.gop];
         }
 
         private void radio_vbios_CheckedChanged(object sender , EventArgs e)
@@ -469,7 +472,7 @@ namespace MergeBios
                     break;
             }
 
-            txt_preboot_prefix.Text = platform.preboot_names[( int ) PREBOOT_TYPES_ID.vbios];
+            //txt_preboot_prefix.Text = platform.preboot_names[( int ) PREBOOT_TYPES_ID.vbios];
 
         }
 
@@ -477,11 +480,11 @@ namespace MergeBios
         {
             displays.find_display_config(cmb_platform.Text , cmb_plt_type.Text);
 
-            txt_lfp.Text = string.Empty;
-            txt_display1.Text = string.Empty;
-            txt_display2.Text = string.Empty;
-            txt_display3.Text = string.Empty;
-            txt_display4.Text = string.Empty;
+            //txt_lfp.Text = string.Empty;
+            //txt_display1.Text = string.Empty;
+            //txt_display2.Text = string.Empty;
+            //txt_display3.Text = string.Empty;
+            //txt_display4.Text = string.Empty;
 
             if ( check_custom_ports.Checked == true )
             {
@@ -512,7 +515,7 @@ namespace MergeBios
 
                         cmb_lfp.SelectedItem = platform.platform_Default_Displays[0];
 
-                        txt_lfp.Text = cmb_lfp.SelectedItem.ToString();
+                        //txt_lfp.Text = cmb_lfp.SelectedItem.ToString();
                     }
 
                     if ( cmb_display1.Enabled )
@@ -523,7 +526,7 @@ namespace MergeBios
 
                         cmb_display1.SelectedItem = platform.platform_Default_Displays[1];
 
-                        txt_display1.Text = cmb_display1.SelectedItem.ToString();
+                        //txt_display1.Text = cmb_display1.SelectedItem.ToString();
                     }
 
                     if ( cmb_display2.Enabled )
@@ -534,7 +537,7 @@ namespace MergeBios
 
                         cmb_display2.SelectedItem = platform.platform_Default_Displays[2];
 
-                        txt_display2.Text = cmb_display2.SelectedItem.ToString();
+                        //txt_display2.Text = cmb_display2.SelectedItem.ToString();
                     }
 
                     if ( cmb_display3.Enabled )
@@ -545,7 +548,7 @@ namespace MergeBios
 
                         cmb_display3.SelectedItem = platform.platform_Default_Displays[3];
 
-                        txt_display3.Text = cmb_display3.SelectedItem.ToString();
+                        //txt_display3.Text = cmb_display3.SelectedItem.ToString();
                     }
 
                     if ( cmb_display4.Enabled )
@@ -556,7 +559,7 @@ namespace MergeBios
 
                         cmb_display4.SelectedItem = platform.platform_Default_Displays[4];
 
-                        txt_display4.Text = cmb_display4.SelectedItem.ToString();
+                        //txt_display4.Text = cmb_display4.SelectedItem.ToString();
                     }
                 }
             }
@@ -582,52 +585,92 @@ namespace MergeBios
                 cmb_lfp.DataSource = null;
                 cmb_lfp.Items.Clear();
 
-                txt_lfp.Text = string.Empty;
-                txt_display1.Text = string.Empty;
-                txt_display2.Text = string.Empty;
-                txt_display3.Text = string.Empty;
-                txt_display4.Text = string.Empty;
+                //txt_lfp.Text = string.Empty;
+                //txt_display1.Text = string.Empty;
+                //txt_display2.Text = string.Empty;
+                //txt_display3.Text = string.Empty;
+                //txt_display4.Text = string.Empty;
             }
 
 
         }
 
+        /// <summary>
+        /// Change the string of the name of new merge file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_sbios_SelectedIndexChanged (object sender, EventArgs e)
         {
 
-            txt_ifwi_name.Text = cmb_sbios.Text;
+            //txt_ifwi_name.Text = cmb_sbios.Text;
         }
 
+        /// <summary>
+        /// Change the string of the name of new merge file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_preboot_SelectedIndexChanged (object sender, EventArgs e)
         {
-            txt_preboot_name.Text = cmb_preboot.Text;
+            //txt_preboot_name.Text = cmb_preboot.Text;
         }
 
+        /// <summary>
+        /// Change the string of the name of new merge file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_lfp_SelectedIndexChanged (object sender, EventArgs e)
         {
-            txt_lfp.Text = cmb_lfp.Text;
+            //txt_lfp.Text = cmb_lfp.Text;
         }
 
+        /// <summary>
+        /// Change the string of the name of new merge file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_display1_SelectedIndexChanged (object sender, EventArgs e)
         {
-            txt_display1.Text = cmb_display1.Text;
+            //txt_display1.Text = cmb_display1.Text;
         }
 
+        /// <summary>
+        /// Change the string of the name of new merge file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_display2_SelectedIndexChanged (object sender, EventArgs e)
         {
-            txt_display2.Text = cmb_display2.Text;
+            //txt_display2.Text = cmb_display2.Text;
         }
 
+        /// <summary>
+        /// Change the string of the name of new merge file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_display3_SelectedIndexChanged (object sender, EventArgs e)
         {
-            txt_display3.Text = cmb_display3.Text;
+            //txt_display3.Text = cmb_display3.Text;
         }
 
+        /// <summary>
+        /// Change the string of the name of new merge file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cmb_display4_SelectedIndexChanged (object sender, EventArgs e)
         {
-            txt_display4.Text = cmb_display4.Text;
+            //txt_display4.Text = cmb_display4.Text;
         }
 
+        /// <summary>
+        /// Select new merge result files folder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_new_save_folder_Click (object sender, EventArgs e)
         {
             // Set new default directory            
@@ -646,6 +689,11 @@ namespace MergeBios
             }
         }
 
+        /// <summary>
+        /// Select new merge binary files folder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_new_merge_folder_Click (object sender, EventArgs e)
         {
             // set new merge folder
@@ -664,15 +712,19 @@ namespace MergeBios
             }
         }
 
+        /// <summary>
+        /// Apply the new settings, ui form option
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_apply_prefs_Click (object sender, EventArgs e)
-        {
+        {            
             optionsConf.opt_ask_for_save = chk_ask_save.Checked; 
             optionsConf.opt_auto_flash = chk_ask_flash.Checked;
             optionsConf.opt_remote_folder_check = chk_remote_folder.Checked;
             optionsConf.opt_remote_tool_check = chk_remote_tool.Checked;
 
             optionsConf.opt_default_flash_tool = cmb_flashtools.SelectedIndex;
-
             optionsConf.SaveConfiguration();
         }
     }

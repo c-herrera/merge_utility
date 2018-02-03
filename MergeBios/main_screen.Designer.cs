@@ -73,21 +73,13 @@
             this.cmb_lfp = new System.Windows.Forms.ComboBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatus_Tool = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txt_platform_name = new System.Windows.Forms.TextBox();
-            this.txt_type_name = new System.Windows.Forms.TextBox();
-            this.txt_ifwi_name = new System.Windows.Forms.TextBox();
-            this.txt_preboot_name = new System.Windows.Forms.TextBox();
-            this.txt_arch_name = new System.Windows.Forms.TextBox();
-            this.txt_display1 = new System.Windows.Forms.TextBox();
-            this.txt_preboot_prefix = new System.Windows.Forms.TextBox();
-            this.txt_display2 = new System.Windows.Forms.TextBox();
-            this.txt_display3 = new System.Windows.Forms.TextBox();
-            this.txt_display4 = new System.Windows.Forms.TextBox();
-            this.txt_lfp = new System.Windows.Forms.TextBox();
             this.tab1Main = new System.Windows.Forms.TabControl();
             this.tabMainScr = new System.Windows.Forms.TabPage();
             this.tabSettings = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_merge_name = new System.Windows.Forms.TextBox();
+            this.txt_save_name = new System.Windows.Forms.TextBox();
+            this.btn_apply_prefs = new System.Windows.Forms.Button();
             this.btn_new_merge_folder = new System.Windows.Forms.Button();
             this.btn_new_save_folder = new System.Windows.Forms.Button();
             this.lbl_flash_tool = new System.Windows.Forms.Label();
@@ -96,10 +88,7 @@
             this.chk_ask_flash = new System.Windows.Forms.CheckBox();
             this.chk_remote_tool = new System.Windows.Forms.CheckBox();
             this.chk_remote_folder = new System.Windows.Forms.CheckBox();
-            this.btn_apply_prefs = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.txt_save_name = new System.Windows.Forms.TextBox();
-            this.txt_merge_name = new System.Windows.Forms.TextBox();
             this.group_platforms.SuspendLayout();
             this.group_preboot.SuspendLayout();
             this.group_arch.SuspendLayout();
@@ -615,116 +604,6 @@
             this.toolStripStatus_Tool.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatus_Tool.Text = "Status";
             // 
-            // txt_platform_name
-            // 
-            this.txt_platform_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_platform_name.Location = new System.Drawing.Point(79, 383);
-            this.txt_platform_name.Name = "txt_platform_name";
-            this.txt_platform_name.ReadOnly = true;
-            this.txt_platform_name.Size = new System.Drawing.Size(73, 21);
-            this.txt_platform_name.TabIndex = 8;
-            this.txt_platform_name.WordWrap = false;
-            // 
-            // txt_type_name
-            // 
-            this.txt_type_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_type_name.Location = new System.Drawing.Point(159, 383);
-            this.txt_type_name.Name = "txt_type_name";
-            this.txt_type_name.ReadOnly = true;
-            this.txt_type_name.Size = new System.Drawing.Size(63, 21);
-            this.txt_type_name.TabIndex = 9;
-            this.txt_type_name.WordWrap = false;
-            // 
-            // txt_ifwi_name
-            // 
-            this.txt_ifwi_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_ifwi_name.Location = new System.Drawing.Point(228, 383);
-            this.txt_ifwi_name.Name = "txt_ifwi_name";
-            this.txt_ifwi_name.ReadOnly = true;
-            this.txt_ifwi_name.Size = new System.Drawing.Size(100, 21);
-            this.txt_ifwi_name.TabIndex = 10;
-            this.txt_ifwi_name.WordWrap = false;
-            // 
-            // txt_preboot_name
-            // 
-            this.txt_preboot_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_preboot_name.Location = new System.Drawing.Point(334, 383);
-            this.txt_preboot_name.Name = "txt_preboot_name";
-            this.txt_preboot_name.ReadOnly = true;
-            this.txt_preboot_name.Size = new System.Drawing.Size(100, 21);
-            this.txt_preboot_name.TabIndex = 11;
-            this.txt_preboot_name.WordWrap = false;
-            // 
-            // txt_arch_name
-            // 
-            this.txt_arch_name.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_arch_name.Location = new System.Drawing.Point(440, 383);
-            this.txt_arch_name.Name = "txt_arch_name";
-            this.txt_arch_name.ReadOnly = true;
-            this.txt_arch_name.Size = new System.Drawing.Size(47, 21);
-            this.txt_arch_name.TabIndex = 12;
-            this.txt_arch_name.WordWrap = false;
-            // 
-            // txt_display1
-            // 
-            this.txt_display1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_display1.Location = new System.Drawing.Point(549, 383);
-            this.txt_display1.Name = "txt_display1";
-            this.txt_display1.ReadOnly = true;
-            this.txt_display1.Size = new System.Drawing.Size(64, 21);
-            this.txt_display1.TabIndex = 13;
-            this.txt_display1.WordWrap = false;
-            // 
-            // txt_preboot_prefix
-            // 
-            this.txt_preboot_prefix.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_preboot_prefix.Location = new System.Drawing.Point(25, 383);
-            this.txt_preboot_prefix.Name = "txt_preboot_prefix";
-            this.txt_preboot_prefix.ReadOnly = true;
-            this.txt_preboot_prefix.Size = new System.Drawing.Size(48, 21);
-            this.txt_preboot_prefix.TabIndex = 14;
-            this.txt_preboot_prefix.WordWrap = false;
-            // 
-            // txt_display2
-            // 
-            this.txt_display2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_display2.Location = new System.Drawing.Point(619, 383);
-            this.txt_display2.Name = "txt_display2";
-            this.txt_display2.ReadOnly = true;
-            this.txt_display2.Size = new System.Drawing.Size(72, 21);
-            this.txt_display2.TabIndex = 15;
-            this.txt_display2.WordWrap = false;
-            // 
-            // txt_display3
-            // 
-            this.txt_display3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_display3.Location = new System.Drawing.Point(697, 383);
-            this.txt_display3.Name = "txt_display3";
-            this.txt_display3.ReadOnly = true;
-            this.txt_display3.Size = new System.Drawing.Size(69, 21);
-            this.txt_display3.TabIndex = 16;
-            this.txt_display3.WordWrap = false;
-            // 
-            // txt_display4
-            // 
-            this.txt_display4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_display4.Location = new System.Drawing.Point(772, 383);
-            this.txt_display4.Name = "txt_display4";
-            this.txt_display4.ReadOnly = true;
-            this.txt_display4.Size = new System.Drawing.Size(65, 21);
-            this.txt_display4.TabIndex = 17;
-            this.txt_display4.WordWrap = false;
-            // 
-            // txt_lfp
-            // 
-            this.txt_lfp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_lfp.Location = new System.Drawing.Point(493, 383);
-            this.txt_lfp.Name = "txt_lfp";
-            this.txt_lfp.ReadOnly = true;
-            this.txt_lfp.Size = new System.Drawing.Size(50, 21);
-            this.txt_lfp.TabIndex = 18;
-            this.txt_lfp.WordWrap = false;
-            // 
             // tab1Main
             // 
             this.tab1Main.Controls.Add(this.tabMainScr);
@@ -740,25 +619,14 @@
             // tabMainScr
             // 
             this.tabMainScr.Controls.Add(this.group_platforms);
-            this.tabMainScr.Controls.Add(this.txt_lfp);
             this.tabMainScr.Controls.Add(this.group_SBIOS_list);
-            this.tabMainScr.Controls.Add(this.txt_display4);
             this.tabMainScr.Controls.Add(this.group_preboot);
-            this.tabMainScr.Controls.Add(this.txt_display3);
             this.tabMainScr.Controls.Add(this.group_arch);
-            this.tabMainScr.Controls.Add(this.txt_display2);
             this.tabMainScr.Controls.Add(this.group_preboot_list);
-            this.tabMainScr.Controls.Add(this.txt_preboot_prefix);
-            this.tabMainScr.Controls.Add(this.txt_display1);
             this.tabMainScr.Controls.Add(this.group_other_flash);
-            this.tabMainScr.Controls.Add(this.txt_arch_name);
             this.tabMainScr.Controls.Add(this.group_plt_features);
-            this.tabMainScr.Controls.Add(this.txt_preboot_name);
             this.tabMainScr.Controls.Add(this.group_output_ports);
-            this.tabMainScr.Controls.Add(this.txt_ifwi_name);
             this.tabMainScr.Controls.Add(this.btn_quit);
-            this.tabMainScr.Controls.Add(this.txt_type_name);
-            this.tabMainScr.Controls.Add(this.txt_platform_name);
             this.tabMainScr.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabMainScr.Location = new System.Drawing.Point(4, 22);
             this.tabMainScr.Name = "tabMainScr";
@@ -796,6 +664,34 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(538, 451);
             this.panel1.TabIndex = 0;
+            // 
+            // txt_merge_name
+            // 
+            this.txt_merge_name.Location = new System.Drawing.Point(197, 236);
+            this.txt_merge_name.Name = "txt_merge_name";
+            this.txt_merge_name.ReadOnly = true;
+            this.txt_merge_name.Size = new System.Drawing.Size(221, 22);
+            this.txt_merge_name.TabIndex = 21;
+            // 
+            // txt_save_name
+            // 
+            this.txt_save_name.Location = new System.Drawing.Point(197, 200);
+            this.txt_save_name.Name = "txt_save_name";
+            this.txt_save_name.ReadOnly = true;
+            this.txt_save_name.Size = new System.Drawing.Size(221, 22);
+            this.txt_save_name.TabIndex = 20;
+            // 
+            // btn_apply_prefs
+            // 
+            this.btn_apply_prefs.Image = ((System.Drawing.Image)(resources.GetObject("btn_apply_prefs.Image")));
+            this.btn_apply_prefs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_apply_prefs.Location = new System.Drawing.Point(26, 414);
+            this.btn_apply_prefs.Name = "btn_apply_prefs";
+            this.btn_apply_prefs.Size = new System.Drawing.Size(99, 23);
+            this.btn_apply_prefs.TabIndex = 8;
+            this.btn_apply_prefs.Text = "Apply";
+            this.btn_apply_prefs.UseVisualStyleBackColor = true;
+            this.btn_apply_prefs.Click += new System.EventHandler(this.btn_apply_prefs_Click);
             // 
             // btn_new_merge_folder
             // 
@@ -874,37 +770,9 @@
             this.chk_remote_folder.Text = "Don\'t check remote folder changes";
             this.chk_remote_folder.UseVisualStyleBackColor = true;
             // 
-            // btn_apply_prefs
-            // 
-            this.btn_apply_prefs.Image = ((System.Drawing.Image)(resources.GetObject("btn_apply_prefs.Image")));
-            this.btn_apply_prefs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_apply_prefs.Location = new System.Drawing.Point(26, 414);
-            this.btn_apply_prefs.Name = "btn_apply_prefs";
-            this.btn_apply_prefs.Size = new System.Drawing.Size(99, 23);
-            this.btn_apply_prefs.TabIndex = 8;
-            this.btn_apply_prefs.Text = "Apply";
-            this.btn_apply_prefs.UseVisualStyleBackColor = true;
-            this.btn_apply_prefs.Click += new System.EventHandler(this.btn_apply_prefs_Click);
-            // 
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // txt_save_name
-            // 
-            this.txt_save_name.Location = new System.Drawing.Point(197, 200);
-            this.txt_save_name.Name = "txt_save_name";
-            this.txt_save_name.ReadOnly = true;
-            this.txt_save_name.Size = new System.Drawing.Size(221, 22);
-            this.txt_save_name.TabIndex = 20;
-            // 
-            // txt_merge_name
-            // 
-            this.txt_merge_name.Location = new System.Drawing.Point(197, 236);
-            this.txt_merge_name.Name = "txt_merge_name";
-            this.txt_merge_name.ReadOnly = true;
-            this.txt_merge_name.Size = new System.Drawing.Size(221, 22);
-            this.txt_merge_name.TabIndex = 21;
             // 
             // frm_mainScreen
             // 
@@ -937,7 +805,6 @@
             this.statusStrip1.PerformLayout();
             this.tab1Main.ResumeLayout(false);
             this.tabMainScr.ResumeLayout(false);
-            this.tabMainScr.PerformLayout();
             this.tabSettings.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -991,17 +858,6 @@
         private System.Windows.Forms.Label lbl_display4;
         private System.Windows.Forms.ComboBox cmb_display4;
         private System.Windows.Forms.Button btn_dnx;
-        private System.Windows.Forms.TextBox txt_platform_name;
-        private System.Windows.Forms.TextBox txt_type_name;
-        private System.Windows.Forms.TextBox txt_ifwi_name;
-        private System.Windows.Forms.TextBox txt_preboot_name;
-        private System.Windows.Forms.TextBox txt_arch_name;
-        private System.Windows.Forms.TextBox txt_display1;
-        private System.Windows.Forms.TextBox txt_preboot_prefix;
-        private System.Windows.Forms.TextBox txt_display2;
-        private System.Windows.Forms.TextBox txt_display3;
-        private System.Windows.Forms.TextBox txt_display4;
-        private System.Windows.Forms.TextBox txt_lfp;
         private System.Windows.Forms.TabControl tab1Main;
         private System.Windows.Forms.TabPage tabMainScr;
         private System.Windows.Forms.TabPage tabSettings;
