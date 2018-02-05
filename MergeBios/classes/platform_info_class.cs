@@ -220,7 +220,15 @@ namespace MergeBios
     enum SEARCH_WORDS
     {
         by_stitch, stepping, prefixfolder, suffixfolder, skipfoldername
-    }
+    };
+
+    /// <summary>
+    /// Merge name parts
+    /// </summary>
+    enum MERGE_NAME_PARTS
+    {
+        custom_prefix, preboot_prefix, sbiosver, preboot_ver, arch_ver, disp1, disp2, disp3, disp4
+    };
     
 
     class Platform_Info
@@ -241,6 +249,8 @@ namespace MergeBios
 
         private int data_index = 0;
         private int ui_index = 0;
+
+        public string[] platform_merge_name;
 
         const string filename_platform_db = "platform_main_conf_db.csv";
         const string filename_platform_ui = "platform_ui_conf.csv";
@@ -959,6 +969,7 @@ namespace MergeBios
             platform_ui_config = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_ui);
             platform_list = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_menu);
 
+            platform_merge_name = string.Empty;
 
             int num_rows = platform_data.GetUpperBound(0) + 1;   // Max row of platform db
             int num_cols = platform_data.GetUpperBound(1) + 1;
@@ -1395,19 +1406,28 @@ namespace MergeBios
         /// <returns> Returned value is for debug only</returns>
         public int get_preboot_folders(string path_to_preboot)
         {
-            string[] folders = Directory.GetDirectories(path_to_preboot , "*" , SearchOption.TopDirectoryOnly);
-            preboot_list = new string[folders.Length];
-            for ( int i = 0 ; i < folders.Length ; i++ )
+            int status = -1;
+            try
             {
-				// Seeks for last name of EFI path not be == SSF
-                if ( Path.GetFullPath(folders[i]).Split('\\').LastOrDefault() != "SSF" )
+                string[] folders = Directory.GetDirectories(path_to_preboot, "*", SearchOption.TopDirectoryOnly);
+                preboot_list = new string[folders.Length];
+                for (int i = 0; i < folders.Length; i++)
                 {
-                    preboot_list[i] = Path.GetFullPath(folders[i]).Split('\\').LastOrDefault();
+                    // Seeks for last name of EFI path not be == SSF
+                    if (Path.GetFullPath(folders[i]).Split('\\').LastOrDefault() != "SSF")
+                    {
+                        preboot_list[i] = Path.GetFullPath(folders[i]).Split('\\').LastOrDefault();
 
+                    }
                 }
+                status = 1;
             }
-
-            return 1;
+            catch (Exception exc_path)
+            {
+                MessageBox.Show("Error ", "Error :" + exc_path.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                status = 0;
+            }
+            return status;
         }
 
 
@@ -1419,13 +1439,25 @@ namespace MergeBios
         /// <returns></returns>
         public int get_systembios_folders(string path_to_ifwi, string pattern_in_folders = "")
         {
-            string[] folders = Directory.GetDirectories(path_to_ifwi , "*" + pattern_in_folders , SearchOption.TopDirectoryOnly);
-            bios_list = new string[folders.Length];
-            for ( int i = 0 ; i < folders.Length ; i++ )
+            int status = -1;
+
+            try
             {
-                bios_list[i] = Path.GetFullPath(folders[i]).Split('\\').LastOrDefault();
+                string[] folders = Directory.GetDirectories(path_to_ifwi, "*" + pattern_in_folders, SearchOption.TopDirectoryOnly);
+                bios_list = new string[folders.Length];
+                for (int i = 0; i < folders.Length; i++)
+                {
+                    bios_list[i] = Path.GetFullPath(folders[i]).Split('\\').LastOrDefault();
+                }
+                status = 1;
             }
-            return 1;
+            catch(Exception excp_path)
+            { 
+           
+                MessageBox.Show("Error ", "Error :" + excp_path.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                status = 0;
+            }
+            return status;
         }
 
         /// <summary>
@@ -1437,15 +1469,25 @@ namespace MergeBios
         /// <returns></returns>
         public int get_systembios_folders(string path_to_ifwi, string pattern_in_folders, string skipfoldername)
         {
-            string[] folders = Directory.GetDirectories(path_to_ifwi, "*" + pattern_in_folders, SearchOption.TopDirectoryOnly);
-            bios_list = new string[folders.Length];
-            int index = 0;
-            for ( int i = 0 ; i < folders.Length ; i++ )
+            int status = -1;
+            try
             {
-                if ( Path.GetFullPath(folders[i]).Split('\\').LastOrDefault() != skipfoldername)
-                    bios_list[index++] = Path.GetFullPath(folders[i]).Split('\\').LastOrDefault();
+                string[] folders = Directory.GetDirectories(path_to_ifwi, "*" + pattern_in_folders, SearchOption.TopDirectoryOnly);
+                bios_list = new string[folders.Length];
+                int index = 0;
+                for (int i = 0; i < folders.Length; i++)
+                {
+                    if (Path.GetFullPath(folders[i]).Split('\\').LastOrDefault() != skipfoldername)
+                        bios_list[index++] = Path.GetFullPath(folders[i]).Split('\\').LastOrDefault();
+                }
+                status = 1;
             }
-            return 1;
+            catch(Exception exc_path)
+            {
+                MessageBox.Show("Error ", "Error :" + exc_path.Message, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                status = 0;
+            }
+            return status;
         }
     }
     #endregion
