@@ -36,6 +36,7 @@ namespace MergeBios
         public string[] display2_portC;
         public string[] display3_portD;
         public string[] display4_portE;
+        public string[] display5_portF;
 
         public bool has_lfp;
         public bool has_edp;
@@ -68,17 +69,12 @@ namespace MergeBios
     /// </summary>
     enum DISPLAY_NLIST
     {
-        Nodevices,
-        edp,
-        edp_drrs,
-        edp_4k,
-        mipi,
-        dp,
-        dp_only,
-        dvi,
-        hdmi,
-        usb_c_type,
-        vga
+        Nodevices, edp, edp_drrs, edp_4k, mipi, dp, dp_only, dvi, hdmi, usb_c_type, vga
+    };
+
+    enum DISPLAY_SELCT
+    {
+        nodevice, lfp, display1, display2, display3, display4, display5
     };
 
     class Display_info
@@ -91,7 +87,14 @@ namespace MergeBios
 
         string filenamedb;
         string ssf_filedb;
-        
+        string ssf_final_confg_file;     // Name or path of the final configuration file
+        string[] display_lfp_conf_lines; // display edp or mipi BMP configuration
+        string[] display1_conf_lines;    // display 1/A BMP lines
+        string[] display2_conf_lines;    // display 2/B BMP lines
+        string[] display3_conf_lines;    // display 3/C BMP lines
+        string[] display4_conf_lines;    // display 4/D BMP lines
+        string[] display5_conf_lines;    // display 5/E BMP lines
+
 
         LoadCSV display_file = new LoadCSV(); // load all the info from the file
 
@@ -231,7 +234,7 @@ namespace MergeBios
 
             }
 
-            LoadDisplay_SSF_Config();
+            //LoadDisplay_SSF_Config();
 
 
         }
@@ -256,7 +259,7 @@ namespace MergeBios
         /// <summary>
         /// 
         /// </summary>
-        public void LoadDisplay_SSF_Config ()
+        public void LoadDisplay_SSF_Config (string platform, string preboot, int displaynumber)
         {
             //string value;
             //string[] ssf;
@@ -264,8 +267,33 @@ namespace MergeBios
             //ssf = value.Split(',');
             //MessageBox.Show(ssf[1]);
 
+            switch( displaynumber)
+            {
+                case (int)DISPLAY_SELCT.nodevice:
+                    break;
+                case (int)DISPLAY_SELCT.lfp:
+                    break;
+                case (int)DISPLAY_SELCT.display1:
+                    break;
+                case (int)DISPLAY_SELCT.display2:
+                    break;
+                case (int)DISPLAY_SELCT.display3:
+                    break;
+                case (int)DISPLAY_SELCT.display4:
+                    break;
+                case (int)DISPLAY_SELCT.display5:
+                    break;
+            }
 
 
+
+        }
+
+
+        public void Make_SSF_File()
+        {
+            // TO DO : 
+            // Write code to create the ssf here
         }
 
         #region Public accesors
@@ -390,6 +418,18 @@ namespace MergeBios
                 return display_db[display_index].display4_portE;
             }
         }
+
+        /// <summary>
+        /// [UI | Info] Contains the list of defined PORT E displays
+        /// </summary>
+        public string[] port5f_displays
+        {
+            get
+            {
+                return display_db[display_index].display5_portF;
+            }
+        }
+
 
         /// <summary>
         /// [UI | Info] Tells to select a MIPI Panel
