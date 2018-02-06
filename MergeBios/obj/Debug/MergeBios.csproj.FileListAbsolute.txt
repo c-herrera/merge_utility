@@ -7,3 +7,23 @@ C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\
 C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.exe
 C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.pdb
 C:\Users\cherrerx\Documents\Visual Studio 2015\Projects\MergeBios\MergeBios\obj\Debug\MergeBios.csprojResolveAssemblyReference.cache
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\bin\Debug\MergeBios.exe.config
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\bin\Debug\MergeBios.exe
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\bin\Debug\MergeBios.pdb
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\obj\Debug\MergeBios.csprojResolveAssemblyReference.cache
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\obj\Debug\MergeBios.frm_mainScreen.resources
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\obj\Debug\MergeBios.Properties.Resources.resources
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\obj\Debug\MergeBios.csproj.GenerateResource.Cache
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\obj\Debug\MergeBios.csproj.CoreCompileInputs.cache
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\obj\Debug\MergeBios.exe
+C:\Users\versus\source\repos\merge_utility-master\MergeBios\obj\Debug\MergeBios.pdb
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\bin\Debug\MergeBios.exe.config
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\bin\Debug\MergeBios.exe
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\bin\Debug\MergeBios.pdb
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\obj\Debug\MergeBios.csprojResolveAssemblyReference.cache
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\obj\Debug\MergeBios.frm_mainScreen.resources
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\obj\Debug\MergeBios.Properties.Resources.resources
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\obj\Debug\MergeBios.csproj.GenerateResource.Cache
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\obj\Debug\MergeBios.csproj.CoreCompileInputs.cache
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\obj\Debug\MergeBios.exe
+C:\Users\versus\source\repos\CSharp_Projs\merge_utility-master\MergeBios\obj\Debug\MergeBios.pdb

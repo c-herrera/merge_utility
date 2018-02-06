@@ -53,27 +53,14 @@ namespace MergeBios
             // TBD
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mergeExe"></param>
+        /// <param name="sBIOS"></param>
+        /// <param name="preBoot"></param>
         public void mergeBios (string mergeExe, string sBIOS, string preBoot)
         {
-            string prod = string.Empty;
-
-            if ( opt_production )
-            {
-                prod = "PROD";
-            }
-
-            if ( opt_hybrid )
-            {
-            }
-
-            if ( opt_mipi )
-            {
-            }
-
-            if ( opt_lpc )
-            {
-            }
-
             // copy if not present the needed copy_files
             // if (Directory.Exists(path_to_project + sbios_to_use))
             // copy_files (path_to_sbios+ _sbios_use,path_of_workfolder + _sbios_use);
@@ -87,27 +74,15 @@ namespace MergeBios
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mergeExe"></param>
+        /// <param name="sBIOS"></param>
+        /// <param name="preBoot"></param>
+        /// <param name="VBTFile"></param>
         public void mergeBios (string mergeExe, string sBIOS, string preBoot, string VBTFile)
         {
-            string prod = string.Empty;
-
-            if ( opt_production )
-            {
-                prod = "PROD";
-            }
-
-            if ( opt_hybrid )
-            {
-            }
-
-            if ( opt_mipi )
-            {
-            }
-
-            if ( opt_lpc )
-            {
-            }
-
             // copy if not present the needed copy_files
             // if (Directory.Exists(path_to_project + sbios_to_use))
             // copy_files (path_to_sbios+ _sbios_use,path_of_workfolder + _sbios_use);
@@ -121,17 +96,31 @@ namespace MergeBios
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destiny"></param>
         public void copy_files (string source, string destiny)
         {
             // TODO : copy instructions here
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="exename"></param>
+        /// <param name="folderpath"></param>
         private void execute_command (string exename, string folderpath)
         {
             // Put process instrucions to execute programs
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private bool copy_required(string path)
         {
 			bool state = false;
@@ -139,6 +128,11 @@ namespace MergeBios
 			return state;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         private bool check_changes(string path)
         {
 			bool state = false;

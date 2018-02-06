@@ -112,7 +112,7 @@
             this.cmb_plt_type.FormattingEnabled = true;
             this.cmb_plt_type.Location = new System.Drawing.Point(6, 56);
             this.cmb_plt_type.Name = "cmb_plt_type";
-            this.cmb_plt_type.Size = new System.Drawing.Size(121, 27);
+            this.cmb_plt_type.Size = new System.Drawing.Size(121, 21);
             this.cmb_plt_type.TabIndex = 0;
             this.cmb_plt_type.SelectedIndexChanged += new System.EventHandler(this.cmb_plt_type_SelectedIndexChanged);
             // 
@@ -122,7 +122,7 @@
             this.cmb_platform.FormattingEnabled = true;
             this.cmb_platform.Location = new System.Drawing.Point(6, 19);
             this.cmb_platform.Name = "cmb_platform";
-            this.cmb_platform.Size = new System.Drawing.Size(190, 27);
+            this.cmb_platform.Size = new System.Drawing.Size(190, 21);
             this.cmb_platform.TabIndex = 1;
             this.cmb_platform.SelectedIndexChanged += new System.EventHandler(this.cmb_platform_SelectedIndexChanged);
             // 
@@ -130,7 +130,7 @@
             // 
             this.group_platforms.Controls.Add(this.cmb_platform);
             this.group_platforms.Controls.Add(this.cmb_plt_type);
-            this.group_platforms.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_platforms.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_platforms.Location = new System.Drawing.Point(19, 18);
             this.group_platforms.Name = "group_platforms";
             this.group_platforms.Size = new System.Drawing.Size(207, 95);
@@ -142,7 +142,7 @@
             // 
             this.group_preboot.Controls.Add(this.radio_vbios);
             this.group_preboot.Controls.Add(this.radio_gop);
-            this.group_preboot.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_preboot.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_preboot.Location = new System.Drawing.Point(242, 18);
             this.group_preboot.Name = "group_preboot";
             this.group_preboot.Size = new System.Drawing.Size(207, 46);
@@ -156,7 +156,7 @@
             this.radio_vbios.Enabled = false;
             this.radio_vbios.Location = new System.Drawing.Point(111, 19);
             this.radio_vbios.Name = "radio_vbios";
-            this.radio_vbios.Size = new System.Drawing.Size(59, 23);
+            this.radio_vbios.Size = new System.Drawing.Size(62, 17);
             this.radio_vbios.TabIndex = 1;
             this.radio_vbios.TabStop = true;
             this.radio_vbios.Text = "VBIOS";
@@ -169,7 +169,7 @@
             this.radio_gop.Enabled = false;
             this.radio_gop.Location = new System.Drawing.Point(6, 19);
             this.radio_gop.Name = "radio_gop";
-            this.radio_gop.Size = new System.Drawing.Size(50, 23);
+            this.radio_gop.Size = new System.Drawing.Size(51, 17);
             this.radio_gop.TabIndex = 0;
             this.radio_gop.TabStop = true;
             this.radio_gop.Text = "GOP";
@@ -180,7 +180,7 @@
             // 
             this.group_arch.Controls.Add(this.radio_x64);
             this.group_arch.Controls.Add(this.radio_x32);
-            this.group_arch.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_arch.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_arch.Location = new System.Drawing.Point(242, 70);
             this.group_arch.Name = "group_arch";
             this.group_arch.Size = new System.Drawing.Size(207, 47);
@@ -194,7 +194,7 @@
             this.radio_x64.Enabled = false;
             this.radio_x64.Location = new System.Drawing.Point(111, 19);
             this.radio_x64.Name = "radio_x64";
-            this.radio_x64.Size = new System.Drawing.Size(47, 23);
+            this.radio_x64.Size = new System.Drawing.Size(45, 17);
             this.radio_x64.TabIndex = 1;
             this.radio_x64.TabStop = true;
             this.radio_x64.Text = "x64";
@@ -207,7 +207,7 @@
             this.radio_x32.Enabled = false;
             this.radio_x32.Location = new System.Drawing.Point(6, 19);
             this.radio_x32.Name = "radio_x32";
-            this.radio_x32.Size = new System.Drawing.Size(47, 23);
+            this.radio_x32.Size = new System.Drawing.Size(45, 17);
             this.radio_x32.TabIndex = 0;
             this.radio_x32.TabStop = true;
             this.radio_x32.Text = "x32";
@@ -220,7 +220,7 @@
             this.group_SBIOS_list.Controls.Add(this.cmb_stepping);
             this.group_SBIOS_list.Controls.Add(this.check_production);
             this.group_SBIOS_list.Controls.Add(this.cmb_sbios);
-            this.group_SBIOS_list.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_SBIOS_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_SBIOS_list.Location = new System.Drawing.Point(455, 18);
             this.group_SBIOS_list.Name = "group_SBIOS_list";
             this.group_SBIOS_list.Size = new System.Drawing.Size(207, 121);
@@ -233,7 +233,7 @@
             this.lbl_stepping.AutoSize = true;
             this.lbl_stepping.Location = new System.Drawing.Point(69, 87);
             this.lbl_stepping.Name = "lbl_stepping";
-            this.lbl_stepping.Size = new System.Drawing.Size(55, 19);
+            this.lbl_stepping.Size = new System.Drawing.Size(57, 13);
             this.lbl_stepping.TabIndex = 3;
             this.lbl_stepping.Text = "Steeping";
             // 
@@ -244,7 +244,7 @@
             this.cmb_stepping.FormattingEnabled = true;
             this.cmb_stepping.Location = new System.Drawing.Point(131, 79);
             this.cmb_stepping.Name = "cmb_stepping";
-            this.cmb_stepping.Size = new System.Drawing.Size(59, 27);
+            this.cmb_stepping.Size = new System.Drawing.Size(59, 21);
             this.cmb_stepping.TabIndex = 2;
             // 
             // check_production
@@ -252,7 +252,7 @@
             this.check_production.AutoSize = true;
             this.check_production.Location = new System.Drawing.Point(10, 53);
             this.check_production.Name = "check_production";
-            this.check_production.Size = new System.Drawing.Size(86, 23);
+            this.check_production.Size = new System.Drawing.Size(87, 17);
             this.check_production.TabIndex = 1;
             this.check_production.Text = "Production";
             this.check_production.UseVisualStyleBackColor = true;
@@ -264,14 +264,14 @@
             this.cmb_sbios.FormattingEnabled = true;
             this.cmb_sbios.Location = new System.Drawing.Point(6, 19);
             this.cmb_sbios.Name = "cmb_sbios";
-            this.cmb_sbios.Size = new System.Drawing.Size(184, 27);
+            this.cmb_sbios.Size = new System.Drawing.Size(184, 21);
             this.cmb_sbios.TabIndex = 0;
             this.cmb_sbios.SelectedIndexChanged += new System.EventHandler(this.cmb_sbios_SelectedIndexChanged);
             // 
             // group_preboot_list
             // 
             this.group_preboot_list.Controls.Add(this.cmb_preboot);
-            this.group_preboot_list.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_preboot_list.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_preboot_list.Location = new System.Drawing.Point(455, 145);
             this.group_preboot_list.Name = "group_preboot_list";
             this.group_preboot_list.Size = new System.Drawing.Size(207, 54);
@@ -286,7 +286,7 @@
             this.cmb_preboot.FormattingEnabled = true;
             this.cmb_preboot.Location = new System.Drawing.Point(6, 19);
             this.cmb_preboot.Name = "cmb_preboot";
-            this.cmb_preboot.Size = new System.Drawing.Size(146, 27);
+            this.cmb_preboot.Size = new System.Drawing.Size(146, 21);
             this.cmb_preboot.TabIndex = 0;
             this.cmb_preboot.SelectedIndexChanged += new System.EventHandler(this.cmb_preboot_SelectedIndexChanged);
             // 
@@ -296,7 +296,7 @@
             this.group_plt_features.Controls.Add(this.check_f_hybrid);
             this.group_plt_features.Controls.Add(this.check_f_seq_mipi);
             this.group_plt_features.Controls.Add(this.check_f_mipi);
-            this.group_plt_features.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_plt_features.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_plt_features.Location = new System.Drawing.Point(25, 142);
             this.group_plt_features.Name = "group_plt_features";
             this.group_plt_features.Size = new System.Drawing.Size(276, 48);
@@ -310,7 +310,7 @@
             this.check_f_connected_standby.Enabled = false;
             this.check_f_connected_standby.Location = new System.Drawing.Point(210, 19);
             this.check_f_connected_standby.Name = "check_f_connected_standby";
-            this.check_f_connected_standby.Size = new System.Drawing.Size(42, 23);
+            this.check_f_connected_standby.Size = new System.Drawing.Size(42, 17);
             this.check_f_connected_standby.TabIndex = 3;
             this.check_f_connected_standby.Text = "CS";
             this.check_f_connected_standby.UseVisualStyleBackColor = true;
@@ -321,7 +321,7 @@
             this.check_f_hybrid.Enabled = false;
             this.check_f_hybrid.Location = new System.Drawing.Point(140, 19);
             this.check_f_hybrid.Name = "check_f_hybrid";
-            this.check_f_hybrid.Size = new System.Drawing.Size(63, 23);
+            this.check_f_hybrid.Size = new System.Drawing.Size(62, 17);
             this.check_f_hybrid.TabIndex = 2;
             this.check_f_hybrid.Text = "Hybrid";
             this.check_f_hybrid.UseVisualStyleBackColor = true;
@@ -332,7 +332,7 @@
             this.check_f_seq_mipi.Enabled = false;
             this.check_f_seq_mipi.Location = new System.Drawing.Point(79, 19);
             this.check_f_seq_mipi.Name = "check_f_seq_mipi";
-            this.check_f_seq_mipi.Size = new System.Drawing.Size(50, 23);
+            this.check_f_seq_mipi.Size = new System.Drawing.Size(51, 17);
             this.check_f_seq_mipi.TabIndex = 1;
             this.check_f_seq_mipi.Text = "SEQ";
             this.check_f_seq_mipi.UseVisualStyleBackColor = true;
@@ -343,7 +343,7 @@
             this.check_f_mipi.Enabled = false;
             this.check_f_mipi.Location = new System.Drawing.Point(12, 19);
             this.check_f_mipi.Name = "check_f_mipi";
-            this.check_f_mipi.Size = new System.Drawing.Size(50, 23);
+            this.check_f_mipi.Size = new System.Drawing.Size(52, 17);
             this.check_f_mipi.TabIndex = 0;
             this.check_f_mipi.Text = "MIPI";
             this.check_f_mipi.UseVisualStyleBackColor = true;
@@ -354,7 +354,7 @@
             this.group_other_flash.Controls.Add(this.btn_dediprog);
             this.group_other_flash.Controls.Add(this.btn_second_stage);
             this.group_other_flash.Controls.Add(this.btn_flash_ksc);
-            this.group_other_flash.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_other_flash.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_other_flash.Location = new System.Drawing.Point(681, 18);
             this.group_other_flash.Name = "group_other_flash";
             this.group_other_flash.Size = new System.Drawing.Size(152, 181);
@@ -366,7 +366,7 @@
             // 
             this.btn_dnx.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_dnx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_dnx.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_dnx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_dnx.Image = ((System.Drawing.Image)(resources.GetObject("btn_dnx.Image")));
             this.btn_dnx.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_dnx.Location = new System.Drawing.Point(34, 101);
@@ -395,7 +395,7 @@
             // 
             this.btn_second_stage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_second_stage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_second_stage.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_second_stage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_second_stage.Image = ((System.Drawing.Image)(resources.GetObject("btn_second_stage.Image")));
             this.btn_second_stage.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_second_stage.Location = new System.Drawing.Point(34, 60);
@@ -410,7 +410,7 @@
             // 
             this.btn_flash_ksc.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_flash_ksc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_flash_ksc.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_flash_ksc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_flash_ksc.Image = ((System.Drawing.Image)(resources.GetObject("btn_flash_ksc.Image")));
             this.btn_flash_ksc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_flash_ksc.Location = new System.Drawing.Point(34, 21);
@@ -425,7 +425,7 @@
             // 
             this.btn_quit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_quit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_quit.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_quit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_quit.Image = ((System.Drawing.Image)(resources.GetObject("btn_quit.Image")));
             this.btn_quit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_quit.Location = new System.Drawing.Point(734, 449);
@@ -452,7 +452,7 @@
             this.group_output_ports.Controls.Add(this.cmb_display2);
             this.group_output_ports.Controls.Add(this.cmb_display1);
             this.group_output_ports.Controls.Add(this.cmb_lfp);
-            this.group_output_ports.Font = new System.Drawing.Font("Intel Clear", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.group_output_ports.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_output_ports.Location = new System.Drawing.Point(25, 196);
             this.group_output_ports.Name = "group_output_ports";
             this.group_output_ports.Size = new System.Drawing.Size(475, 127);
@@ -465,7 +465,7 @@
             this.lbl_display4.AutoSize = true;
             this.lbl_display4.Location = new System.Drawing.Point(385, 38);
             this.lbl_display4.Name = "lbl_display4";
-            this.lbl_display4.Size = new System.Drawing.Size(75, 19);
+            this.lbl_display4.Size = new System.Drawing.Size(79, 13);
             this.lbl_display4.TabIndex = 12;
             this.lbl_display4.Text = "Display 4 (E)";
             // 
@@ -475,7 +475,7 @@
             this.cmb_display4.FormattingEnabled = true;
             this.cmb_display4.Location = new System.Drawing.Point(388, 59);
             this.cmb_display4.Name = "cmb_display4";
-            this.cmb_display4.Size = new System.Drawing.Size(77, 27);
+            this.cmb_display4.Size = new System.Drawing.Size(77, 21);
             this.cmb_display4.TabIndex = 11;
             this.cmb_display4.SelectedIndexChanged += new System.EventHandler(this.cmb_display4_SelectedIndexChanged);
             // 
@@ -484,7 +484,7 @@
             this.check_custom_ports.AutoSize = true;
             this.check_custom_ports.Location = new System.Drawing.Point(82, 14);
             this.check_custom_ports.Name = "check_custom_ports";
-            this.check_custom_ports.Size = new System.Drawing.Size(183, 23);
+            this.check_custom_ports.Size = new System.Drawing.Size(194, 17);
             this.check_custom_ports.TabIndex = 10;
             this.check_custom_ports.Text = "Enable Custom Port Selection";
             this.check_custom_ports.UseVisualStyleBackColor = true;
@@ -495,7 +495,7 @@
             this.radio_edp.AutoSize = true;
             this.radio_edp.Location = new System.Drawing.Point(106, 93);
             this.radio_edp.Name = "radio_edp";
-            this.radio_edp.Size = new System.Drawing.Size(48, 23);
+            this.radio_edp.Size = new System.Drawing.Size(49, 17);
             this.radio_edp.TabIndex = 9;
             this.radio_edp.TabStop = true;
             this.radio_edp.Text = "eDP";
@@ -506,7 +506,7 @@
             this.radio_lvds.AutoSize = true;
             this.radio_lvds.Location = new System.Drawing.Point(15, 95);
             this.radio_lvds.Name = "radio_lvds";
-            this.radio_lvds.Size = new System.Drawing.Size(54, 23);
+            this.radio_lvds.Size = new System.Drawing.Size(57, 17);
             this.radio_lvds.TabIndex = 8;
             this.radio_lvds.TabStop = true;
             this.radio_lvds.Text = "LVDS";
@@ -517,7 +517,7 @@
             this.lbl_display3.AutoSize = true;
             this.lbl_display3.Location = new System.Drawing.Point(296, 38);
             this.lbl_display3.Name = "lbl_display3";
-            this.lbl_display3.Size = new System.Drawing.Size(76, 19);
+            this.lbl_display3.Size = new System.Drawing.Size(80, 13);
             this.lbl_display3.TabIndex = 7;
             this.lbl_display3.Text = "Display 3 (D)";
             // 
@@ -526,7 +526,7 @@
             this.lbl_display2.AutoSize = true;
             this.lbl_display2.Location = new System.Drawing.Point(196, 38);
             this.lbl_display2.Name = "lbl_display2";
-            this.lbl_display2.Size = new System.Drawing.Size(75, 19);
+            this.lbl_display2.Size = new System.Drawing.Size(79, 13);
             this.lbl_display2.TabIndex = 6;
             this.lbl_display2.Text = "Display 2 (C)";
             // 
@@ -535,7 +535,7 @@
             this.lbl_display1.AutoSize = true;
             this.lbl_display1.Location = new System.Drawing.Point(102, 38);
             this.lbl_display1.Name = "lbl_display1";
-            this.lbl_display1.Size = new System.Drawing.Size(75, 19);
+            this.lbl_display1.Size = new System.Drawing.Size(79, 13);
             this.lbl_display1.TabIndex = 5;
             this.lbl_display1.Text = "Display 1 (B)";
             // 
@@ -544,7 +544,7 @@
             this.lbl_local_flat_panel.AutoSize = true;
             this.lbl_local_flat_panel.Location = new System.Drawing.Point(33, 38);
             this.lbl_local_flat_panel.Name = "lbl_local_flat_panel";
-            this.lbl_local_flat_panel.Size = new System.Drawing.Size(28, 19);
+            this.lbl_local_flat_panel.Size = new System.Drawing.Size(29, 13);
             this.lbl_local_flat_panel.TabIndex = 4;
             this.lbl_local_flat_panel.Text = "LFP";
             // 
@@ -554,7 +554,7 @@
             this.cmb_display3.FormattingEnabled = true;
             this.cmb_display3.Location = new System.Drawing.Point(299, 59);
             this.cmb_display3.Name = "cmb_display3";
-            this.cmb_display3.Size = new System.Drawing.Size(77, 27);
+            this.cmb_display3.Size = new System.Drawing.Size(77, 21);
             this.cmb_display3.TabIndex = 3;
             this.cmb_display3.SelectedIndexChanged += new System.EventHandler(this.cmb_display3_SelectedIndexChanged);
             // 
@@ -564,7 +564,7 @@
             this.cmb_display2.FormattingEnabled = true;
             this.cmb_display2.Location = new System.Drawing.Point(199, 59);
             this.cmb_display2.Name = "cmb_display2";
-            this.cmb_display2.Size = new System.Drawing.Size(77, 27);
+            this.cmb_display2.Size = new System.Drawing.Size(77, 21);
             this.cmb_display2.TabIndex = 2;
             this.cmb_display2.SelectedIndexChanged += new System.EventHandler(this.cmb_display2_SelectedIndexChanged);
             // 
@@ -574,7 +574,7 @@
             this.cmb_display1.FormattingEnabled = true;
             this.cmb_display1.Location = new System.Drawing.Point(105, 59);
             this.cmb_display1.Name = "cmb_display1";
-            this.cmb_display1.Size = new System.Drawing.Size(77, 27);
+            this.cmb_display1.Size = new System.Drawing.Size(77, 21);
             this.cmb_display1.TabIndex = 1;
             this.cmb_display1.SelectedIndexChanged += new System.EventHandler(this.cmb_display1_SelectedIndexChanged);
             // 
@@ -584,7 +584,7 @@
             this.cmb_lfp.FormattingEnabled = true;
             this.cmb_lfp.Location = new System.Drawing.Point(13, 61);
             this.cmb_lfp.Name = "cmb_lfp";
-            this.cmb_lfp.Size = new System.Drawing.Size(77, 27);
+            this.cmb_lfp.Size = new System.Drawing.Size(77, 21);
             this.cmb_lfp.TabIndex = 0;
             this.cmb_lfp.SelectedIndexChanged += new System.EventHandler(this.cmb_lfp_SelectedIndexChanged);
             // 
@@ -718,7 +718,7 @@
             this.lbl_flash_tool.AutoSize = true;
             this.lbl_flash_tool.Location = new System.Drawing.Point(26, 157);
             this.lbl_flash_tool.Name = "lbl_flash_tool";
-            this.lbl_flash_tool.Size = new System.Drawing.Size(126, 13);
+            this.lbl_flash_tool.Size = new System.Drawing.Size(127, 13);
             this.lbl_flash_tool.TabIndex = 5;
             this.lbl_flash_tool.Text = "Select Flash Tool to use";
             // 
