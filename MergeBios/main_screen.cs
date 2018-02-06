@@ -192,8 +192,16 @@ namespace MergeBios
             arch = (int)ARCH_TYPE.noarch;
             preboot = 255;
 
+            for (int i = (int)MERGE_NAME_PARTS.custom_prefix; i <= (int)MERGE_NAME_PARTS.disp5; i++)
+            {
+                platform.platform_merge_name[i] = string.Empty;
+            }
+
+
             // string for the merge name
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.platform_name] = cmb_platform.Text;
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -279,6 +287,8 @@ namespace MergeBios
 
             // string for the merge name
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.type_name] = cmb_plt_type.Text;
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -352,6 +362,8 @@ namespace MergeBios
             }
             //string to create the name of the merge
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.arch_ver] = radio_x32.Text;
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -409,6 +421,7 @@ namespace MergeBios
             //string to create the name of the merge
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.arch_ver] = radio_x64.Text;
 
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -455,6 +468,8 @@ namespace MergeBios
             }
             //string to create the merge bios filename
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.gop];
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -505,6 +520,8 @@ namespace MergeBios
             }
             //string to create the bios marge name
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.vbios];
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -551,7 +568,8 @@ namespace MergeBios
                         cmb_lfp.SelectedItem = platform.platform_Default_Displays[0];
 
                         // string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.SelectedItem.ToString();
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.Text;
+                        lbl_merge_name.Text =  string.Join(" ", platform.platform_merge_name);
                     }
 
                     if ( cmb_display1.Enabled )
@@ -563,7 +581,8 @@ namespace MergeBios
                         cmb_display1.SelectedItem = platform.platform_Default_Displays[1];
 
                         //string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.SelectedItem.ToString();
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
                     }
 
                     if ( cmb_display2.Enabled )
@@ -575,7 +594,8 @@ namespace MergeBios
                         cmb_display2.SelectedItem = platform.platform_Default_Displays[2];
 
                         //string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.SelectedItem.ToString();
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
                     }
 
                     if ( cmb_display3.Enabled )
@@ -587,7 +607,8 @@ namespace MergeBios
                         cmb_display3.SelectedItem = platform.platform_Default_Displays[3];
 
                         //txt_display3.Text = cmb_display3.SelectedItem.ToString();
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.SelectedItem.ToString();
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
                     }
 
                     if ( cmb_display4.Enabled )
@@ -599,9 +620,12 @@ namespace MergeBios
                         cmb_display4.SelectedItem = platform.platform_Default_Displays[4];
 
                         //txt_display4.Text = cmb_display4.SelectedItem.ToString();
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.SelectedItem.ToString();
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
                     }
                 }
+                lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
             }
             else
             {                
@@ -630,6 +654,7 @@ namespace MergeBios
                 {
                     platform.platform_merge_name[i] = string.Empty;
                 }
+                lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
             }
 
 
@@ -643,7 +668,9 @@ namespace MergeBios
         private void cmb_sbios_SelectedIndexChanged (object sender, EventArgs e)
         {
 
-           //txt_ifwi_name.Text = cmb_sbios.Text;
+            //txt_ifwi_name.Text = cmb_sbios.Text;
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.sbiosver] = cmb_sbios.Text;
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -653,7 +680,9 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_preboot_SelectedIndexChanged (object sender, EventArgs e)
         {
-           //txt_preboot_name.Text = cmb_preboot.Text;
+            //txt_preboot_name.Text = cmb_preboot.Text;
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_ver] = cmb_preboot.Text;
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -664,6 +693,8 @@ namespace MergeBios
         private void cmb_lfp_SelectedIndexChanged (object sender, EventArgs e)
         {
             //txt_lfp.Text = cmb_lfp.Text;
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.Text;
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -674,6 +705,8 @@ namespace MergeBios
         private void cmb_display1_SelectedIndexChanged (object sender, EventArgs e)
         {
             //txt_display1.Text = cmb_display1.Text;
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.Text;
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -684,6 +717,8 @@ namespace MergeBios
         private void cmb_display2_SelectedIndexChanged (object sender, EventArgs e)
         {
             //txt_display2.Text = cmb_display2.Text;
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.Text;
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -694,6 +729,8 @@ namespace MergeBios
         private void cmb_display3_SelectedIndexChanged (object sender, EventArgs e)
         {
             //txt_display3.Text = cmb_display3.Text;
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.Text;
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
         /// <summary>
@@ -704,6 +741,8 @@ namespace MergeBios
         private void cmb_display4_SelectedIndexChanged (object sender, EventArgs e)
         {
             //txt_display4.Text = cmb_display4.Text;
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.Text;
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
 
@@ -731,7 +770,7 @@ namespace MergeBios
         }
 
         /// <summary>
-        /// 
+        /// Select new merge binary files folder
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -754,12 +793,12 @@ namespace MergeBios
         }
 
         /// <summary>
-        /// 
+        /// Apply the new settings, ui form option
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_apply_prefs_Click (object sender, EventArgs e)
-        {
+        {            
             optionsConf.opt_ask_for_save = chk_ask_save.Checked; 
             optionsConf.opt_auto_flash = chk_ask_flash.Checked;
             optionsConf.opt_remote_folder_check = chk_remote_folder.Checked;
