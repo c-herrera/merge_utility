@@ -13,16 +13,97 @@ namespace MergeBios
 {
     class Merge
     {
+        // normal merge attributes
+        public string sbios_ver;
+        public string sbios_path;
+        public string preboot_ver;
+        public string preboot_path;
+        public string modvbt;
+        public string modvbt_path;
+
+        public string customvbt;
+        public string merge_final_name;
+        
         // standard command line options
         private string _sbios_use;
         private string _merge_use;
         private string _preboot_use;
-
         // non standard command line options
-        public bool opt_production;
-        public bool opt_hybrid;
-        public bool opt_mipi;
-        public bool opt_lpc;
+        private bool arg_production;
+        private bool arg_hybrid;
+        private bool arg_mipi;
+        private bool arg_lpc;
+
+
+
+        public Merge ()
+        {
+            // TBD
+            sbios_ver = string.Empty;
+            sbios_path = string.Empty;
+            preboot_path = string.Empty;
+            preboot_ver = string.Empty;
+
+            modvbt = string.Empty;
+            modvbt_path = string.Empty;
+
+            merge_final_name = string.Empty;
+            customvbt = string.Empty;
+
+        }
+
+        /// <summary>
+        /// MergeBios routine, with and without modified vbt
+        /// </summary>
+        /// <param name="mergeExe"></param>
+        /// <param name="sBIOS"></param>
+        /// <param name="preBoot"></param>
+        public void mergeBios (string mergeExe, string sBIOS, string preBoot)
+        {
+
+            // Put instrucctions to start merge
+
+        }
+
+        /// <summary>
+        /// MergeBios routine, with and without modified vbt
+        /// </summary>
+        /// <param name="mergeExe"></param>
+        /// <param name="sBIOS"></param>
+        /// <param name="preBoot"></param>
+        /// <param name="VBTFile"></param>
+        public void mergeBios (string mergeExe, string sBIOS, string preBoot, string VBTFile)
+        {
+
+            // Put instrucctions to start merge
+
+        }
+
+        /// <summary>
+        /// Auxiliary method, Copy files recursive
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destiny"></param>
+        public void copy_files (string source, string destiny)
+        {
+            // TODO : copy instructions here
+        }
+
+        /// <summary>
+        /// Auxiliary method, execute a process
+        /// </summary>
+        /// <param name="exename"></param>
+        /// <param name="folderpath"></param>
+        private void execute_command (string exename, string folderpath)
+        {
+            // Put process instrucions to execute programs
+        }
+
+
+
+
+
+        #region Accesors
 
         public string sbios_to_use
         {
@@ -48,96 +129,8 @@ namespace MergeBios
             }
         }
 
-        public Merge ()
-        {
-            // TBD
-        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="mergeExe"></param>
-        /// <param name="sBIOS"></param>
-        /// <param name="preBoot"></param>
-        public void mergeBios (string mergeExe, string sBIOS, string preBoot)
-        {
-            // copy if not present the needed copy_files
-            // if (Directory.Exists(path_to_project + sbios_to_use))
-            // copy_files (path_to_sbios+ _sbios_use,path_of_workfolder + _sbios_use);
-            // if (Directory.Exists(path_to_project + preboot))
-            // copy_files (path_to_preboot + _preboot_use, path_of_workfolder + _sbios_use);
-
-            // if (File.Exist(path_to_project + _merge_use))
-            // copy_files (path_to_server + project + _merge_use, path_to_project + _merge_use);
-
-            // Put instrucctions to start merge
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="mergeExe"></param>
-        /// <param name="sBIOS"></param>
-        /// <param name="preBoot"></param>
-        /// <param name="VBTFile"></param>
-        public void mergeBios (string mergeExe, string sBIOS, string preBoot, string VBTFile)
-        {
-            // copy if not present the needed copy_files
-            // if (Directory.Exists(path_to_project + sbios_to_use))
-            // copy_files (path_to_sbios+ _sbios_use,path_of_workfolder + _sbios_use);
-            // if (Directory.Exists(path_to_project + preboot))
-            // copy_files (path_to_preboot + _preboot_use, path_of_workfolder + _sbios_use);
-
-            // if (File.Exist(path_to_project + _merge_use))
-            // copy_files (path_to_server + project + _merge_use, path_to_project + _merge_use);
-
-            // Put instrucctions to start merge
-
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="destiny"></param>
-        public void copy_files (string source, string destiny)
-        {
-            // TODO : copy instructions here
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="exename"></param>
-        /// <param name="folderpath"></param>
-        private void execute_command (string exename, string folderpath)
-        {
-            // Put process instrucions to execute programs
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        private bool copy_required(string path)
-        {
-			bool state = false;
-
-			return state;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        private bool check_changes(string path)
-        {
-			bool state = false;
-			return state;
-        }
+        #endregion
 
     }
 }

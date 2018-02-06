@@ -220,7 +220,7 @@ namespace MergeBios
     enum SEARCH_WORDS
     {
         by_stitch, stepping, prefixfolder, suffixfolder, skipfoldername
-    }
+    };
 
     /// <summary>
     /// Merge name parts
@@ -956,7 +956,7 @@ namespace MergeBios
 
         public Platform_Info()
         {
-            // Constructor [no overloaded, TBD]
+        // Constructor [no overloaded, TBD]
         }
         #region class methods
 
@@ -969,7 +969,13 @@ namespace MergeBios
             platform_ui_config = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_ui);
             platform_list = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_menu);
 
-            platform_merge_name = new string[12];
+            platform_merge_name = new string[(int)MERGE_NAME_PARTS.disp5 + 1];
+
+
+            for (int i = (int)MERGE_NAME_PARTS.custom_prefix ; i <= (int)MERGE_NAME_PARTS.disp5; i++)
+            {
+                platform_merge_name[i] = string.Empty;
+            }
 
 
             // efi skl_rvp_11 x54 119 9.0.1055 edp dp dp hdmi hdmi
@@ -988,64 +994,64 @@ namespace MergeBios
             pt_ui = new platform_ui_config[num_platforms_ui];
 
 
-            for (int i = 1; i < num_rows; i++)
+            for ( int i = 1 ; i < num_rows ; i++ )
             {
                 // Platform name and type
-                pt_db[i].platform_name = platform_data[i, (int)PLATFORM_DB_HEADER.Platform_name];
-                pt_db[i].platform_type = platform_data[i, (int)PLATFORM_DB_HEADER.Type];
+                pt_db[i].platform_name = platform_data[i , ( int ) PLATFORM_DB_HEADER.Platform_name];
+                pt_db[i].platform_type = platform_data[i , ( int ) PLATFORM_DB_HEADER.Type];
 
                 // Arch is NA if not defined
-                pt_db[i].platform_arch = platform_data[i, (int)PLATFORM_DB_HEADER.Arch];
+                pt_db[i].platform_arch = platform_data[i , ( int ) PLATFORM_DB_HEADER.Arch];
 
-                if (pt_db[i].platform_arch.Equals("NA"))
+                if ( pt_db[i].platform_arch.Equals("NA") )
                 {
                     pt_db[i].noarch = true;
-                    pt_db[i].default_arch = (int)ARCH_TYPE.noarch;
+                    pt_db[i].default_arch = ( int ) ARCH_TYPE.noarch;
                 }
 
                 // Arch x32
-                if (pt_db[i].platform_arch.Equals("X32"))
+                if ( pt_db[i].platform_arch.Equals("X32") )
                 {
                     pt_db[i].isx32 = true;
-                    pt_db[i].default_arch = (int)ARCH_TYPE.x_32;
+                    pt_db[i].default_arch = ( int ) ARCH_TYPE.x_32;
                 }
                 // arch x64
-                if (pt_db[i].platform_arch.Equals("X64"))
+                if ( pt_db[i].platform_arch.Equals("X64") )
                 {
                     pt_db[i].isx64 = true;
-                    pt_db[i].default_arch = (int)ARCH_TYPE.x_64;
+                    pt_db[i].default_arch = ( int ) ARCH_TYPE.x_64;
                 }
 
 
                 // Preboot info
-                pt_db[i].preboot = platform_data[i, (int)PLATFORM_DB_HEADER.Preboot];
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.Preboot] == "GOP")
+                pt_db[i].preboot = platform_data[i , ( int ) PLATFORM_DB_HEADER.Preboot];
+                if ( platform_data[i , ( int ) PLATFORM_DB_HEADER.Preboot] == "GOP" )
                 {
-                    pt_db[i].isgop = (int)PREBOOT_TYPES_ID.gop;
-                    pt_db[i].preboot_type = (int)PREBOOT_TYPES_ID.gop;
+                    pt_db[i].isgop = ( int ) PREBOOT_TYPES_ID.gop;
+                    pt_db[i].preboot_type = ( int ) PREBOOT_TYPES_ID.gop;
                 }
 
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.Preboot] == "VBIOS")
+                if ( platform_data[i , ( int ) PLATFORM_DB_HEADER.Preboot] == "VBIOS" )
                 {
-                    pt_db[i].isvbios = (int)PREBOOT_TYPES_ID.vbios;
-                    pt_db[i].preboot_type = (int)PREBOOT_TYPES_ID.vbios;
+                    pt_db[i].isvbios = ( int ) PREBOOT_TYPES_ID.vbios;
+                    pt_db[i].preboot_type = ( int ) PREBOOT_TYPES_ID.vbios;
                 }
 
                 // Path info
                 // Merge name
-                pt_db[i].merge_script = platform_data[i, (int)PLATFORM_DB_HEADER.Batch];
+                pt_db[i].merge_script = platform_data[i , ( int ) PLATFORM_DB_HEADER.Batch];
 
 
                 // Project path
-                pt_db[i].server_path_project = platform_data[i, (int)PLATFORM_DB_HEADER.Project_Path];
+                pt_db[i].server_path_project = platform_data[i, ( int ) PLATFORM_DB_HEADER.Project_Path];
                 // Project path bios
-                pt_db[i].server_path_bios = platform_data[i, (int)PLATFORM_DB_HEADER.PathBIOS];
+                pt_db[i].server_path_bios = platform_data[i , ( int ) PLATFORM_DB_HEADER.PathBIOS];
                 // Project path to preboot files
-                pt_db[i].server_path_preboot = platform_data[i, (int)PLATFORM_DB_HEADER.Path_Preboot];
+                pt_db[i].server_path_preboot = platform_data[i , ( int ) PLATFORM_DB_HEADER.Path_Preboot];
                 // Path to KSC
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.Path_KSC] != "NA")
+                if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.Path_KSC] != "NA")
                 {
-                    pt_db[i].server_path_ksc = platform_data[i, (int)PLATFORM_DB_HEADER.Path_KSC];
+                    pt_db[i].server_path_ksc = platform_data[i, ( int ) PLATFORM_DB_HEADER.Path_KSC];
                 }
                 else
                 {
@@ -1054,65 +1060,65 @@ namespace MergeBios
 
 
                 // Path to custom non display ssf files
-                pt_db[i].server_path_sff_files = platform_data[i, (int)PLATFORM_DB_HEADER.PathSSF];
+                pt_db[i].server_path_sff_files = platform_data[i , ( int ) PLATFORM_DB_HEADER.PathSSF];
 
                 // Branch info
-                pt_db[i].branch = platform_data[i, (int)PLATFORM_DB_HEADER.Branch];
-                if (pt_db[i].branch.Equals("TABLET"))
-                    pt_db[i].type_branch = (int)PLATFORM_BRANCH_ID.tablet;
-                if (pt_db[i].branch.Equals("CLIENT"))
-                    pt_db[i].type_branch = (int)PLATFORM_BRANCH_ID.client;
+                pt_db[i].branch = platform_data[i , ( int ) PLATFORM_DB_HEADER.Branch];
+                if ( pt_db[i].branch.Equals("TABLET") )
+                    pt_db[i].type_branch = ( int ) PLATFORM_BRANCH_ID.tablet;
+                if ( pt_db[i].branch.Equals("CLIENT") )
+                    pt_db[i].type_branch = ( int ) PLATFORM_BRANCH_ID.client;
 
                 // Stepping info
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.CPU_Stepping] != "NA")
+                if ( platform_data[i , ( int ) PLATFORM_DB_HEADER.CPU_Stepping] != "NA" )
                 {
-                    pt_db[i].stepping = platform_data[i, (int)PLATFORM_DB_HEADER.CPU_Stepping].Split('-');
+                    pt_db[i].stepping = platform_data[i , ( int ) PLATFORM_DB_HEADER.CPU_Stepping].Split('-');
                 }
                 else
                 {
                     pt_db[i].stepping = new string[1];
-                    pt_db[i].stepping[0] = platform_data[i, (int)PLATFORM_DB_HEADER.CPU_Stepping];
+                    pt_db[i].stepping[0] = platform_data[i , ( int ) PLATFORM_DB_HEADER.CPU_Stepping];
                 }
 
                 // Production bios info
-                pt_db[i].production_types = platform_data[i, (int)PLATFORM_DB_HEADER.Production].Split('-');
-                for (int j = 0; j < pt_db[i].production_types.Length; j++)
+                pt_db[i].production_types = platform_data[i, ( int ) PLATFORM_DB_HEADER.Production].Split('-');
+                for (int j = 0 ; j < pt_db[i].production_types.Length ; j++ )
                 {
-                    if (pt_db[i].production_types[j] == "BOTH")
-                        pt_db[i].release_sku_type = (int)PRODUCTION_ID.both;
-                    else if (pt_db[i].production_types[j] == "PROD")
-                        pt_db[i].release_sku_type = (int)PRODUCTION_ID.production;
-                    else if (pt_db[i].production_types[j] == "PREPROD")
-                        pt_db[i].release_sku_type = (int)PRODUCTION_ID.preproduction;
+                    if ( pt_db[i].production_types[j] == "BOTH" )
+                        pt_db[i].release_sku_type = ( int ) PRODUCTION_ID.both;
+                    else if ( pt_db[i].production_types[j] == "PROD" )
+                        pt_db[i].release_sku_type = ( int ) PRODUCTION_ID.production;
+                    else if ( pt_db[i].production_types[j] == "PREPROD" )
+                        pt_db[i].release_sku_type = ( int ) PRODUCTION_ID.preproduction;
                 }
 
                 // Platform features
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.PlatformFeatures] != "NA")
+                if ( platform_data[i , ( int ) PLATFORM_DB_HEADER.PlatformFeatures] != "NA" )
                 {
-                    pt_db[i].platform_features = platform_data[i, (int)PLATFORM_DB_HEADER.PlatformFeatures].Split('-');
+                    pt_db[i].platform_features = platform_data[i , ( int ) PLATFORM_DB_HEADER.PlatformFeatures].Split('-');
                 }
                 else
                 {
                     pt_db[i].platform_features = new string[1];
-                    pt_db[i].platform_features[0] = platform_data[i, (int)PLATFORM_DB_HEADER.PlatformFeatures];
+                    pt_db[i].platform_features[0] = platform_data[i , ( int ) PLATFORM_DB_HEADER.PlatformFeatures];
                 }
 
 
                 // Default displays
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.Default_Displays] != "NA")
+                if ( platform_data[i , ( int ) PLATFORM_DB_HEADER.Default_Displays] != "NA" )
                 {
-                    pt_db[i].default_displays = platform_data[i, (int)PLATFORM_DB_HEADER.Default_Displays].Split('-');
+                    pt_db[i].default_displays = platform_data[i , ( int ) PLATFORM_DB_HEADER.Default_Displays].Split('-');
                 }
                 else
                 {
                     pt_db[i].default_displays = new string[1];
-                    pt_db[i].default_displays[0] = platform_data[i, (int)PLATFORM_DB_HEADER.Default_Displays];
+                    pt_db[i].default_displays[0] = platform_data[i , ( int ) PLATFORM_DB_HEADER.Default_Displays];
                 }
 
                 // VCC SPI
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.dediprog_spi_arg] != "NA")
+                if ( platform_data[i,(int) PLATFORM_DB_HEADER.dediprog_spi_arg] != "NA")
                 {
-                    pt_db[i].dediprog_spi_vcc_arg = platform_data[i, (int)PLATFORM_DB_HEADER.dediprog_spi_arg];
+                    pt_db[i].dediprog_spi_vcc_arg = platform_data[i, ( int ) PLATFORM_DB_HEADER.dediprog_spi_arg];
                 }
                 else
                 {
@@ -1120,9 +1126,9 @@ namespace MergeBios
                 }
 
                 // VCC EC
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.dediprog_ec_arg] != "NA")
+                if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.dediprog_ec_arg] != "NA" )
                 {
-                    pt_db[i].dediprog_ec_vcc_arg = platform_data[i, (int)PLATFORM_DB_HEADER.dediprog_ec_arg];
+                    pt_db[i].dediprog_ec_vcc_arg = platform_data[i, ( int ) PLATFORM_DB_HEADER.dediprog_ec_arg];
                 }
                 else
                 {
@@ -1130,52 +1136,52 @@ namespace MergeBios
                 }
 
                 // BIOS filename prefixes
-                pt_db[i].bios_name_prefix = platform_data[i, (int)PLATFORM_DB_HEADER.BIOS_Normal_Prefix];
-                pt_db[i].bios_name_ext = platform_data[i, (int)PLATFORM_DB_HEADER.BIOS_Normal_Ext];
+                pt_db[i].bios_name_prefix = platform_data[i, ( int ) PLATFORM_DB_HEADER.BIOS_Normal_Prefix];
+                pt_db[i].bios_name_ext = platform_data[i, ( int ) PLATFORM_DB_HEADER.BIOS_Normal_Ext];
                 // Merge BIOS filename prefixes
-                pt_db[i].merge_name_prefix = platform_data[i, (int)PLATFORM_DB_HEADER.Merge_File_prefix];
-                pt_db[i].merge_name_ext = platform_data[i, (int)PLATFORM_DB_HEADER.Merge_File_Ext];
+                pt_db[i].merge_name_prefix = platform_data[i, ( int ) PLATFORM_DB_HEADER.Merge_File_prefix];
+                pt_db[i].merge_name_ext = platform_data[i, ( int ) PLATFORM_DB_HEADER.Merge_File_Ext];
 
-                pt_db[i].flash_batch_cmd = platform_data[i, (int)PLATFORM_DB_HEADER.Flash_Command];
-                pt_db[i].modfile_name = platform_data[i, (int)PLATFORM_DB_HEADER.modfile];
+                pt_db[i].flash_batch_cmd = platform_data[i, ( int ) PLATFORM_DB_HEADER.Flash_Command];
+                pt_db[i].modfile_name = platform_data[i, ( int ) PLATFORM_DB_HEADER.modfile];
 
 
 
-                if (platform_data[i, (int)PLATFORM_DB_HEADER.search_ifwi_opt] != "NA")
+                if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] != "NA")
                 {
-                    if (platform_data[i, (int)PLATFORM_DB_HEADER.search_ifwi_opt] == "STEPPING")
+                    if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] == "STEPPING" )
                     {
                         // stepping is already assigned
                         pt_db[i].search_stepping = true;
                     }
 
-                    if (platform_data[i, (int)PLATFORM_DB_HEADER.search_ifwi_opt] == "PREFIXFOLDER")
+                    if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] == "PREFIXFOLDER" )
                     {
                         pt_db[i].search_prefix_folder = true;
-                        pt_db[i].prefix_folder = platform_data[i, (int)PLATFORM_DB_HEADER.Search_Folder_suffix].Split('-');
+                        pt_db[i].prefix_folder = platform_data[i, ( int ) PLATFORM_DB_HEADER.Search_Folder_suffix].Split('-');
                     }
 
-                    if (platform_data[i, (int)PLATFORM_DB_HEADER.search_ifwi_opt] == "SKIPWORD")
+                    if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] == "SKIPWORD")
                     {
                         pt_db[i].search_skipword = true;
-                        pt_db[i].skip_folder_word = platform_data[i, (int)PLATFORM_DB_HEADER.SkipWordinFolder];
+                        pt_db[i].skip_folder_word = platform_data[i, ( int ) PLATFORM_DB_HEADER.SkipWordinFolder];
                     }
 
-                    if (platform_data[i, (int)PLATFORM_DB_HEADER.search_ifwi_opt] == "SUFFIXFOLDER")
+                    if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt]  == "SUFFIXFOLDER")
                     {
                         pt_db[i].search_suffixfolder = true;
-                        pt_db[i].prefix_folder = platform_data[i, (int)PLATFORM_DB_HEADER.Search_Folder_suffix].Split('-');
+                        pt_db[i].prefix_folder = platform_data[i, ( int ) PLATFORM_DB_HEADER.Search_Folder_suffix].Split('-');
                     }
 
-                    if (platform_data[i, (int)PLATFORM_DB_HEADER.search_ifwi_opt] == "SKIPWORD_SUFFIXFOLDER")
+                    if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] == "SKIPWORD_SUFFIXFOLDER" )
                     {
                         pt_db[i].search_skipword = true;
                         pt_db[i].search_suffixfolder = true;
 
                         pt_db[i].search_by_suffix_and_skip = true;
 
-                        pt_db[i].prefix_folder = platform_data[i, (int)PLATFORM_DB_HEADER.Search_Folder_suffix].Split('-');
-                        pt_db[i].skip_folder_word = platform_data[i, (int)PLATFORM_DB_HEADER.SkipWordinFolder];
+                        pt_db[i].prefix_folder = platform_data[i, ( int ) PLATFORM_DB_HEADER.Search_Folder_suffix].Split('-');
+                        pt_db[i].skip_folder_word = platform_data[i, ( int ) PLATFORM_DB_HEADER.SkipWordinFolder];
 
                     }
                     else
@@ -1184,7 +1190,7 @@ namespace MergeBios
                         pt_db[i].prefix_folder[0] = string.Empty;
                     }
 
-                    if (platform_data[i, (int)PLATFORM_DB_HEADER.search_ifwi_opt] == "STITCH")
+                    if (platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] == "STITCH")
                     {
                         pt_db[i].search_stitch = true;
                         pt_db[i].stitch_path = "\\Stitch\\Stitch";
@@ -1196,115 +1202,116 @@ namespace MergeBios
 
             }
 
-            // Set the platform's ui data into the struct[var] defined
-            for (int i = 1; i < num_platforms_ui; i++)
-            {
-                pt_ui[i].platform = platform_ui_config[i, (int)PLATFORM_UI_HEADER.platform];
-                pt_ui[i].type = platform_ui_config[i, (int)PLATFORM_UI_HEADER.type];
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.branch_type] == "CLIENT")
+            // Set the platform's ui data into the struct[var] defined
+            for ( int i = 1 ; i < num_platforms_ui ; i++ )
+            {
+                pt_ui[i].platform = platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.platform];
+                pt_ui[i].type = platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.type];
+
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.branch_type] == "CLIENT" )
                 {
-                    pt_ui[i].branch = (int)PLATFORM_BRANCH_ID.client;
+                    pt_ui[i].branch = ( int ) PLATFORM_BRANCH_ID.client;
                 }
                 else
                 {
-                    pt_ui[i].branch = (int)PLATFORM_BRANCH_ID.tablet;
+                    pt_ui[i].branch = ( int ) PLATFORM_BRANCH_ID.tablet;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_x32gop] == "YES")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_x32gop] == "YES" )
                 {
                     pt_ui[i].enablex32gop = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_x32_vbios] == "YES")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_x32_vbios] == "YES" )
                 {
                     pt_ui[i].enablex32vbios = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_x64gop] == "YES")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_x64gop] == "YES" )
                 {
                     pt_ui[i].enablex64gop = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_x64_vbios] == "YES")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_x64_vbios] == "YES" )
                 {
                     pt_ui[i].enablex64vbios = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_production] == "PROD")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_production] == "PROD" )
                 {
                     pt_ui[i].enable_prod = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_ui_features] != "NA")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_ui_features ] != "NA" )
                 {
-                    string[] temp = platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_ui_features].Split('-');
-                    for (int j = 0; j < temp.Length; j++)
+                    string[] temp = platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_ui_features].Split('-');
+                    for ( int j = 0 ; j < temp.Length ; j++ )
                     {
-                        if (temp[j].Equals("MIPI"))
+                        if ( temp[j].Equals("MIPI") )
                         {
                             pt_ui[i].ui_mipi = true;
 
                         }
 
-                        if (temp[j].Equals("SEQ"))
+                        if ( temp[j].Equals("SEQ") )
                         {
                             pt_ui[i].ui_seq = true;
                         }
 
-                        if (temp[j].Equals("CS"))
+                        if ( temp[j].Equals("CS") )
                         {
                             pt_ui[i].ui_cs = true;
                         }
 
-                        if (temp[j].Equals("HYBRID"))
+                        if ( temp[j].Equals("HYBRID") )
                         {
                             pt_ui[i].ui_hybrid = true;
                         }
 
-                        if (temp[j].Equals("STEPPING"))
+                        if ( temp[j].Equals("STEPPING") )
                         {
                             pt_ui[i].ui_stepping = true;
                         }
 
-                        if (temp[j].Equals("EDP"))
+                        if ( temp[j].Equals("EDP") )
                         {
                             pt_ui[i].ui_panel_edp = true;
                         }
 
-                        if (temp[j].Equals("LVDS"))
+                        if ( temp[j].Equals("LVDS") )
                         {
-                            pt_ui[i].ui_panel_lvds = true;
+                            pt_ui[i].ui_panel_lvds= true;
                         }
                     }
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_ports] != "NO")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_ports] != "NO" )
                 {
                     pt_ui[i].port_option = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_dnx] != "NO")
+                if ( platform_ui_config[i, (int) PLATFORM_UI_HEADER.enable_dnx] != "NO")
                 {
                     pt_ui[i].dnx_option = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_ksc] != "NO")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_ksc] != "NO" )
                 {
                     pt_ui[i].ksc_option = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_secondstage] != "NO")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_secondstage] != "NO" )
                 {
                     pt_ui[i].secondstage_option = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_dediprog] != "NO")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_dediprog] != "NO" )
                 {
                     pt_ui[i].dediprog_option = true;
                 }
 
-                if (platform_ui_config[i, (int)PLATFORM_UI_HEADER.enable_platform] != "NO")
+                if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_platform] != "NO" )
                 {
                     pt_ui[i].is_still_in_use = true;
                 }
@@ -1317,8 +1324,8 @@ namespace MergeBios
         /// Resets all the data inside the structs
         /// </summary>
         private void Reload_Platform_Data()
-        {
-            // Reset all data again [TBD]
+		{
+			// Reset all data again [TBD]
             Load_Platform_Data();
         }
 
@@ -1333,11 +1340,11 @@ namespace MergeBios
         {
             int index = 0;
 
-            for (int i = 0; i < num_platforms_db; i++)
+            for ( int i = 0 ; i < num_platforms_db ; i++ )
             {
-                if (pt_db[i].platform_name == plt_id && pt_db[i].platform_type == type_id)
+                if ( pt_db[i].platform_name == plt_id  && pt_db[i].platform_type == type_id )
                 {
-                    if (pt_db[i].default_arch == (int)arch)
+                    if ( pt_db[i].default_arch == (int )arch )
                     {
                         index = i;
                         data_index = i;
@@ -1357,15 +1364,15 @@ namespace MergeBios
         /// <param name="arch"> enumerated value of the architecture</param>
         /// <param name="preboot"> the enumerated preboot to load </param>
         /// <returns> Return a debug value</returns>
-        public int find_platform(string plt_id, string type_id, ARCH_TYPE arch, PREBOOT_TYPES_ID preboot)
+        public int find_platform(string plt_id , string type_id , ARCH_TYPE arch, PREBOOT_TYPES_ID preboot)
         {
             int index = 0;
 
-            for (int i = 0; i < num_platforms_db; i++)
+            for ( int i = 0 ; i < num_platforms_db ; i++ )
             {
-                if (pt_db[i].platform_name == plt_id && pt_db[i].platform_type == type_id && pt_db[i].preboot_type == (int)preboot)
+                if ( pt_db[i].platform_name == plt_id && pt_db[i].platform_type == type_id  && pt_db[i].preboot_type == (int) preboot)
                 {
-                    if (pt_db[i].default_arch == (int)arch)
+                    if ( pt_db[i].default_arch == ( int ) arch )
                     {
                         index = i;
                         data_index = i;
@@ -1383,14 +1390,14 @@ namespace MergeBios
         /// <param name="name"> name of the project </param>
         /// <param name="type"> type of the project </param>
         /// <returns> Returned value is only for debug</returns>
-        public int find_platform_ui_config(string name, string type)
+        public int find_platform_ui_config(string name , string type)
         {
             int index = 0;
-            for (int i = 0; i < num_platforms_ui; i++)
+            for ( int i = 0 ; i < num_platforms_ui ; i++ )
             {
-                if (pt_ui[i].platform == name)
+                if ( pt_ui[i].platform == name )
                 {
-                    if (pt_ui[i].type == type)
+                    if ( pt_ui[i].type == type )
                     {
                         index = i;
                         ui_index = i;

@@ -89,6 +89,8 @@
             this.chk_remote_tool = new System.Windows.Forms.CheckBox();
             this.chk_remote_folder = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.txt_merge_ctm_prefix = new System.Windows.Forms.TextBox();
+            this.lbl_merge_name = new System.Windows.Forms.Label();
             this.group_platforms.SuspendLayout();
             this.group_preboot.SuspendLayout();
             this.group_arch.SuspendLayout();
@@ -618,6 +620,8 @@
             // 
             // tabMainScr
             // 
+            this.tabMainScr.Controls.Add(this.lbl_merge_name);
+            this.tabMainScr.Controls.Add(this.txt_merge_ctm_prefix);
             this.tabMainScr.Controls.Add(this.group_platforms);
             this.tabMainScr.Controls.Add(this.group_SBIOS_list);
             this.tabMainScr.Controls.Add(this.group_preboot);
@@ -718,7 +722,7 @@
             this.lbl_flash_tool.AutoSize = true;
             this.lbl_flash_tool.Location = new System.Drawing.Point(26, 157);
             this.lbl_flash_tool.Name = "lbl_flash_tool";
-            this.lbl_flash_tool.Size = new System.Drawing.Size(127, 13);
+            this.lbl_flash_tool.Size = new System.Drawing.Size(126, 13);
             this.lbl_flash_tool.TabIndex = 5;
             this.lbl_flash_tool.Text = "Select Flash Tool to use";
             // 
@@ -774,6 +778,22 @@
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // txt_merge_ctm_prefix
+            // 
+            this.txt_merge_ctm_prefix.Location = new System.Drawing.Point(25, 354);
+            this.txt_merge_ctm_prefix.Name = "txt_merge_ctm_prefix";
+            this.txt_merge_ctm_prefix.Size = new System.Drawing.Size(100, 22);
+            this.txt_merge_ctm_prefix.TabIndex = 20;
+            // 
+            // lbl_merge_name
+            // 
+            this.lbl_merge_name.AutoSize = true;
+            this.lbl_merge_name.Location = new System.Drawing.Point(142, 357);
+            this.lbl_merge_name.Name = "lbl_merge_name";
+            this.lbl_merge_name.Size = new System.Drawing.Size(12, 13);
+            this.lbl_merge_name.TabIndex = 21;
+            this.lbl_merge_name.Text = "_";
+            // 
             // frm_mainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -805,6 +825,7 @@
             this.statusStrip1.PerformLayout();
             this.tab1Main.ResumeLayout(false);
             this.tabMainScr.ResumeLayout(false);
+            this.tabMainScr.PerformLayout();
             this.tabSettings.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -874,6 +895,8 @@
         private System.Windows.Forms.TextBox txt_merge_name;
         private System.Windows.Forms.TextBox txt_save_name;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Label lbl_merge_name;
+        private System.Windows.Forms.TextBox txt_merge_ctm_prefix;
     }
 }
 
