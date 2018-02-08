@@ -58,7 +58,7 @@ namespace MergeBios
         /// <param name="mergeExe"></param>
         /// <param name="sBIOS"></param>
         /// <param name="preBoot"></param>
-        public void mergeBios (string mergeExe, string sBIOS, string preBoot)
+        public void Create_mergeBios (string mergeExe, string sBIOS, string preBoot)
         {
 
             // Put instrucctions to start merge
@@ -72,7 +72,7 @@ namespace MergeBios
         /// <param name="sBIOS"></param>
         /// <param name="preBoot"></param>
         /// <param name="VBTFile"></param>
-        public void mergeBios (string mergeExe, string sBIOS, string preBoot, string VBTFile)
+        public void Create_mergeBios (string mergeExe, string sBIOS, string preBoot, string VBTFile)
         {
 
             // Put instrucctions to start merge
@@ -84,7 +84,7 @@ namespace MergeBios
         /// </summary>
         /// <param name="source"></param>
         /// <param name="destiny"></param>
-        public void copy_files (string source, string destiny)
+        public void AuxM_copy_files (string source, string destiny)
         {
             // TODO : copy instructions here
         }
@@ -94,7 +94,7 @@ namespace MergeBios
         /// </summary>
         /// <param name="exename"></param>
         /// <param name="folderpath"></param>
-        private void execute_command (string exename, string folderpath)
+        private void AuxM_execute_command (string exename, string folderpath)
         {
             // Put process instrucions to execute programs
         }
