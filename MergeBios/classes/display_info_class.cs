@@ -36,7 +36,7 @@ namespace MergeBios
         public string[] display2_portC;
         public string[] display3_portD;
         public string[] display4_portE;
-        public string[] display5_portF;
+        public string[] display5_portF;        
 
         public bool has_lfp;
         public bool has_edp;
@@ -45,6 +45,7 @@ namespace MergeBios
         public bool has_display2c;
         public bool has_display3d;
         public bool has_display4e;
+        public bool has_display5f;
         public bool has_mipi_selection;
     };
 
@@ -62,6 +63,7 @@ namespace MergeBios
         display3D,
         display4E,
         select_mipi_option
+
     };
 
     /// <summary>
@@ -74,7 +76,7 @@ namespace MergeBios
 
     enum DISPLAY_SELCT
     {
-        nodevice, lfp, display1, display2, display3, display4, display5
+        no_device, lfp, display1, display2, display3, display4, display5
     };
 
     class Display_info
@@ -130,7 +132,7 @@ namespace MergeBios
         /// <summary>
         /// 
         /// </summary>
-        public void load_display_data()
+        public void Load_display_data()
         {            
             display_names = display_file.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filenamedb);
 
@@ -244,7 +246,7 @@ namespace MergeBios
         /// </summary>
         /// <param name="platform">name of platform</param>
         /// <param name="type">name of the type</param>
-        public void find_display_config(string platform , string type)
+        public void Find_display_config(string platform , string type)
         {
             for ( int i = 0 ; i < num_display_configs ; i++ )
             {
@@ -269,7 +271,7 @@ namespace MergeBios
 
             switch( displaynumber)
             {
-                case (int)DISPLAY_SELCT.nodevice:
+                case (int)DISPLAY_SELCT.no_device:
                     break;
                 case (int)DISPLAY_SELCT.lfp:
                     break;
