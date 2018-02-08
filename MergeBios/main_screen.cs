@@ -65,6 +65,7 @@ namespace MergeBios
             cmb_preboot.Enabled = false;
             cmb_stepping.Enabled = false;
 
+
             check_production.Enabled = false;
             check_custom_ports.Checked = false;
             check_custom_ports.Enabled = false;

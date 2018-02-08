@@ -63,6 +63,7 @@ namespace MergeBios
         display3D,
         display4E,
         select_mipi_option
+
     };
 
     /// <summary>
