@@ -35,7 +35,7 @@ namespace MergeBios
             platform.Load_Platform_Data();
 
             displays = new Display_info();
-            displays.load_display_data();
+            displays.Load_display_data();
 
             optionsConf = new Tool_Config();
             optionsConf.LoadConfiguration();
@@ -64,6 +64,7 @@ namespace MergeBios
             cmb_sbios.Enabled = false;
             cmb_preboot.Enabled = false;
             cmb_stepping.Enabled = false;
+
 
             check_production.Enabled = false;
             check_custom_ports.Checked = false;
@@ -531,7 +532,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void check_custom_ports_CheckedChanged(object sender , EventArgs e)
         {
-            displays.find_display_config(cmb_platform.Text , cmb_plt_type.Text);
+            displays.Find_display_config(cmb_platform.Text , cmb_plt_type.Text);
 
             for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int)MERGE_NAME_PARTS.disp5; i++)
             {
