@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\config_reader.cs" />
+    <Compile Include="classes\log_helper.cs" />
     <Compile Include="classes\merge_class.cs" />
     <Compile Include="classes\tool_options.cs" />
     <Compile Include="classes\platform_info_class.cs" />
