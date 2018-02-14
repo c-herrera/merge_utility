@@ -1,2 +1,2 @@
 # merge_utility
-Project updaye for merge utility
+Project update for merge utility

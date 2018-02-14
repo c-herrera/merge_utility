@@ -40,6 +40,9 @@ namespace MergeBios
         tool
     };
 
+    /// <summary>
+    /// Struct to access all cached options
+    /// </summary>
     enum ToolConfOptions
     {
         skip_remote_folder,
