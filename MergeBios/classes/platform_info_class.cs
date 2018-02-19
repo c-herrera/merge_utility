@@ -1318,16 +1318,6 @@ namespace MergeBios
 
             }
 
-            Log_helper log = new Log_helper();
-            log.theLogFilePath = Environment.CurrentDirectory + "\\File.txt";
-            log.Add_to_log("TEST");
-            log.Add_to_log("LIne");
-            log.Add_to_log("More lines");
-            log.Add_to_log(DateTime.Today.ToLocalTime().ToString());
-            log.Add_to_log("End");
-            log.Save_to_log();
-            log.Clear_Log_lines();
-
         }
 
         /// <summary>

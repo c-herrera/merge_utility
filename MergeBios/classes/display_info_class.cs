@@ -26,7 +26,7 @@ namespace MergeBios
     /// <summary>
     /// Struct to hold all the display configs per platform
     /// </summary>
-    struct displays_list
+    struct displays_list // Rename to St_Display
     {
         public string platform;
         public string type;
@@ -97,6 +97,7 @@ namespace MergeBios
         string[] display4_conf_lines;    // display 4/D BMP lines
         string[] display5_conf_lines;    // display 5/E BMP lines
 
+        string[] display_combo;
 
         LoadCSV display_file = new LoadCSV(); // load all the info from the file
 
@@ -125,6 +126,8 @@ namespace MergeBios
                 "USB_TYPE_C" ,
                 "VGA" ,
             };
+
+            display_combo = new string[] { "null", "display_lfp", "display1", "display2", "display3", "display4", "display5" };
 
 
         }
@@ -263,17 +266,19 @@ namespace MergeBios
         /// </summary>
         public void LoadDisplay_SSF_Config (string platform, string preboot, int displaynumber)
         {
-            //string value;
-            //string[] ssf;
+            string value;
+            string[] ssf;
             //value = IniFileHelper.ReadValue("SKL_KBL_EFI", "display1_dp", ssf_filedb);
             //ssf = value.Split(',');
             //MessageBox.Show(ssf[1]);
 
             switch( displaynumber)
             {
-                case (int)DISPLAY_SELCT.no_device:
+                case (int)DISPLAY_SELCT.no_device:                    
                     break;
                 case (int)DISPLAY_SELCT.lfp:
+                    value = IniFileHelper.ReadValue(platform + "_" + preboot, display_combo[(int)DISPLAY_SELCT.lfp] + display_type_names[(int)DISPLAY_TYPES.nodevice], ssf_filedb);
+                    ssf = value.Split(',');
                     break;
                 case (int)DISPLAY_SELCT.display1:
                     break;
@@ -296,6 +301,8 @@ namespace MergeBios
         {
             // TO DO : 
             // Write code to create the ssf here
+            string temp = string.Empty;
+
         }
 
         #region Public accesors

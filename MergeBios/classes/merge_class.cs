@@ -14,42 +14,30 @@ namespace MergeBios
     class Merge
     {
         // normal merge attributes
-        public string sbios_ver;
-        public string sbios_path;
-        public string preboot_ver;
-        public string preboot_path;
-        public string modvbt;
-        public string modvbt_path;
+        private string sbios_ver;      // bios ver label
+        private string sbios_path;     // bios file path
+        private string preboot_ver;    // preboot ver label
+        private string preboot_path;   // ptreboot file path
+        private string modvbt_name     // VBT file
+        private string modvbt_path;    // VBT file path        
+        private string merge_final_name; // name composite from selection on the ui
 
-        public string customvbt;
-        public string merge_final_name;
-        
-        // standard command line options
-        private string _sbios_use;
-        private string _merge_use;
-        private string _preboot_use;
-        // non standard command line options
-        private bool arg_production;
-        private bool arg_hybrid;
-        private bool arg_mipi;
-        private bool arg_lpc;
+        private string custom_vbt_name; // name of the custom vbt
+        private string custom_vbt_path; // path ot the vbt
 
+        private bool merge_folder_exist;   // folder must exist
+        private bool preboot_folder_exist; // preboot folder must exist
+        private bool is_dediprog_installed;// dediprog is installed
+        private bool is_ttk_installed;
 
+        //
+        private bool use_lpc_ft;
+        private bool use_prod_ft;
+        private bool use_lfp_ft;
 
         public Merge ()
         {
             // TBD
-            sbios_ver = string.Empty;
-            sbios_path = string.Empty;
-            preboot_path = string.Empty;
-            preboot_ver = string.Empty;
-
-            modvbt = string.Empty;
-            modvbt_path = string.Empty;
-
-            merge_final_name = string.Empty;
-            customvbt = string.Empty;
-
         }
 
         /// <summary>
@@ -96,38 +84,14 @@ namespace MergeBios
         /// <param name="folderpath"></param>
         private void AuxM_execute_command (string exename, string folderpath)
         {
-            // Put process instrucions to execute programs
+            // Put process instructions to execute programs
         }
-
-
 
 
 
         #region Accesors
 
-        public string sbios_to_use
-        {
-            set
-            {
-                _sbios_use = value;
-            }
-        }
 
-        public string merge_to_use
-        {
-            set
-            {
-                _merge_use = value;
-            }
-        }
-
-        public string preboot_to_use
-        {
-            set
-            {
-                _preboot_use = value;
-            }
-        }
 
 
         #endregion

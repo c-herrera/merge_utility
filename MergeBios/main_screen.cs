@@ -20,6 +20,7 @@ namespace MergeBios
         Platform_Info platform; // Platform data manager
         Display_info displays;  // Display Output manager
         Tool_Config optionsConf; // Tool Configration manager
+        SimpleLogger log;
 
         int arch;               // arch option
         int preboot;
@@ -31,18 +32,19 @@ namespace MergeBios
         /// <param name="e"></param>
         private void frm_mainScreen_Load(object sender , EventArgs e)
         {
+            // Start up the platform info
             platform = new Platform_Info();            
             platform.Load_Platform_Data();
-
+            // Start up the display info
             displays = new Display_info();
             displays.Load_display_data();
-
+            // Read the config file
             optionsConf = new Tool_Config();
             optionsConf.LoadConfiguration();
 
-
+            log = new SimpleLogger("mergetool");
             toolStripStatus_Tool.Text += " : " + optionsConf.Message;
-
+            log.Info("Application Load start : All objects are created");
 
             arch = ( int ) ARCH_TYPE.noarch;
 
