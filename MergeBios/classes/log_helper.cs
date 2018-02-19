@@ -2,151 +2,167 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MergeBios
 {
-    /// <summary>
-    /// Class: LogHelper; Type: Helper class
-    /// </summary>
-    class Log_helper
+    public class SimpleLogger
     {
-        string logFile;
-        string logText;
-        string[] logTextLines;
-        bool is_started;
-        bool is_written;
-        bool is_clear;
-        int additions;
 
+        private string DatetimeFormat;
+        private string Filename;
 
         /// <summary>
-        /// Log Helper public contructor
+        /// Supported log level
         /// </summary>
-        public Log_helper()
+        [Flags]
+        private enum LogLevel
         {
-            logFile = string.Empty;
-            logText = string.Empty;
-
-            logTextLines = new string[1];         
-
-            is_started = true;
-            additions = 0;
+            TRACE, INFO, DEBUG, WARNING, ERROR, FATAL
         }
 
         /// <summary>
-        /// 
+        /// Initialize a new instance of SimpleLogger class.
+        /// Log file will be created automatically if not yet exists, else it can be either a fresh new file or append to the existing file.
+        /// Default is create a fresh new log file.
         /// </summary>
-        public void Add_to_log(string Ltext)
+        /// <param name="append">True to append to existing log file, False to overwrite and create new log file</param>
+        /// <param name="filename">Optional : set a different name of the log if desired </param>
+        public SimpleLogger(string filename = "", bool append = false)
         {
-            // Check if log is allowed
-            if (is_started == true)
+            DatetimeFormat = "yyyy-MM-dd HH:mm:ss.fff";
+
+            // If not defined filename use the application default one
+            if (filename == string.Empty)
+                Filename = Assembly.GetExecutingAssembly().GetName().Name + ".log";
+            else
+                Filename = filename + ".log";
+
+            // Log file header line
+            string logHeader = Filename + " is created.";
+            if (!File.Exists(Filename))
             {
-                // Add the text to the text line
-                logText += Ltext + Environment.NewLine;
-                additions++;
+                WriteLine(DateTime.Now.ToString(DatetimeFormat) + " " + logHeader, false);
+            }
+            else
+            {
+                if (append == false)
+                    WriteLine(DateTime.Now.ToString(DatetimeFormat) + " " + logHeader, false);
             }
         }
 
         /// <summary>
-        /// 
+        /// Log a debug message
         /// </summary>
-        public void Save_to_log()
+        /// <param name="text">Message</param>
+        public void Debug(string text)
         {
-            // Check if log is allowed
-            if (is_started == true)
-            {
-                logTextLines = logText.Split('\r');
-                File.AppendAllText(logFile, logText);
-                is_written = true;
-            }
+            WriteFormattedLog(LogLevel.DEBUG, text);
         }
 
-        public void Clear_Log_lines()
+        /// <summary>
+        /// Log an error message
+        /// </summary>
+        /// <param name="text">Message</param>
+        public void Error(string text)
         {
-            if (is_started == true)
+            WriteFormattedLog(LogLevel.ERROR, text);
+        }
+
+        /// <summary>
+        /// Log a fatal error message
+        /// </summary>
+        /// <param name="text">Message</param>
+        public void Fatal(string text)
+        {
+            WriteFormattedLog(LogLevel.FATAL, text);
+        }
+
+        /// <summary>
+        /// Log an info message
+        /// </summary>
+        /// <param name="text">Message</param>
+        public void Info(string text)
+        {
+            WriteFormattedLog(LogLevel.INFO, text);
+        }
+
+        /// <summary>
+        /// Log a trace message
+        /// </summary>
+        /// <param name="text">Message</param>
+        public void Trace(string text)
+        {
+            WriteFormattedLog(LogLevel.TRACE, text);
+        }
+
+        /// <summary>
+        /// Log a waning message
+        /// </summary>
+        /// <param name="text">Message</param>
+        public void Warning(string text)
+        {
+            WriteFormattedLog(LogLevel.WARNING, text);
+        }
+
+        /// <summary>
+        /// Format a log message based on log level
+        /// </summary>
+        /// <param name="level">Log level</param>
+        /// <param name="text">Log message</param>
+        private void WriteFormattedLog(LogLevel level, string text)
+        {
+            string pretext;
+            switch (level)
             {
-                if (logText != string.Empty || logText != null)
+                case LogLevel.TRACE:
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [TRACE]   ";
+                    break;
+                case LogLevel.INFO:
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [INFO]    ";
+                    break;
+                case LogLevel.DEBUG:
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [DEBUG]   ";
+                    break;
+                case LogLevel.WARNING:
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [WARNING] ";
+                    break;
+                case LogLevel.ERROR:
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [ERROR]   ";
+                    break;
+                case LogLevel.FATAL:
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [FATAL]   ";
+                    break;
+                default:
+                    pretext = "";
+                    break;
+            }
+            WriteLine(pretext + text);
+        }
+
+        /// <summary>
+        /// Write a line of formatted log message into a log file
+        /// </summary>
+        /// <param name="text">Formatted log message</param>
+        /// <param name="append">True to append, False to overwrite the file</param>
+        /// <exception cref="System.IO.IOException"></exception>
+        private void WriteLine(string text, bool append = true)
+        {
+            try
+            {
+                using (StreamWriter Writer = new StreamWriter(Filename, append, Encoding.UTF8))
                 {
-                    logText = string.Empty;
-                    for (int i = 0; i < logTextLines.Length; i++)
-                    {
-                        logTextLines[i] = string.Empty;
-                    }
-                    is_clear = true;
+                    if (text != "") Writer.WriteLine(text);
                 }
             }
-        }
-
-
-
-        #region Public accesors
-
-        /// <summary>
-        /// Set or gets the full/relative path and name of the log
-        /// </summary>
-        public string theLogFilePath
-        {
-            get
+            catch
             {
-                return logFile;
-            }
-            set
-            {
-                logFile = value;
+                throw;
             }
         }
 
-        /// <summary>
-        /// Set or Gets the status of the log to start logging
-        /// </summary>
-        public bool LogStart
-        {
-            get
-            {
-                return is_started;
-            }
-            set
-            {
-                is_started = value;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public string[] loglines_Str
-        {
-            get
-            {
-                return logTextLines;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool writtenLogStat
-        {
-            get
-            {
-                return is_written;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool ClearedlogStat
-        {
-            get
-            {
-                return is_clear;
-            }
-        }
-
-        #endregion
 
     }
 }
