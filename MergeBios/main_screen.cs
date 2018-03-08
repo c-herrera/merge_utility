@@ -117,11 +117,12 @@ namespace MergeBios
         private void cmb_platform_SelectedIndexChanged(object sender , EventArgs e)
         {            
             int num_cols1 = platform.platform_list.GetUpperBound(1) + 1;
-            int platformselected_index = cmb_platform.SelectedIndex + 1;            
+            int platformselected_index = cmb_platform.SelectedIndex + 1;
+            log.Trace("Changed the plaform");
 
             cmb_plt_type.Items.Clear();
 
-
+            
             // fill the type combo
             for ( int i = platformselected_index ; i <= platformselected_index ; i++ )
             {
@@ -133,6 +134,8 @@ namespace MergeBios
                         cmb_plt_type.Items.Add(platform.platform_list[i , j]);
                 }
             }
+
+            log.Trace("Disabling the UI Elements");
             cmb_plt_type.Enabled = true;
 
 
@@ -195,11 +198,14 @@ namespace MergeBios
             arch = (int)ARCH_TYPE.noarch;
             preboot = 255;
 
+            log.Trace("Finished to switch off the UI");
+
             for (int i = (int)MERGE_NAME_PARTS.custom_prefix; i <= (int)MERGE_NAME_PARTS.disp5; i++)
             {
                 platform.platform_merge_name[i] = string.Empty;
             }
 
+            log.Trace("Cleared the string label of the final merge name");
 
             // string for the merge name
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.platform_name] = cmb_platform.Text;
@@ -301,6 +307,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void btn_quit_Click(object sender , EventArgs e)
         {
+            log.Info("Application Exit!");
             Application.Exit();
         }
 
@@ -427,53 +434,8 @@ namespace MergeBios
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
-        /// <summary>
-        /// radio button to select preboot EFI-GOP
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void radio_gop_CheckedChanged(object sender , EventArgs e)
-        {
-            preboot = ( int ) PREBOOT_TYPES_ID.gop;
 
-            switch ( platform.ui_branch )
-            {
-                case ( int ) PLATFORM_BRANCH_ID.client:                    
-                    arch = ( int ) ARCH_TYPE.noarch;
-                    if ( radio_gop.Checked == true )
-                    {
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch , ( PREBOOT_TYPES_ID ) preboot);
-                        cmb_preboot.DataSource = null;
-                        cmb_preboot.Enabled = true;
-                        cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
-                        cmb_preboot.DataSource = platform.preboot_list;
-                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
-                    }
-                    
-                    // Fill the system bios combo                    
-                    cmb_sbios.DataSource = null;
-                    cmb_sbios.Enabled = true;
-                    cmb_sbios.Items.Clear();
-                    cmb_sbios.Update();
-                    platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
-                    cmb_sbios.DataSource = platform.bios_list;
-                    cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
 
-                    radio_lvds.Enabled = platform.ui_enable_edp_option;
-                    radio_edp.Enabled = platform.ui_enable_lvds_option;
-
-                    break;
-                case ( int ) PLATFORM_BRANCH_ID.tablet:
-                    radio_x32.Enabled = platform.ui_enable_x32_gop;
-                    radio_x64.Enabled = platform.ui_enable_x64_gop;
-                    break;
-            }
-            //string to create the merge bios filename
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.gop];
-
-            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-        }
 
         /// <summary>
         /// radio button to select preboot VBIOS-MBR
@@ -809,6 +771,58 @@ namespace MergeBios
 
             optionsConf.opt_default_flash_tool = cmb_flashtools.SelectedIndex;
             optionsConf.SaveConfiguration();
+        }
+
+        /// <summary>
+        /// radio button to select preboot EFI-GOP
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void radio_gop_Click(object sender, EventArgs e)
+        {
+            log.Trace("Clicked the GOP ooption " + this.radio_gop.ToString() );
+
+            preboot = (int)PREBOOT_TYPES_ID.gop;
+
+            switch (platform.ui_branch)
+            {
+                case (int)PLATFORM_BRANCH_ID.client:
+                    log.Trace("Inside swtich > Client");
+                    arch = (int)ARCH_TYPE.noarch;
+                    if (radio_gop.Checked == true)
+                    {
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE)arch, (PREBOOT_TYPES_ID)preboot);
+                        cmb_preboot.DataSource = null;
+                        cmb_preboot.Enabled = true;
+                        cmb_preboot.Items.Clear();
+                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        cmb_preboot.DataSource = platform.preboot_list;
+                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
+                    }
+
+                    // Fill the system bios combo                    
+                    cmb_sbios.DataSource = null;
+                    cmb_sbios.Enabled = true;
+                    cmb_sbios.Items.Clear();
+                    cmb_sbios.Update();
+                    platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                    cmb_sbios.DataSource = platform.bios_list;
+                    cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+
+                    radio_lvds.Enabled = platform.ui_enable_edp_option;
+                    radio_edp.Enabled = platform.ui_enable_lvds_option;
+
+                    break;
+                case (int)PLATFORM_BRANCH_ID.tablet:
+                    log.Trace("Inside swtich > Tablet");
+                    radio_x32.Enabled = platform.ui_enable_x32_gop;
+                    radio_x64.Enabled = platform.ui_enable_x64_gop;
+                    break;
+            }
+            //string to create the merge bios filename
+            platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.gop];
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
     }
 }
