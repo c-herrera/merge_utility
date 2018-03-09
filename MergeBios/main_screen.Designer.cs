@@ -91,6 +91,7 @@
             this.chk_remote_tool = new System.Windows.Forms.CheckBox();
             this.chk_remote_folder = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.group_platforms.SuspendLayout();
             this.group_preboot.SuspendLayout();
             this.group_arch.SuspendLayout();
@@ -163,7 +164,7 @@
             this.radio_vbios.TabStop = true;
             this.radio_vbios.Text = "VBIOS";
             this.radio_vbios.UseVisualStyleBackColor = true;
-            this.radio_vbios.CheckedChanged += new System.EventHandler(this.radio_vbios_CheckedChanged);
+            this.radio_vbios.Click += new System.EventHandler(this.radio_vbios_Click);
             // 
             // radio_gop
             // 
@@ -201,7 +202,7 @@
             this.radio_x64.TabStop = true;
             this.radio_x64.Text = "x64";
             this.radio_x64.UseVisualStyleBackColor = true;
-            this.radio_x64.CheckedChanged += new System.EventHandler(this.radio_x64_CheckedChanged);
+            this.radio_x64.Click += new System.EventHandler(this.radio_x64_Click);
             // 
             // radio_x32
             // 
@@ -214,7 +215,7 @@
             this.radio_x32.TabStop = true;
             this.radio_x32.Text = "x32";
             this.radio_x32.UseVisualStyleBackColor = true;
-            this.radio_x32.CheckedChanged += new System.EventHandler(this.radio_x32_CheckedChanged);
+            this.radio_x32.Click += new System.EventHandler(this.radio_x32_Click);
             // 
             // group_SBIOS_list
             // 
@@ -738,7 +739,7 @@
             this.lbl_flash_tool.AutoSize = true;
             this.lbl_flash_tool.Location = new System.Drawing.Point(26, 157);
             this.lbl_flash_tool.Name = "lbl_flash_tool";
-            this.lbl_flash_tool.Size = new System.Drawing.Size(126, 13);
+            this.lbl_flash_tool.Size = new System.Drawing.Size(127, 13);
             this.lbl_flash_tool.TabIndex = 5;
             this.lbl_flash_tool.Text = "Select Flash Tool to use";
             // 
@@ -793,6 +794,12 @@
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // frm_mainScreen
             // 
@@ -897,6 +904,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Label lbl_merge_name;
         private System.Windows.Forms.TextBox txt_merge_ctm_prefix;
+        private System.Windows.Forms.ImageList imageList1;
     }
 }
 
