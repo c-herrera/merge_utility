@@ -222,6 +222,8 @@ namespace MergeBios
         {
             platform.find_platform_ui_config(cmb_platform.Text , cmb_plt_type.Text);
 
+            log.Trace("Changed the type.");
+            log.Info("Disabling past selections on the UI.");
             // Disable previous options
             radio_gop.Checked = false;
             radio_vbios.Checked = false;
@@ -256,10 +258,10 @@ namespace MergeBios
             btn_second_stage.Enabled = false;
             btn_dediprog.Enabled = false;
             btn_dnx.Enabled = false;
-            
+
 
             // Enable UI options
-
+            log.Info("Enabled the minimal options to select");
             // Section :GOP-VBIOS
             switch ( platform.ui_branch )
             {
@@ -276,8 +278,8 @@ namespace MergeBios
                     radio_vbios.Enabled = platform.ui_enable_x64_vbios;
                     break;
             }
-            
 
+            log.Trace("Enable the rest of the UI options");
             // Section :  CS-Hybrid-MIPI-Production-Stepping options
             check_f_connected_standby.Enabled = platform.ui_enable_cs;
             check_f_hybrid.Enabled = platform.ui_enable_hybrid;
@@ -296,195 +298,6 @@ namespace MergeBios
 
             // string for the merge name
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.type_name] = cmb_plt_type.Text;
-
-            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-        }
-
-        /// <summary>
-        /// Quits the application
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_quit_Click(object sender , EventArgs e)
-        {
-            log.Info("Application Exit!");
-            Application.Exit();
-        }
-
-        /// <summary>
-        /// radio button option to select x32 arch
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void radio_x32_CheckedChanged(object sender , EventArgs e)
-        {
-            arch = ( radio_x32.Checked == true ) ? ( int ) ARCH_TYPE.x_32 : ( int ) ARCH_TYPE.noarch;
-
-            switch ( platform.ui_branch )
-            {
-                case ( int ) PLATFORM_BRANCH_ID.client:
-                    // Client platform never must fall here
-                    break;
-                case ( int ) PLATFORM_BRANCH_ID.tablet:
-                    // Fill the system bios combo        
-                                
-                    // Fill stepping combo, if any
-                    if ( platform.ui_enable_stepping )
-                    {
-                        cmb_stepping.Items.Clear();
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch);
-
-                        if ( platform.platform_Stepping.Length > 0 )
-                        {
-                            for ( int i = 0 ; i < platform.platform_Stepping.Length ; i++ )
-                            {
-                                cmb_stepping.Items.Add(platform.platform_Stepping[i]);
-                            }
-                        }
-
-                    }                   
-
-                    else
-                    {
-                        // Add code to case by skipword, special folder etc.
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch);
-                        cmb_sbios.DataSource = null;
-                        cmb_sbios.Enabled = true;
-                        cmb_sbios.Items.Clear();
-                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
-                        cmb_sbios.DataSource = platform.bios_list;
-                        cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
-                    }
-
-
-
-                    if ( radio_x32.Checked == true)
-                    {
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch , ( PREBOOT_TYPES_ID ) preboot);
-                        cmb_preboot.DataSource = null;
-                        cmb_preboot.Enabled = true;
-                        cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
-                        cmb_preboot.DataSource = platform.preboot_list;
-                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
-                    }
-                    break;
-            }
-            //string to create the name of the merge
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.arch_ver] = radio_x32.Text;
-
-            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-        }
-
-        /// <summary>
-        /// radio button option to select x64 arch
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void radio_x64_CheckedChanged(object sender , EventArgs e)
-        {
-            arch = ( radio_x64.Checked == true) ? ( int ) ARCH_TYPE.x_64 : ( int ) ARCH_TYPE.noarch ;
-
-            switch ( platform.ui_branch )
-            {
-                case ( int ) PLATFORM_BRANCH_ID.client:
-                    break;
-                case ( int ) PLATFORM_BRANCH_ID.tablet:
-                    // Fill the system bios combo                    
-                    // Fill stepping combo, if any
-                    if ( platform.ui_enable_stepping )
-                    {
-                        cmb_stepping.Items.Clear();
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch);
-
-                        if ( platform.platform_Stepping.Length > 0 )
-                        {
-                            for ( int i = 0 ; i < platform.platform_Stepping.Length ; i++ )
-                            {
-                                cmb_stepping.Items.Add(platform.platform_Stepping[i]);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch);
-                        cmb_sbios.DataSource = null;
-                        cmb_sbios.Enabled = true;
-                        cmb_sbios.Items.Clear();
-                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
-                        cmb_sbios.DataSource = platform.bios_list;
-                        cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
-                    }
-
-                    if ( radio_x64.Checked == true )
-                    {
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch , ( PREBOOT_TYPES_ID ) preboot);
-                        cmb_preboot.DataSource = null;
-                        cmb_preboot.Enabled = true;
-                        cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
-                        cmb_preboot.DataSource = platform.preboot_list;
-                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
-                    }
-                    break;
-            }
-            //string to create the name of the merge
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.arch_ver] = radio_x64.Text;
-
-            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-        }
-
-
-
-
-        /// <summary>
-        /// radio button to select preboot VBIOS-MBR
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void radio_vbios_CheckedChanged(object sender , EventArgs e)
-        {
-            preboot = ( int ) PREBOOT_TYPES_ID.vbios;
-
-
-            switch ( platform.ui_branch )
-            {
-                case ( int ) PLATFORM_BRANCH_ID.client:                    
-                    arch = ( int ) ARCH_TYPE.noarch;
-
-                    // Show Preboot list for client
-                    if ( radio_vbios.Checked == true )
-                    {
-                        platform.find_platform(cmb_platform.Text , cmb_plt_type.Text , ( ARCH_TYPE ) arch , ( PREBOOT_TYPES_ID ) preboot);
-                        cmb_preboot.DataSource = null;
-                        cmb_preboot.Enabled = true;
-                        cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
-                        cmb_preboot.DataSource = platform.preboot_list;
-                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
-                    }
-
-                    // Fill the system bios combo                    
-                    cmb_sbios.DataSource = null;
-                    cmb_sbios.Enabled = true;
-                    cmb_sbios.Items.Clear();
-                    cmb_sbios.Update();
-                    platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
-                    cmb_sbios.DataSource = platform.bios_list;
-                    cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
-
-                    radio_lvds.Enabled = platform.ui_enable_lvds_option;
-                    radio_edp.Enabled = platform.ui_enable_edp_option;
-
-                    break;
-                case ( int ) PLATFORM_BRANCH_ID.tablet:
-                    // Only enable the options
-                    radio_x32.Enabled = platform.ui_enable_x32_vbios;
-                    radio_x64.Enabled = platform.ui_enable_x64_vbios;
-                    break;
-            }
-            //string to create the bios marge name
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.vbios];
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -718,6 +531,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void btn_new_save_folder_Click (object sender, EventArgs e)
         {
+            log.Info("Set new default save folder.");
             // Set new default directory            
             using ( FolderBrowserDialog dialog = new FolderBrowserDialog() )
             {
@@ -732,6 +546,7 @@ namespace MergeBios
                     txt_save_name.Text = dialog.SelectedPath;
                 }
             }
+            log.Trace("The new path seems to be " + txt_save_name.Text);
         }
 
         /// <summary>
@@ -742,6 +557,7 @@ namespace MergeBios
         private void btn_new_merge_folder_Click (object sender, EventArgs e)
         {
             // set new merge folder
+            log.Info("Changing the current folder of the merge");
             using ( FolderBrowserDialog dialog = new FolderBrowserDialog() )
             {
                 dialog.Description = "Select the new path of Merge Tools and files";
@@ -755,6 +571,7 @@ namespace MergeBios
                     txt_merge_name.Text = dialog.SelectedPath;
                 }
             }
+            log.Trace("The new seems to be :" + txt_merge_name.Text);
         }
 
         /// <summary>
@@ -763,7 +580,9 @@ namespace MergeBios
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void btn_apply_prefs_Click (object sender, EventArgs e)
-        {            
+        {
+            log.Trace("Appying the preferences : " + this.btn_apply_prefs.ToString());
+
             optionsConf.opt_ask_for_save = chk_ask_save.Checked; 
             optionsConf.opt_auto_flash = chk_ask_flash.Checked;
             optionsConf.opt_remote_folder_check = chk_remote_folder.Checked;
@@ -787,7 +606,7 @@ namespace MergeBios
             switch (platform.ui_branch)
             {
                 case (int)PLATFORM_BRANCH_ID.client:
-                    log.Trace("Inside swtich > Client");
+                    log.Trace("Inside switch > Client");
                     arch = (int)ARCH_TYPE.noarch;
                     if (radio_gop.Checked == true)
                     {
@@ -814,13 +633,190 @@ namespace MergeBios
 
                     break;
                 case (int)PLATFORM_BRANCH_ID.tablet:
-                    log.Trace("Inside swtich > Tablet");
+                    log.Trace("Inside switch > Tablet");
                     radio_x32.Enabled = platform.ui_enable_x32_gop;
                     radio_x64.Enabled = platform.ui_enable_x64_gop;
                     break;
             }
             //string to create the merge bios filename
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.gop];
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void radio_vbios_Click(object sender, EventArgs e)
+        {
+            preboot = (int) PREBOOT_TYPES_ID.vbios;
+
+
+            switch (platform.ui_branch)
+            {
+                case (int) PLATFORM_BRANCH_ID.client:
+                    arch = (int) ARCH_TYPE.noarch;
+                    log.Trace("Inside switch > Client");
+                    // Show Preboot list for client
+                    if (radio_vbios.Checked == true)
+                    {
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch, (PREBOOT_TYPES_ID) preboot);
+                        cmb_preboot.DataSource = null;
+                        cmb_preboot.Enabled = true;
+                        cmb_preboot.Items.Clear();
+                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        cmb_preboot.DataSource = platform.preboot_list;
+                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
+                    }
+
+                    // Fill the system bios combo                    
+                    cmb_sbios.DataSource = null;
+                    cmb_sbios.Enabled = true;
+                    cmb_sbios.Items.Clear();
+                    cmb_sbios.Update();
+                    platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                    cmb_sbios.DataSource = platform.bios_list;
+                    cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+
+                    radio_lvds.Enabled = platform.ui_enable_lvds_option;
+                    radio_edp.Enabled = platform.ui_enable_edp_option;
+
+                    break;
+                case (int) PLATFORM_BRANCH_ID.tablet:
+                    log.Trace("Inside switch > Tablet.");
+                    // Only enable the options
+                    radio_x32.Enabled = platform.ui_enable_x32_vbios;
+                    radio_x64.Enabled = platform.ui_enable_x64_vbios;
+                    break;
+            }
+            //string to create the bios marge name
+            platform.platform_merge_name[(int) MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int) PREBOOT_TYPES_ID.vbios];
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+        }
+
+        /// <summary>
+        /// Quits the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btn_quit_Click(object sender, EventArgs e)
+        {
+            log.Info("Application Exit!");
+            Application.Exit();
+        }
+
+        private void radio_x32_Click(object sender, EventArgs e)
+        {
+            arch = (radio_x32.Checked == true) ? (int) ARCH_TYPE.x_32 : (int) ARCH_TYPE.noarch;
+
+            switch (platform.ui_branch)
+            {
+                case (int) PLATFORM_BRANCH_ID.client:
+                    // Client platform never must fall here
+                    break;
+                case (int) PLATFORM_BRANCH_ID.tablet:
+                    // Fill the system bios combo        
+
+                    // Fill stepping combo, if any
+                    if (platform.ui_enable_stepping)
+                    {
+                        cmb_stepping.Items.Clear();
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch);
+
+                        if (platform.platform_Stepping.Length > 0)
+                        {
+                            for (int i = 0; i < platform.platform_Stepping.Length; i++)
+                            {
+                                cmb_stepping.Items.Add(platform.platform_Stepping[i]);
+                            }
+                        }
+
+                    }
+
+                    else
+                    {
+                        // Add code to case by skipword, special folder etc.
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch);
+                        cmb_sbios.DataSource = null;
+                        cmb_sbios.Enabled = true;
+                        cmb_sbios.Items.Clear();
+                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                        cmb_sbios.DataSource = platform.bios_list;
+                        cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+                    }
+
+
+
+                    if (radio_x32.Checked == true)
+                    {
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch, (PREBOOT_TYPES_ID) preboot);
+                        cmb_preboot.DataSource = null;
+                        cmb_preboot.Enabled = true;
+                        cmb_preboot.Items.Clear();
+                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        cmb_preboot.DataSource = platform.preboot_list;
+                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
+                    }
+                    break;
+            }
+            //string to create the name of the merge
+            platform.platform_merge_name[(int) MERGE_NAME_PARTS.arch_ver] = radio_x32.Text;
+
+            lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+        }
+
+        private void radio_x64_Click(object sender, EventArgs e)
+        {
+            arch = (radio_x64.Checked == true) ? (int) ARCH_TYPE.x_64 : (int) ARCH_TYPE.noarch;
+
+            switch (platform.ui_branch)
+            {
+                case (int) PLATFORM_BRANCH_ID.client:
+                    break;
+                case (int) PLATFORM_BRANCH_ID.tablet:
+                    // Fill the system bios combo                    
+                    // Fill stepping combo, if any
+                    if (platform.ui_enable_stepping)
+                    {
+                        cmb_stepping.Items.Clear();
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch);
+
+                        if (platform.platform_Stepping.Length > 0)
+                        {
+                            for (int i = 0; i < platform.platform_Stepping.Length; i++)
+                            {
+                                cmb_stepping.Items.Add(platform.platform_Stepping[i]);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch);
+                        cmb_sbios.DataSource = null;
+                        cmb_sbios.Enabled = true;
+                        cmb_sbios.Items.Clear();
+                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                        cmb_sbios.DataSource = platform.bios_list;
+                        cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+                    }
+
+                    if (radio_x64.Checked == true)
+                    {
+                        platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch, (PREBOOT_TYPES_ID) preboot);
+                        cmb_preboot.DataSource = null;
+                        cmb_preboot.Enabled = true;
+                        cmb_preboot.Items.Clear();
+                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        cmb_preboot.DataSource = platform.preboot_list;
+                        cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
+                    }
+                    break;
+            }
+            //string to create the name of the merge
+            platform.platform_merge_name[(int) MERGE_NAME_PARTS.arch_ver] = radio_x64.Text;
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
