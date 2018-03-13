@@ -92,6 +92,7 @@
             this.chk_remote_folder = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btn_Create = new System.Windows.Forms.Button();
             this.group_platforms.SuspendLayout();
             this.group_preboot.SuspendLayout();
             this.group_arch.SuspendLayout();
@@ -259,6 +260,7 @@
             this.check_production.TabIndex = 1;
             this.check_production.Text = "Production";
             this.check_production.UseVisualStyleBackColor = true;
+            this.check_production.Click += new System.EventHandler(this.check_production_Click);
             // 
             // cmb_sbios
             // 
@@ -360,7 +362,7 @@
             this.group_other_flash.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.group_other_flash.Location = new System.Drawing.Point(681, 18);
             this.group_other_flash.Name = "group_other_flash";
-            this.group_other_flash.Size = new System.Drawing.Size(152, 181);
+            this.group_other_flash.Size = new System.Drawing.Size(152, 209);
             this.group_other_flash.TabIndex = 4;
             this.group_other_flash.TabStop = false;
             this.group_other_flash.Text = "Secondary Flash Options";
@@ -370,8 +372,9 @@
             this.btn_dnx.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_dnx.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_dnx.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_dnx.Image = ((System.Drawing.Image)(resources.GetObject("btn_dnx.Image")));
             this.btn_dnx.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_dnx.ImageIndex = 11;
+            this.btn_dnx.ImageList = this.imageList1;
             this.btn_dnx.Location = new System.Drawing.Point(34, 101);
             this.btn_dnx.Name = "btn_dnx";
             this.btn_dnx.Size = new System.Drawing.Size(109, 28);
@@ -399,8 +402,9 @@
             this.btn_second_stage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_second_stage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_second_stage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_second_stage.Image = ((System.Drawing.Image)(resources.GetObject("btn_second_stage.Image")));
             this.btn_second_stage.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_second_stage.ImageIndex = 11;
+            this.btn_second_stage.ImageList = this.imageList1;
             this.btn_second_stage.Location = new System.Drawing.Point(34, 60);
             this.btn_second_stage.Name = "btn_second_stage";
             this.btn_second_stage.Size = new System.Drawing.Size(109, 28);
@@ -414,8 +418,9 @@
             this.btn_flash_ksc.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_flash_ksc.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_flash_ksc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_flash_ksc.Image = ((System.Drawing.Image)(resources.GetObject("btn_flash_ksc.Image")));
             this.btn_flash_ksc.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_flash_ksc.ImageIndex = 11;
+            this.btn_flash_ksc.ImageList = this.imageList1;
             this.btn_flash_ksc.Location = new System.Drawing.Point(34, 21);
             this.btn_flash_ksc.Name = "btn_flash_ksc";
             this.btn_flash_ksc.Size = new System.Drawing.Size(109, 28);
@@ -429,8 +434,9 @@
             this.btn_quit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_quit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_quit.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_quit.Image = ((System.Drawing.Image)(resources.GetObject("btn_quit.Image")));
             this.btn_quit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_quit.ImageIndex = 7;
+            this.btn_quit.ImageList = this.imageList1;
             this.btn_quit.Location = new System.Drawing.Point(734, 449);
             this.btn_quit.Name = "btn_quit";
             this.btn_quit.Size = new System.Drawing.Size(103, 29);
@@ -491,7 +497,7 @@
             this.check_custom_ports.TabIndex = 10;
             this.check_custom_ports.Text = "Enable Custom Port Selection";
             this.check_custom_ports.UseVisualStyleBackColor = true;
-            this.check_custom_ports.CheckedChanged += new System.EventHandler(this.check_custom_ports_CheckedChanged);
+            this.check_custom_ports.Click += new System.EventHandler(this.check_custom_ports_Click);
             // 
             // radio_edp
             // 
@@ -613,6 +619,7 @@
             this.tab1Main.Controls.Add(this.tabSettings);
             this.tab1Main.Cursor = System.Windows.Forms.Cursors.Default;
             this.tab1Main.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tab1Main.ImageList = this.imageList1;
             this.tab1Main.Location = new System.Drawing.Point(0, 2);
             this.tab1Main.Name = "tab1Main";
             this.tab1Main.SelectedIndex = 0;
@@ -621,6 +628,7 @@
             // 
             // tabMainScr
             // 
+            this.tabMainScr.Controls.Add(this.btn_Create);
             this.tabMainScr.Controls.Add(this.lbl_merge_name);
             this.tabMainScr.Controls.Add(this.txt_merge_ctm_prefix);
             this.tabMainScr.Controls.Add(this.group_platforms);
@@ -633,10 +641,11 @@
             this.tabMainScr.Controls.Add(this.group_output_ports);
             this.tabMainScr.Controls.Add(this.btn_quit);
             this.tabMainScr.Cursor = System.Windows.Forms.Cursors.Default;
-            this.tabMainScr.Location = new System.Drawing.Point(4, 22);
+            this.tabMainScr.ImageIndex = 2;
+            this.tabMainScr.Location = new System.Drawing.Point(4, 23);
             this.tabMainScr.Name = "tabMainScr";
             this.tabMainScr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMainScr.Size = new System.Drawing.Size(858, 496);
+            this.tabMainScr.Size = new System.Drawing.Size(858, 495);
             this.tabMainScr.TabIndex = 0;
             this.tabMainScr.Text = "Main";
             this.tabMainScr.UseVisualStyleBackColor = true;
@@ -660,10 +669,11 @@
             // tabSettings
             // 
             this.tabSettings.Controls.Add(this.panel1);
-            this.tabSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabSettings.ImageIndex = 9;
+            this.tabSettings.Location = new System.Drawing.Point(4, 23);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSettings.Size = new System.Drawing.Size(858, 496);
+            this.tabSettings.Size = new System.Drawing.Size(858, 495);
             this.tabSettings.TabIndex = 1;
             this.tabSettings.Text = "Settings";
             this.tabSettings.UseVisualStyleBackColor = true;
@@ -739,7 +749,7 @@
             this.lbl_flash_tool.AutoSize = true;
             this.lbl_flash_tool.Location = new System.Drawing.Point(26, 157);
             this.lbl_flash_tool.Name = "lbl_flash_tool";
-            this.lbl_flash_tool.Size = new System.Drawing.Size(127, 13);
+            this.lbl_flash_tool.Size = new System.Drawing.Size(126, 13);
             this.lbl_flash_tool.TabIndex = 5;
             this.lbl_flash_tool.Text = "Select Flash Tool to use";
             // 
@@ -797,9 +807,37 @@
             // 
             // imageList1
             // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Apps-session-logout-icon.png");
+            this.imageList1.Images.SetKeyName(1, "Audio-Cd-icon.png");
+            this.imageList1.Images.SetKeyName(2, "Document-Text-icon.png");
+            this.imageList1.Images.SetKeyName(3, "Gear-icon.png");
+            this.imageList1.Images.SetKeyName(4, "Search-icon.png");
+            this.imageList1.Images.SetKeyName(5, "symbol-check-icon.png");
+            this.imageList1.Images.SetKeyName(6, "Tools-icon.png");
+            this.imageList1.Images.SetKeyName(7, "delete-icon.png");
+            this.imageList1.Images.SetKeyName(8, "add-icon.png");
+            this.imageList1.Images.SetKeyName(9, "folder-document-icon.png");
+            this.imageList1.Images.SetKeyName(10, "Hard-Drive-icon.png");
+            this.imageList1.Images.SetKeyName(11, "chip-icon.png");
+            // 
+            // btn_Create
+            // 
+            this.btn_Create.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Create.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Create.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Create.ImageIndex = 5;
+            this.btn_Create.ImageList = this.imageList1;
+            this.btn_Create.Location = new System.Drawing.Point(734, 405);
+            this.btn_Create.Name = "btn_Create";
+            this.btn_Create.Size = new System.Drawing.Size(103, 29);
+            this.btn_Create.TabIndex = 22;
+            this.btn_Create.Text = "Create IFWI";
+            this.btn_Create.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Create.UseVisualStyleBackColor = true;
+            this.btn_Create.Click += new System.EventHandler(this.btn_Create_Click);
             // 
             // frm_mainScreen
             // 
@@ -905,6 +943,7 @@
         private System.Windows.Forms.Label lbl_merge_name;
         private System.Windows.Forms.TextBox txt_merge_ctm_prefix;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btn_Create;
     }
 }
 
