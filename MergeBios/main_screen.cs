@@ -303,142 +303,6 @@ namespace MergeBios
         }
 
         /// <summary>
-        /// check button to enable custom selection of display output
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void check_custom_ports_CheckedChanged(object sender , EventArgs e)
-        {
-            displays.Find_display_config(cmb_platform.Text , cmb_plt_type.Text);
-
-            for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int)MERGE_NAME_PARTS.disp5; i++)
-            {
-                platform.platform_merge_name[i] = string.Empty;
-            }
-
-            if ( check_custom_ports.Checked == true )
-            {
-                if ( platform.ui_enable_edp_option || platform.ui_enable_edp_option )
-                {
-                    cmb_display1.Enabled = false;
-                    cmb_display2.Enabled = false;
-                    cmb_display3.Enabled = false;
-                    cmb_lfp.Enabled = false;
-                }
-                else if (platform.ui_enable_display_ports)
-                {
-                    cmb_lfp.Enabled = displays.enable_lfp_list;
-                    cmb_display1.Enabled = displays.enable_display1b;
-                    cmb_display2.Enabled = displays.enable_display2c;
-                    cmb_display3.Enabled = displays.enable_display3d;
-                    cmb_display4.Enabled = displays.enable_display4e;
-
-                    if ( cmb_lfp.Enabled )
-                    {
-                        cmb_lfp.DataSource = null;
-                        cmb_lfp.Items.Clear();
-
-                        if ( check_f_mipi.Checked )
-                            cmb_lfp.DataSource = displays.mipi_list;
-                        else
-                            cmb_lfp.DataSource = displays.edp_list;
-
-                        cmb_lfp.SelectedItem = platform.platform_Default_Displays[0];
-
-                        // string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.Text;
-                        lbl_merge_name.Text =  string.Join(" ", platform.platform_merge_name);
-                    }
-
-                    if ( cmb_display1.Enabled )
-                    {
-                        cmb_display1.DataSource = null;
-                        cmb_display1.Items.Clear();
-                        cmb_display1.DataSource = displays.port1b_displays;
-
-                        cmb_display1.SelectedItem = platform.platform_Default_Displays[1];
-
-                        //string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.Text;
-                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-                    }
-
-                    if ( cmb_display2.Enabled )
-                    {
-                        cmb_display2.DataSource = null;
-                        cmb_display2.Items.Clear();
-                        cmb_display2.DataSource = displays.port2c_displays;
-
-                        cmb_display2.SelectedItem = platform.platform_Default_Displays[2];
-
-                        //string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.Text;
-                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-                    }
-
-                    if ( cmb_display3.Enabled )
-                    {
-                        cmb_display3.DataSource = null;
-                        cmb_display3.Items.Clear();
-                        cmb_display3.DataSource = displays.port3d_displays;
-
-                        cmb_display3.SelectedItem = platform.platform_Default_Displays[3];
-
-                        //txt_display3.Text = cmb_display3.SelectedItem.ToString();
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.Text;
-                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-                    }
-
-                    if ( cmb_display4.Enabled )
-                    {
-                        cmb_display4.DataSource = null;
-                        cmb_display4.Items.Clear();
-                        cmb_display4.DataSource = displays.port4e_displays;
-
-                        cmb_display4.SelectedItem = platform.platform_Default_Displays[4];
-
-                        //txt_display4.Text = cmb_display4.SelectedItem.ToString();
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.Text;
-                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-                    }
-                }
-                lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-
-            }
-            else
-            {                
-                cmb_display1.Enabled = false;
-                cmb_display1.DataSource = null;
-                cmb_display1.Items.Clear();
-
-                cmb_display2.Enabled = false;
-                cmb_display2.DataSource = null;
-                cmb_display2.Items.Clear();
-
-                cmb_display3.Enabled = false;
-                cmb_display3.DataSource = null;
-                cmb_display3.Items.Clear();
-
-                cmb_display4.Enabled = false;
-                cmb_display4.DataSource = null;
-                cmb_display4.Items.Clear();
-
-                cmb_lfp.Enabled = false;
-                cmb_lfp.DataSource = null;
-                cmb_lfp.Items.Clear();
-
-
-                for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int) MERGE_NAME_PARTS.disp5; i++ )
-                {
-                    platform.platform_merge_name[i] = string.Empty;
-                }
-                lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
-            }
-
-
-        }
-
-        /// <summary>
         /// Event from combo sbios, here
         /// </summary>
         /// <param name="sender"></param>
@@ -599,7 +463,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void radio_gop_Click(object sender, EventArgs e)
         {
-            log.Trace("Clicked the GOP ooption " + this.radio_gop.ToString() );
+            log.Trace("Clicked the GOP option " + this.radio_gop.ToString() );
 
             preboot = (int)PREBOOT_TYPES_ID.gop;
 
@@ -819,6 +683,172 @@ namespace MergeBios
             platform.platform_merge_name[(int) MERGE_NAME_PARTS.arch_ver] = radio_x64.Text;
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+        }
+
+        private void check_production_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        /// <summary>
+        /// check button to enable custom selection of display output
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void check_custom_ports_Click(object sender, EventArgs e)
+        {
+
+            log.Trace("Search for platform default display config begins...");
+            displays.Find_display_config(cmb_platform.Text, cmb_plt_type.Text);
+
+            for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int)MERGE_NAME_PARTS.disp5; i++)
+            {
+                platform.platform_merge_name[i] = string.Empty;
+            }
+
+            log.Trace("Merge label is clear");
+            if (check_custom_ports.Checked == true)
+            {
+                log.Trace("Checked the custom port option.");
+
+                if (platform.ui_enable_edp_option || platform.ui_enable_edp_option)
+                {
+                    cmb_display1.Enabled = false;
+                    cmb_display2.Enabled = false;
+                    cmb_display3.Enabled = false;
+                    cmb_lfp.Enabled = false;
+
+                    log.Trace("Seems that platform doesnt have any displays for LFP");
+                }
+                else if (platform.ui_enable_display_ports)
+                {
+                    log.Trace("Platform loaded config seem to have enabled enough ports.");
+
+                    cmb_lfp.Enabled = displays.enable_lfp_list;
+                    cmb_display1.Enabled = displays.enable_display1b;
+                    cmb_display2.Enabled = displays.enable_display2c;
+                    cmb_display3.Enabled = displays.enable_display3d;
+                    cmb_display4.Enabled = displays.enable_display4e;
+
+                    if (cmb_lfp.Enabled)
+                    {
+                        cmb_lfp.DataSource = null;
+                        cmb_lfp.Items.Clear();
+
+                        if (check_f_mipi.Checked)
+                            cmb_lfp.DataSource = displays.mipi_list;
+                        else
+                            cmb_lfp.DataSource = displays.edp_list;
+
+                        cmb_lfp.SelectedItem = platform.platform_Default_Displays[0];
+
+                        // string of the display part
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
+                        log.Trace("Option loaded "  + platform.platform_Default_Displays[0]);
+                    }
+
+                    if (cmb_display1.Enabled)
+                    {
+                        cmb_display1.DataSource = null;
+                        cmb_display1.Items.Clear();
+                        cmb_display1.DataSource = displays.port1b_displays;
+
+                        cmb_display1.SelectedItem = platform.platform_Default_Displays[1];
+
+                        //string of the display part
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
+                        log.Trace("Option loaded " + platform.platform_Default_Displays[1]);
+                    }
+
+                    if (cmb_display2.Enabled)
+                    {
+                        cmb_display2.DataSource = null;
+                        cmb_display2.Items.Clear();
+                        cmb_display2.DataSource = displays.port2c_displays;
+
+                        cmb_display2.SelectedItem = platform.platform_Default_Displays[2];
+
+                        //string of the display part
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
+                        log.Trace("Option loaded " + platform.platform_Default_Displays[2]);
+                    }
+
+                    if (cmb_display3.Enabled)
+                    {
+                        cmb_display3.DataSource = null;
+                        cmb_display3.Items.Clear();
+                        cmb_display3.DataSource = displays.port3d_displays;
+
+                        cmb_display3.SelectedItem = platform.platform_Default_Displays[3];
+
+                        //txt_display3.Text = cmb_display3.SelectedItem.ToString();
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
+                        log.Trace("Option loaded " + platform.platform_Default_Displays[3]);
+                    }
+
+                    if (cmb_display4.Enabled)
+                    {
+                        cmb_display4.DataSource = null;
+                        cmb_display4.Items.Clear();
+                        cmb_display4.DataSource = displays.port4e_displays;
+
+                        cmb_display4.SelectedItem = platform.platform_Default_Displays[4];
+
+                        //txt_display4.Text = cmb_display4.SelectedItem.ToString();
+                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.Text;
+                        lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
+                        log.Trace("Option loaded " + platform.platform_Default_Displays[4]);
+                    }
+                }
+                lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
+            }
+            else
+            {
+                log.Trace("Disabling display port selection");
+                cmb_display1.Enabled = false;
+                cmb_display1.DataSource = null;
+                cmb_display1.Items.Clear();
+
+                cmb_display2.Enabled = false;
+                cmb_display2.DataSource = null;
+                cmb_display2.Items.Clear();
+
+                cmb_display3.Enabled = false;
+                cmb_display3.DataSource = null;
+                cmb_display3.Items.Clear();
+
+                cmb_display4.Enabled = false;
+                cmb_display4.DataSource = null;
+                cmb_display4.Items.Clear();
+
+                cmb_lfp.Enabled = false;
+                cmb_lfp.DataSource = null;
+                cmb_lfp.Items.Clear();
+
+
+                for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int)MERGE_NAME_PARTS.disp5; i++)
+                {
+                    platform.platform_merge_name[i] = string.Empty;
+                }
+                lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
+
+                log.Trace("Merge label, display section is clean");
+            }
+        }
+
+        private void btn_Create_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

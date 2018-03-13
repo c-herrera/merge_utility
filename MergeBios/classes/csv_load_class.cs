@@ -15,6 +15,8 @@ namespace MergeBios
     /// </summary>
     class LoadCSV
     {
+        private bool isCSVLoaded;
+        private string theFileName;
         /// <summary>
         /// Public constructor, no overloaded
         /// </summary>
@@ -35,7 +37,16 @@ namespace MergeBios
         public string[,] LoadCsv(string filename)
         {
             // Get the file's text.
-            string whole_file = File.ReadAllText(filename);
+            string whole_file;
+            try
+            {
+                whole_file = File.ReadAllText(filename);
+            }
+            catch (Exception excp)
+            {
+                throw excp;
+            }
+            theFileName = filename;
             // Split into lines.
             whole_file = whole_file.Replace('\n', '\r');
             string[] lines = whole_file.Split(new char[] { '\r' },
@@ -54,11 +65,28 @@ namespace MergeBios
                     values[r, c] = line_r[c];
                 }
             }
+            if (values.Length > 0)
+                isCSVLoaded = true;
             // Return the values.
             return values;
         }
+
+        /// <summary>
+        /// Gets the estate of loaded or no loaded CSV file
+        /// </summary>
+        public bool CSVisLoaded
+        {
+            get { return isCSVLoaded; }
+        }
+
+        /// <summary>
+        /// Get the CSVFilena only.
+        /// </summary>
+        public string CSVFilename
+        {
+            get { return theFileName; }
+        }
     }
 }
-
 
 
