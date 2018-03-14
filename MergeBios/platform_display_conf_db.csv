@@ -1,5 +1,10 @@
-Platform,Type,MIPIOPTION,EDPOPTION,Display1_PortB,Display2_PortC,Display3_PortD,Display4_PortE,SELECTMIPI
-default,default,NA,No_Device-eDP-eDP_4K-eDP_DDRS-MIPI,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-VGA,NO
+Platform,Type,MIPIOPTION,EDPOPTION,Display1_PortB,Display2_PortC,Display3_PortD,Display4_PortE,SELECTMIPI-UI
+DUMMY,DUMMYTYPE,NA,No_Device-eDP-eDP_4K-eDP_DDRS-MIPI,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-VGA,NO
+ICL,ULX,NA,No_Device-eDP,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,NA,NO
+ICL,ULT,No_Device-MIPI,No_Device-eDP,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,NA,NO
+ICL,DT8,NA,No_Device-eDP,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,NA,NO
+ICL,DT10,NA,No_Device-eDP,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,NA,NO
+ICL,HALO,NA,No_Device-eDP,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-DVI_Only-LSPCON-USB_Type_C,No_Device-VGA,NO
 CFL,DT10,NA,No_Device-eDP,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,NA,NO
 CFL,DT10,NA,No_Device-eDP,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,NA,NO
 CFL,DT8,NA,No_Device-,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,No_Device-DP-DP_Only-HDMI-LSPCON-USB_Type_C,NA,NO

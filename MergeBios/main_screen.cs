@@ -128,7 +128,7 @@ namespace MergeBios
             {
                 for ( int j = 1 ; j < num_cols1 ; j++ )
                 {
-                    if ( platform.platform_list[i , j].ToString() == "-" ) 
+                    if ( platform.platform_list[i , j].ToString() == "-"  && platform.platform_list[i, j].ToString() == "YES")
                         continue;
                     else
                         cmb_plt_type.Items.Add(platform.platform_list[i , j]);
