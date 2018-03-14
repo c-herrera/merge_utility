@@ -79,7 +79,7 @@
     <Compile Include="main_screen.Designer.cs">
       <DependentUpon>main_screen.cs</DependentUpon>
     </Compile>
-    <Compile Include="merge_generator.cs" />
+    <Compile Include="classes\merge_generator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="main_screen.resx">
