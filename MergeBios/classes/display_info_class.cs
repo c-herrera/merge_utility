@@ -69,12 +69,12 @@ namespace MergeBios
     /// <summary>
     /// enum for Column selection of display types
     /// </summary>
-    enum DISPLAY_NLIST
+    enum DISPLAY_LABELS
     {
         Nodevices, edp, edp_drrs, edp_4k, mipi, dp, dp_only, dvi, hdmi, usb_c_type, vga
     };
 
-    enum DISPLAY_SELCT
+    enum DISPLAY_SELECTION
     {
         no_device, lfp, display1, display2, display3, display4, display5
     };
@@ -127,7 +127,7 @@ namespace MergeBios
                 "VGA" ,
             };
 
-            display_combo = new string[] { "null", "display_lfp", "display1", "display2", "display3", "display4", "display5" };
+            display_combo = new string[] { "null", "Display_LFP", "Display1", "Display2", "Display3", "Display4", "Display5" };
 
 
         }
@@ -239,9 +239,6 @@ namespace MergeBios
 
             }
 
-            //LoadDisplay_SSF_Config();
-
-
         }
 
         /// <summary>
@@ -259,12 +256,18 @@ namespace MergeBios
                     break;
                 }
             }
+
+            //LoadDisplay_SSF_Config("SKL","EFI", "eDP",(int)DISPLAY_SELECTION.display1);
         }
 
         /// <summary>
-        /// 
+        /// Load the SSF data from file
         /// </summary>
-        public void LoadDisplay_SSF_Config (string platform, string preboot, int displaynumber)
+        /// <param name="platform">Platform name as string, mandatory</param>
+        /// <param name="preboot">Preboot type, EFI or VBIOS, mandatory</param>
+        /// <param name="display_output">Mandatory, must be eDP, DP, HDMI etc</param>
+        /// <param name="displaynumber">Which display shall be used?</param>
+        public void LoadDisplay_SSF_Config (string platform, string preboot, string display_output,int displaynumber)
         {
             string value;
             string[] ssf;
@@ -274,21 +277,22 @@ namespace MergeBios
 
             switch( displaynumber)
             {
-                case (int)DISPLAY_SELCT.no_device:                    
+                case (int)DISPLAY_SELECTION.no_device:                    
                     break;
-                case (int)DISPLAY_SELCT.lfp:
-                    value = IniFileHelper.ReadValue(platform + "_" + preboot, display_combo[(int)DISPLAY_SELCT.lfp] + display_type_names[(int)DISPLAY_TYPES.nodevice], ssf_filedb);
-                    ssf = value.Split(',');
+                case (int)DISPLAY_SELECTION.lfp:
+                   // string temp = platform + "_" + preboot + " " +  display_combo[(int)DISPLAY_SELECTION.lfp] +  " " + display_type_names[(int)DISPLAY_TYPES.nodevice] + ssf_filedb;
+                   //value = IniFileHelper.ReadValue(platform + "_" + preboot, "Display_LFP_No_Device", ssf_filedb);
+                   // ssf = value.Split(',');
                     break;
-                case (int)DISPLAY_SELCT.display1:
+                case (int)DISPLAY_SELECTION.display1:
                     break;
-                case (int)DISPLAY_SELCT.display2:
+                case (int)DISPLAY_SELECTION.display2:
                     break;
-                case (int)DISPLAY_SELCT.display3:
+                case (int)DISPLAY_SELECTION.display3:
                     break;
-                case (int)DISPLAY_SELCT.display4:
+                case (int)DISPLAY_SELECTION.display4:
                     break;
-                case (int)DISPLAY_SELCT.display5:
+                case (int)DISPLAY_SELECTION.display5:
                     break;
             }
 
