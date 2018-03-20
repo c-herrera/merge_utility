@@ -118,7 +118,8 @@ namespace MergeBios
         {            
             int num_cols1 = platform.platform_list.GetUpperBound(1) + 1;
             int platformselected_index = cmb_platform.SelectedIndex + 1;
-            log.Trace("Changed the plaform");
+            log.Info("Changed the plaform to :" + cmb_platform.Text);
+            log.Trace("Select event raised : " + this.cmb_platform.ToString());
 
             cmb_plt_type.Items.Clear();
 
@@ -183,6 +184,8 @@ namespace MergeBios
             group_output_ports.Enabled = true;
 
             check_custom_ports.Checked = false;
+            check_custom_ports.Enabled = false;
+
             cmb_display1.Enabled = false;
             cmb_display2.Enabled = false;
             cmb_display3.Enabled = false;
@@ -205,7 +208,7 @@ namespace MergeBios
                 platform.platform_merge_name[i] = string.Empty;
             }
 
-            log.Trace("Cleared the string label of the final merge name");
+            log.Trace("Cleared string : " + lbl_merge_name.ToString());
 
             // string for the merge name
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.platform_name] = cmb_platform.Text;
@@ -214,7 +217,7 @@ namespace MergeBios
         }
 
         /// <summary>
-        /// 
+        /// Select Event for Platform type
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -222,9 +225,12 @@ namespace MergeBios
         {
             platform.find_platform_ui_config(cmb_platform.Text , cmb_plt_type.Text);
 
-            log.Trace("Changed the type.");
+            log.Info("Changed the type to :" + cmb_plt_type.Text );
             log.Info("Disabling past selections on the UI.");
+            log.Trace("Select event raised : " + this.cmb_plt_type.ToString());
+
             // Disable previous options
+            log.Trace("Disabling UI options.");
             radio_gop.Checked = false;
             radio_vbios.Checked = false;
 
@@ -254,10 +260,19 @@ namespace MergeBios
             cmb_stepping.Enabled = false;
 
             check_custom_ports.Checked = false;
+            check_custom_ports.Enabled = false;
+
             btn_flash_ksc.Enabled = false;
             btn_second_stage.Enabled = false;
             btn_dediprog.Enabled = false;
             btn_dnx.Enabled = false;
+
+
+            cmb_display1.Enabled = false;
+            cmb_display2.Enabled = false;
+            cmb_display3.Enabled = false;
+            cmb_display4.Enabled = false;
+            cmb_lfp.Enabled = false;
 
 
             // Enable UI options
@@ -266,11 +281,13 @@ namespace MergeBios
             switch ( platform.ui_branch )
             {
                 case ( int ) PLATFORM_BRANCH_ID.client:
+                    log.Trace("Enabled Client options");
                     radio_gop.Enabled = platform.ui_enable_x64_gop;                    
                     radio_vbios.Enabled = platform.ui_enable_x64_vbios;
 
                     break;
                 case ( int ) PLATFORM_BRANCH_ID.tablet:
+                    log.Trace("Enabled Tablet options");
                     radio_gop.Enabled = platform.ui_enable_x32_gop;
                     radio_gop.Enabled = platform.ui_enable_x64_gop;
 
@@ -286,7 +303,7 @@ namespace MergeBios
             check_f_mipi.Enabled = platform.ui_enable_mipi;
             check_f_seq_mipi.Enabled = platform.ui_enable_seq;
             check_production.Enabled = platform.ui_enable_production;
-            check_custom_ports.Enabled = platform.ui_enable_display_ports;
+            //check_custom_ports.Enabled = platform.ui_enable_display_ports;
 
             cmb_stepping.Enabled = platform.ui_enable_stepping;
 
@@ -309,8 +326,6 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_sbios_SelectedIndexChanged (object sender, EventArgs e)
         {
-
-            //txt_ifwi_name.Text = cmb_sbios.Text;
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.sbiosver] = cmb_sbios.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -322,7 +337,6 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_preboot_SelectedIndexChanged (object sender, EventArgs e)
         {
-            //txt_preboot_name.Text = cmb_preboot.Text;
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_ver] = cmb_preboot.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -334,7 +348,6 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_lfp_SelectedIndexChanged (object sender, EventArgs e)
         {
-            //txt_lfp.Text = cmb_lfp.Text;
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -346,7 +359,6 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display1_SelectedIndexChanged (object sender, EventArgs e)
         {
-            //txt_display1.Text = cmb_display1.Text;
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -358,7 +370,6 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display2_SelectedIndexChanged (object sender, EventArgs e)
         {
-            //txt_display2.Text = cmb_display2.Text;
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -370,7 +381,6 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display3_SelectedIndexChanged (object sender, EventArgs e)
         {
-            //txt_display3.Text = cmb_display3.Text;
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -382,7 +392,6 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display4_SelectedIndexChanged (object sender, EventArgs e)
         {
-            //txt_display4.Text = cmb_display4.Text;
             platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -454,6 +463,8 @@ namespace MergeBios
 
             optionsConf.opt_default_flash_tool = cmb_flashtools.SelectedIndex;
             optionsConf.SaveConfiguration();
+
+            btn_apply_prefs.Enabled = false;
         }
 
         /// <summary>
@@ -466,11 +477,12 @@ namespace MergeBios
             log.Trace("Clicked the GOP option " + this.radio_gop.ToString() );
 
             preboot = (int)PREBOOT_TYPES_ID.gop;
+            check_custom_ports.Enabled = platform.ui_enable_display_ports;
 
             switch (platform.ui_branch)
             {
                 case (int)PLATFORM_BRANCH_ID.client:
-                    log.Trace("Inside switch > Client");
+                    log.Trace("Inside switch > GOP > Client");
                     arch = (int)ARCH_TYPE.noarch;
                     if (radio_gop.Checked == true)
                     {
@@ -497,7 +509,7 @@ namespace MergeBios
 
                     break;
                 case (int)PLATFORM_BRANCH_ID.tablet:
-                    log.Trace("Inside switch > Tablet");
+                    log.Trace("Inside switch > GOP > Tablet");
                     radio_x32.Enabled = platform.ui_enable_x32_gop;
                     radio_x64.Enabled = platform.ui_enable_x64_gop;
                     break;
@@ -515,14 +527,16 @@ namespace MergeBios
         /// <param name="e"></param>
         private void radio_vbios_Click(object sender, EventArgs e)
         {
+            log.Trace("Clicked the VBIOS option " + this.radio_gop.ToString());
             preboot = (int) PREBOOT_TYPES_ID.vbios;
 
+            check_custom_ports.Enabled = platform.ui_enable_display_ports;
 
             switch (platform.ui_branch)
             {
                 case (int) PLATFORM_BRANCH_ID.client:
                     arch = (int) ARCH_TYPE.noarch;
-                    log.Trace("Inside switch > Client");
+                    log.Trace("Inside switch > VBIOS > Client");
                     // Show Preboot list for client
                     if (radio_vbios.Checked == true)
                     {
@@ -549,7 +563,7 @@ namespace MergeBios
 
                     break;
                 case (int) PLATFORM_BRANCH_ID.tablet:
-                    log.Trace("Inside switch > Tablet.");
+                    log.Trace("Inside switch > VBIOS > Tablet.");
                     // Only enable the options
                     radio_x32.Enabled = platform.ui_enable_x32_vbios;
                     radio_x64.Enabled = platform.ui_enable_x64_vbios;
@@ -569,19 +583,27 @@ namespace MergeBios
         private void btn_quit_Click(object sender, EventArgs e)
         {
             log.Info("Application Exit!");
+            log.Trace(" Event click : " + this.btn_quit.ToString());
+            log.Report(" Total Errors   " + log.TotalErrors);
+            log.Report(" Total Failures " + log.TotalFatalErrors);
+            log.Report(" Total Warnings " + log.TotalWarnings);            
             Application.Exit();
         }
 
         private void radio_x32_Click(object sender, EventArgs e)
         {
+            log.Trace(" Clicked on x32 :" + this.radio_x32.ToString());
             arch = (radio_x32.Checked == true) ? (int) ARCH_TYPE.x_32 : (int) ARCH_TYPE.noarch;
+            check_custom_ports.Enabled = platform.ui_enable_display_ports;
 
             switch (platform.ui_branch)
             {
                 case (int) PLATFORM_BRANCH_ID.client:
                     // Client platform never must fall here
+                    log.Trace(" Inside swtich x32 > Client ?");
                     break;
                 case (int) PLATFORM_BRANCH_ID.tablet:
+                    log.Trace(" Inside swtich x32 > Tablet");
                     // Fill the system bios combo        
 
                     // Fill stepping combo, if any
@@ -634,13 +656,17 @@ namespace MergeBios
 
         private void radio_x64_Click(object sender, EventArgs e)
         {
+            log.Trace(" Clicked on x64 :" + this.radio_x32.ToString());
             arch = (radio_x64.Checked == true) ? (int) ARCH_TYPE.x_64 : (int) ARCH_TYPE.noarch;
+            check_custom_ports.Enabled = platform.ui_enable_display_ports;
 
             switch (platform.ui_branch)
             {
                 case (int) PLATFORM_BRANCH_ID.client:
+                    log.Trace(" Inside swtich x64 > Client ?");
                     break;
                 case (int) PLATFORM_BRANCH_ID.tablet:
+                    log.Trace(" Inside swtich x64 > Tablet");
                     // Fill the system bios combo                    
                     // Fill stepping combo, if any
                     if (platform.ui_enable_stepping)
@@ -687,7 +713,7 @@ namespace MergeBios
 
         private void check_production_Click(object sender, EventArgs e)
         {
-
+            log.Trace(" Option is clicked :" + this.check_production.ToString());
         }
 
         /// <summary>
@@ -698,7 +724,9 @@ namespace MergeBios
         private void check_custom_ports_Click(object sender, EventArgs e)
         {
 
-            log.Trace("Search for platform default display config begins...");
+            log.Info("Search for platform default display config begins...");
+            log.Trace(" Event for port clicked :" + this.check_custom_ports.ToString());
+
             displays.Find_display_config(cmb_platform.Text, cmb_plt_type.Text);
 
             for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int)MERGE_NAME_PARTS.disp5; i++)
@@ -848,7 +876,50 @@ namespace MergeBios
 
         private void btn_Create_Click(object sender, EventArgs e)
         {
+            log.Trace(" Button is pressed :" + this.btn_Create.ToString());
 
+        }
+
+        private void btn_flash_ksc_Click(object sender, EventArgs e)
+        {
+            log.Trace(" Button is pressed :" + this.btn_flash_ksc.ToString());
+
+        }
+
+        private void btn_second_stage_Click(object sender, EventArgs e)
+        {
+            log.Trace(" Button is pressed :" + this.btn_second_stage.ToString());
+
+        }
+
+        private void btn_dnx_Click(object sender, EventArgs e)
+        {
+            log.Trace(" Button is pressed :" + this.btn_dnx.ToString());
+        }
+
+        private void btn_dediprog_Click(object sender, EventArgs e)
+        {
+            log.Trace(" Button is pressed :" + this.btn_dediprog.ToString());
+        }
+
+        private void chk_remote_folder_Click(object sender, EventArgs e)
+        {
+            btn_apply_prefs.Enabled = true;
+        }
+
+        private void chk_remote_tool_Click(object sender, EventArgs e)
+        {
+            btn_apply_prefs.Enabled = true;
+        }
+
+        private void chk_ask_flash_Click(object sender, EventArgs e)
+        {
+            btn_apply_prefs.Enabled = true;
+        }
+
+        private void chk_ask_save_Click(object sender, EventArgs e)
+        {
+            btn_apply_prefs.Enabled = false;
         }
     }
 }

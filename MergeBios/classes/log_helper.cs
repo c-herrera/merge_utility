@@ -12,7 +12,12 @@ namespace MergeBios
     {
 
         private string DatetimeFormat;
-        private string Filename;
+        private string LogFileName;
+        private int errorCount = 0;   // errors 
+        private int failureCount = 0; // fatal errors
+        private int warningCount = 0; // warnings
+
+        private string[] StrgLevels;
 
         /// <summary>
         /// Supported log level
@@ -20,8 +25,17 @@ namespace MergeBios
         [Flags]
         private enum LogLevel
         {
-            TRACE, INFO, DEBUG, WARNING, ERROR, FATAL
-        }
+            TRACE, INFO, DEBUG, WARNING, ERROR, FATAL, BRIEF_REPORT
+        };
+
+        /// <summary>
+        /// [Enum] Log type (text, xml, no log)
+        /// </summary>
+        [Flags]
+        public enum LogType
+        {
+            NoLog, LogInTextFormat
+        };
 
         /// <summary>
         /// Initialize a new instance of SimpleLogger class.
@@ -33,16 +47,17 @@ namespace MergeBios
         public SimpleLogger(string filename = "", bool append = false)
         {
             DatetimeFormat = "yyyy-MM-dd HH:mm:ss.fff";
+            StrgLevels = new string[] { " [TRACE] ", " [INFO] ", " [DEBUG] ", " [WARNING] ", " [ERROR] ", " [FATAL] ", " [REPORT] "};
 
             // If not defined filename use the application default one
             if (filename == string.Empty)
-                Filename = Assembly.GetExecutingAssembly().GetName().Name + ".log";
+                LogFileName = Assembly.GetExecutingAssembly().GetName().Name + ".log";
             else
-                Filename = filename + ".log";
+                LogFileName = filename + ".log";
 
             // Log file header line
-            string logHeader = Filename + " is created.";
-            if (!File.Exists(Filename))
+            string logHeader = LogFileName + " is created.";
+            if (!File.Exists(LogFileName))
             {
                 WriteLine(DateTime.Now.ToString(DatetimeFormat) + " " + logHeader, false);
             }
@@ -69,6 +84,7 @@ namespace MergeBios
         public void Error(string text)
         {
             WriteFormattedLog(LogLevel.ERROR, text);
+            errorCount++;
         }
 
         /// <summary>
@@ -78,6 +94,7 @@ namespace MergeBios
         public void Fatal(string text)
         {
             WriteFormattedLog(LogLevel.FATAL, text);
+            failureCount++;
         }
 
         /// <summary>
@@ -105,6 +122,12 @@ namespace MergeBios
         public void Warning(string text)
         {
             WriteFormattedLog(LogLevel.WARNING, text);
+            warningCount++;
+        }
+
+        public void Report(string text = "")
+        {
+            WriteFormattedLog(LogLevel.BRIEF_REPORT, text);
         }
 
         /// <summary>
@@ -114,29 +137,34 @@ namespace MergeBios
         /// <param name="text">Log message</param>
         private void WriteFormattedLog(LogLevel level, string text)
         {
-            string pretext;
+            string pretext = string.Empty;
+
             switch (level)
             {
                 case LogLevel.TRACE:
-                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [TRACE]   ";
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + StrgLevels[(int)LogLevel.TRACE];
                     break;
                 case LogLevel.INFO:
-                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [INFO]    ";
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + StrgLevels[(int)LogLevel.INFO];
                     break;
                 case LogLevel.DEBUG:
-                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [DEBUG]   ";
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + StrgLevels[(int)LogLevel.DEBUG];
                     break;
                 case LogLevel.WARNING:
-                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [WARNING] ";
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + StrgLevels[(int)LogLevel.WARNING];
                     break;
                 case LogLevel.ERROR:
-                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [ERROR]   ";
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + StrgLevels[(int)LogLevel.ERROR];
                     break;
                 case LogLevel.FATAL:
-                    pretext = DateTime.Now.ToString(DatetimeFormat) + " [FATAL]   ";
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + StrgLevels[(int)LogLevel.FATAL];
                     break;
+                case LogLevel.BRIEF_REPORT:
+                    pretext = DateTime.Now.ToString(DatetimeFormat) + StrgLevels[(int)LogLevel.BRIEF_REPORT];
+                    break;
+
                 default:
-                    pretext = "";
+                    pretext = string.Empty;
                     break;
             }
             WriteLine(pretext + text);
@@ -152,15 +180,40 @@ namespace MergeBios
         {
             try
             {
-                using (StreamWriter Writer = new StreamWriter(Filename, append, Encoding.UTF8))
+                using (StreamWriter Writer = new StreamWriter(LogFileName, append, Encoding.UTF8))
                 {
-                    if (text != "") Writer.WriteLine(text);
+                    if (text != "")
+                        Writer.WriteLine(text);
                 }
             }
             catch
             {
                 throw;
             }
+        }
+
+        /// <summary>
+        /// Returns the total errors logged.
+        /// </summary>
+        public int TotalErrors
+        {
+            get { return errorCount; }
+        }
+
+        /// <summary>
+        /// Returns the total Fatal Errors encountered
+        /// </summary>
+        public int TotalFatalErrors
+        {
+            get { return failureCount; }
+        }
+
+        /// <summary>
+        /// Returns the total number of warnings issued
+        /// </summary>
+        public int TotalWarnings
+        {
+            get { return warningCount; }
         }
 
 

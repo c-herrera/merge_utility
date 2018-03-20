@@ -53,6 +53,7 @@
             this.check_f_mipi = new System.Windows.Forms.CheckBox();
             this.group_other_flash = new System.Windows.Forms.GroupBox();
             this.btn_dnx = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btn_dediprog = new System.Windows.Forms.Button();
             this.btn_second_stage = new System.Windows.Forms.Button();
             this.btn_flash_ksc = new System.Windows.Forms.Button();
@@ -75,6 +76,7 @@
             this.toolStripStatus_Tool = new System.Windows.Forms.ToolStripStatusLabel();
             this.tab1Main = new System.Windows.Forms.TabControl();
             this.tabMainScr = new System.Windows.Forms.TabPage();
+            this.btn_Create = new System.Windows.Forms.Button();
             this.lbl_merge_name = new System.Windows.Forms.Label();
             this.txt_merge_ctm_prefix = new System.Windows.Forms.TextBox();
             this.tabSettings = new System.Windows.Forms.TabPage();
@@ -91,8 +93,6 @@
             this.chk_remote_tool = new System.Windows.Forms.CheckBox();
             this.chk_remote_folder = new System.Windows.Forms.CheckBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btn_Create = new System.Windows.Forms.Button();
             this.group_platforms.SuspendLayout();
             this.group_preboot.SuspendLayout();
             this.group_arch.SuspendLayout();
@@ -382,13 +382,33 @@
             this.btn_dnx.Text = "Flash DNX";
             this.btn_dnx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_dnx.UseVisualStyleBackColor = true;
+            this.btn_dnx.Click += new System.EventHandler(this.btn_dnx_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Apps-session-logout-icon.png");
+            this.imageList1.Images.SetKeyName(1, "Audio-Cd-icon.png");
+            this.imageList1.Images.SetKeyName(2, "Document-Text-icon.png");
+            this.imageList1.Images.SetKeyName(3, "Gear-icon.png");
+            this.imageList1.Images.SetKeyName(4, "Search-icon.png");
+            this.imageList1.Images.SetKeyName(5, "symbol-check-icon.png");
+            this.imageList1.Images.SetKeyName(6, "Tools-icon.png");
+            this.imageList1.Images.SetKeyName(7, "delete-icon.png");
+            this.imageList1.Images.SetKeyName(8, "add-icon.png");
+            this.imageList1.Images.SetKeyName(9, "folder-document-icon.png");
+            this.imageList1.Images.SetKeyName(10, "Hard-Drive-icon.png");
+            this.imageList1.Images.SetKeyName(11, "chip-icon.png");
+            this.imageList1.Images.SetKeyName(12, "DediprogIcon1.png");
             // 
             // btn_dediprog
             // 
             this.btn_dediprog.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_dediprog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_dediprog.Image = ((System.Drawing.Image)(resources.GetObject("btn_dediprog.Image")));
             this.btn_dediprog.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_dediprog.ImageIndex = 12;
+            this.btn_dediprog.ImageList = this.imageList1;
             this.btn_dediprog.Location = new System.Drawing.Point(34, 144);
             this.btn_dediprog.Name = "btn_dediprog";
             this.btn_dediprog.Size = new System.Drawing.Size(109, 28);
@@ -396,6 +416,7 @@
             this.btn_dediprog.Text = "Use Dediprog";
             this.btn_dediprog.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_dediprog.UseVisualStyleBackColor = true;
+            this.btn_dediprog.Click += new System.EventHandler(this.btn_dediprog_Click);
             // 
             // btn_second_stage
             // 
@@ -412,6 +433,7 @@
             this.btn_second_stage.Text = "Flash S.Stage";
             this.btn_second_stage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_second_stage.UseVisualStyleBackColor = true;
+            this.btn_second_stage.Click += new System.EventHandler(this.btn_second_stage_Click);
             // 
             // btn_flash_ksc
             // 
@@ -428,6 +450,7 @@
             this.btn_flash_ksc.Text = "Flash KSC";
             this.btn_flash_ksc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_flash_ksc.UseVisualStyleBackColor = true;
+            this.btn_flash_ksc.Click += new System.EventHandler(this.btn_flash_ksc_Click);
             // 
             // btn_quit
             // 
@@ -491,6 +514,7 @@
             // check_custom_ports
             // 
             this.check_custom_ports.AutoSize = true;
+            this.check_custom_ports.Enabled = false;
             this.check_custom_ports.Location = new System.Drawing.Point(82, 14);
             this.check_custom_ports.Name = "check_custom_ports";
             this.check_custom_ports.Size = new System.Drawing.Size(194, 17);
@@ -650,6 +674,23 @@
             this.tabMainScr.Text = "Main";
             this.tabMainScr.UseVisualStyleBackColor = true;
             // 
+            // btn_Create
+            // 
+            this.btn_Create.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_Create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Create.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Create.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_Create.ImageIndex = 5;
+            this.btn_Create.ImageList = this.imageList1;
+            this.btn_Create.Location = new System.Drawing.Point(734, 405);
+            this.btn_Create.Name = "btn_Create";
+            this.btn_Create.Size = new System.Drawing.Size(103, 29);
+            this.btn_Create.TabIndex = 22;
+            this.btn_Create.Text = "Create IFWI";
+            this.btn_Create.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Create.UseVisualStyleBackColor = true;
+            this.btn_Create.Click += new System.EventHandler(this.btn_Create_Click);
+            // 
             // lbl_merge_name
             // 
             this.lbl_merge_name.AutoSize = true;
@@ -770,6 +811,7 @@
             this.chk_ask_save.TabIndex = 3;
             this.chk_ask_save.Text = "Always ask to save";
             this.chk_ask_save.UseVisualStyleBackColor = true;
+            this.chk_ask_save.Click += new System.EventHandler(this.chk_ask_save_Click);
             // 
             // chk_ask_flash
             // 
@@ -780,64 +822,33 @@
             this.chk_ask_flash.TabIndex = 2;
             this.chk_ask_flash.Text = "Never ask to flash";
             this.chk_ask_flash.UseVisualStyleBackColor = true;
+            this.chk_ask_flash.Click += new System.EventHandler(this.chk_ask_flash_Click);
             // 
             // chk_remote_tool
             // 
             this.chk_remote_tool.AutoSize = true;
             this.chk_remote_tool.Location = new System.Drawing.Point(26, 51);
             this.chk_remote_tool.Name = "chk_remote_tool";
-            this.chk_remote_tool.Size = new System.Drawing.Size(258, 17);
+            this.chk_remote_tool.Size = new System.Drawing.Size(210, 17);
             this.chk_remote_tool.TabIndex = 1;
-            this.chk_remote_tool.Text = "Don\'t check remote for remote tools chnages";
+            this.chk_remote_tool.Text = "Disable remote folder tool checking";
             this.chk_remote_tool.UseVisualStyleBackColor = true;
+            this.chk_remote_tool.Click += new System.EventHandler(this.chk_remote_tool_Click);
             // 
             // chk_remote_folder
             // 
             this.chk_remote_folder.AutoSize = true;
             this.chk_remote_folder.Location = new System.Drawing.Point(26, 18);
             this.chk_remote_folder.Name = "chk_remote_folder";
-            this.chk_remote_folder.Size = new System.Drawing.Size(206, 17);
+            this.chk_remote_folder.Size = new System.Drawing.Size(183, 17);
             this.chk_remote_folder.TabIndex = 0;
-            this.chk_remote_folder.Text = "Don\'t check remote folder changes";
+            this.chk_remote_folder.Text = "Disable remote folder changes";
             this.chk_remote_folder.UseVisualStyleBackColor = true;
+            this.chk_remote_folder.Click += new System.EventHandler(this.chk_remote_folder_Click);
             // 
             // toolTip1
             // 
             this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "Apps-session-logout-icon.png");
-            this.imageList1.Images.SetKeyName(1, "Audio-Cd-icon.png");
-            this.imageList1.Images.SetKeyName(2, "Document-Text-icon.png");
-            this.imageList1.Images.SetKeyName(3, "Gear-icon.png");
-            this.imageList1.Images.SetKeyName(4, "Search-icon.png");
-            this.imageList1.Images.SetKeyName(5, "symbol-check-icon.png");
-            this.imageList1.Images.SetKeyName(6, "Tools-icon.png");
-            this.imageList1.Images.SetKeyName(7, "delete-icon.png");
-            this.imageList1.Images.SetKeyName(8, "add-icon.png");
-            this.imageList1.Images.SetKeyName(9, "folder-document-icon.png");
-            this.imageList1.Images.SetKeyName(10, "Hard-Drive-icon.png");
-            this.imageList1.Images.SetKeyName(11, "chip-icon.png");
-            // 
-            // btn_Create
-            // 
-            this.btn_Create.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Create.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Create.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.249999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Create.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Create.ImageIndex = 5;
-            this.btn_Create.ImageList = this.imageList1;
-            this.btn_Create.Location = new System.Drawing.Point(734, 405);
-            this.btn_Create.Name = "btn_Create";
-            this.btn_Create.Size = new System.Drawing.Size(103, 29);
-            this.btn_Create.TabIndex = 22;
-            this.btn_Create.Text = "Create IFWI";
-            this.btn_Create.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Create.UseVisualStyleBackColor = true;
-            this.btn_Create.Click += new System.EventHandler(this.btn_Create_Click);
             // 
             // frm_mainScreen
             // 
