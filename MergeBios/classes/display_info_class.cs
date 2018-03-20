@@ -271,9 +271,6 @@ namespace MergeBios
         {
             string value;
             string[] ssf;
-            //value = IniFileHelper.ReadValue("SKL_KBL_EFI", "display1_dp", ssf_filedb);
-            //ssf = value.Split(',');
-            //MessageBox.Show(ssf[1]);
 
             switch( displaynumber)
             {
