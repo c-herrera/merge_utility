@@ -495,14 +495,28 @@ namespace MergeBios
                         cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
                     }
 
+                    // works, prod word does not appear in list anymore
+                    if (platform.search_and_skip == true)
+                    {
+                        // Fill the system bios combo                    
+                        cmb_sbios.DataSource = null;
+                        cmb_sbios.Enabled = true;
+                        cmb_sbios.Items.Clear();
+                        cmb_sbios.Update();
+                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS, string.Empty, platform.platform_folder_to_skip);
+                        cmb_sbios.DataSource = platform.bios_list;
+                        cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+                    }
+
+
                     // Fill the system bios combo                    
-                    cmb_sbios.DataSource = null;
-                    cmb_sbios.Enabled = true;
-                    cmb_sbios.Items.Clear();
-                    cmb_sbios.Update();
-                    platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
-                    cmb_sbios.DataSource = platform.bios_list;
-                    cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+                    //cmb_sbios.DataSource = null;
+                    //cmb_sbios.Enabled = true;
+                    //cmb_sbios.Items.Clear();
+                    //cmb_sbios.Update();
+                    //platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                    //cmb_sbios.DataSource = platform.bios_list;
+                    //cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
 
                     radio_lvds.Enabled = platform.ui_enable_edp_option;
                     radio_edp.Enabled = platform.ui_enable_lvds_option;
@@ -540,6 +554,8 @@ namespace MergeBios
                     // Show Preboot list for client
                     if (radio_vbios.Checked == true)
                     {
+
+                        // This part does not required more revisions, seem to be ok
                         platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch, (PREBOOT_TYPES_ID) preboot);
                         cmb_preboot.DataSource = null;
                         cmb_preboot.Enabled = true;
@@ -549,14 +565,27 @@ namespace MergeBios
                         cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
                     }
 
+
+                    if (platform.search_and_skip == true)
+                    {
+                        // Fill the system bios combo                    
+                        cmb_sbios.DataSource = null;
+                        cmb_sbios.Enabled = true;
+                        cmb_sbios.Items.Clear();
+                        cmb_sbios.Update();
+                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS, string.Empty ,platform.platform_folder_to_skip);
+                        cmb_sbios.DataSource = platform.bios_list;
+                        cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+                    }
+
                     // Fill the system bios combo                    
-                    cmb_sbios.DataSource = null;
-                    cmb_sbios.Enabled = true;
-                    cmb_sbios.Items.Clear();
-                    cmb_sbios.Update();
-                    platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
-                    cmb_sbios.DataSource = platform.bios_list;
-                    cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
+                    //cmb_sbios.DataSource = null;
+                    //cmb_sbios.Enabled = true;
+                    //cmb_sbios.Items.Clear();
+                    //cmb_sbios.Update();
+                    //platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                    //cmb_sbios.DataSource = platform.bios_list;
+                    //cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
 
                     radio_lvds.Enabled = platform.ui_enable_lvds_option;
                     radio_edp.Enabled = platform.ui_enable_edp_option;
@@ -714,6 +743,9 @@ namespace MergeBios
         private void check_production_Click(object sender, EventArgs e)
         {
             log.Trace(" Option is clicked :" + this.check_production.ToString());
+
+            // assing bios search lines here for checked and unchecked state
+            // this will refresh the list on the SBIOS box for both PROD and PREPROD
         }
 
         /// <summary>
