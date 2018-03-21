@@ -1146,7 +1146,7 @@ namespace MergeBios
                 pt_db[i].modfile_name = platform_data[i, ( int ) PLATFORM_DB_HEADER.modfile];
 
 
-
+                // Search Option
                 if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] != "NA")
                 {
                     if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.search_ifwi_opt] == "STEPPING" )
@@ -1203,7 +1203,12 @@ namespace MergeBios
             }
 
 
+            // -----------------------------------------------------------------------------
+            // -----------------------------------------------------------------------------
+            // UI LOADING
             // Set the platform's ui data into the struct[var] defined
+            // -----------------------------------------------------------------------------
+            // -----------------------------------------------------------------------------
             for ( int i = 1 ; i < num_platforms_ui ; i++ )
             {
                 pt_ui[i].platform = platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.platform];
@@ -1422,7 +1427,7 @@ namespace MergeBios
                 for (int i = 0; i < folders.Length; i++)
                 {
                     // Seeks for last name of EFI path not be == SSF
-                    if (Path.GetFullPath(folders[i]).Split('\\').LastOrDefault() != "SSF")
+                    if (Path.GetFullPath(folders[i]).Split('\\').LastOrDefault() != "SSF" || Path.GetFullPath(folders[i]).Split('\\').LastOrDefault() != "NULL")
                     {
                         preboot_list[i] = Path.GetFullPath(folders[i]).Split('\\').LastOrDefault();
 
