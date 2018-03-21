@@ -21,6 +21,7 @@ namespace MergeBios
         private string vbt_name;       // default VBT file
         private string vbt_path;       // default VBT file path        
         private string merge_final_name; // name composite from selection on the ui
+        private string Tools_Path;
 
         private string custom_vbt_name; // name of the custom vbt
         private string custom_vbt_path; // path ot the vbt
@@ -34,6 +35,11 @@ namespace MergeBios
         private bool use_lpc_ft;
         private bool use_prod_ft;
         private bool use_lfp_ft;
+		
+		
+		enum MERGE_ARCH { NOARCH, x32,x64  };
+
+        enum LFP_OPTIONS { eDP,MIPI  };
 
 
         /// <summary>
@@ -84,17 +90,22 @@ namespace MergeBios
 
         }
 
+
         /// <summary>
-        /// 
+        /// No Script Create and merge BIOS
         /// </summary>
+        /// <param name="Gen"> Generation of platform</param>
+        /// <param name="Preboot_type">GOP or VBIOS type</param>
         public void NS_Create_BIOS(int Gen, int Preboot_type )
         {
             // Placeholder
         }
 
         /// <summary>
-        /// 
+        /// No Script Create and merge BIOS
         /// </summary>
+        /// <param name="Gen"> Generation of platform</param>
+        /// <param name="Preboot_type">GOP or VBIOS type</param>       
         public void NS_Create_BIOS_nC(int Gen, int Preboot_type)
         {
             // Placeholder
