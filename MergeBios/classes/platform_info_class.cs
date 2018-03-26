@@ -20,7 +20,7 @@ namespace MergeBios
         public string merge_script;     // script used to merge
         public string server_path_project;  // the project path
         public string server_path_bios;     // the bios root path 
-        public string server_path_bios_prod; // 
+        public string server_path_bios_prod; // the  bios prod path
         public string server_path_preboot;    // path to gop / vbios
         public string server_path_ksc;      // path to ksc
         public string server_path_sff_files;// path to  the ssf files
@@ -78,7 +78,7 @@ namespace MergeBios
         public bool enablex32vbios;
         public bool enablex64vbios;
         public bool enable_prod;
-        public bool ui_mipi;
+        public bool ui_panel_mipi;
         public bool ui_seq;
         public bool ui_cs;
         public bool ui_hybrid;
@@ -105,6 +105,7 @@ namespace MergeBios
         Batch,
         Project_Path,
         PathBIOS,
+        PathBIOSProd,
         Path_Preboot,
         Path_KSC,
         PathSSF,
@@ -813,7 +814,7 @@ namespace MergeBios
         {
             get
             {
-                return pt_ui[ui_index].ui_mipi;
+                return pt_ui[ui_index].ui_panel_mipi;
             }
         }
 
@@ -965,20 +966,20 @@ namespace MergeBios
         /// </summary>
         public void Load_Platform_Data()
         {
+
+            // Load all the required data to platform structs
             platform_data = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_db);
             platform_ui_config = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_ui);
             platform_list = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_menu);
 
+            // assign enough memory for the merge name
             platform_merge_name = new string[(int)MERGE_NAME_PARTS.disp5 + 1];
 
-
+            // Put all to empty
             for (int i = (int)MERGE_NAME_PARTS.custom_prefix ; i <= (int)MERGE_NAME_PARTS.disp5; i++)
             {
                 platform_merge_name[i] = string.Empty;
             }
-
-
-            // efi skl_rvp_11 x54 119 9.0.1055 edp dp dp hdmi hdmi
 
             int num_rows = platform_data.GetUpperBound(0) + 1;   // Max row of platform db
             int num_cols = platform_data.GetUpperBound(1) + 1;
@@ -1046,8 +1047,11 @@ namespace MergeBios
                 pt_db[i].server_path_project = platform_data[i, ( int ) PLATFORM_DB_HEADER.Project_Path];
                 // Project path bios
                 pt_db[i].server_path_bios = platform_data[i , ( int ) PLATFORM_DB_HEADER.PathBIOS];
+                // Projec path bios as prod if any
+                pt_db[i].server_path_bios_prod = platform_data[i, (int)PLATFORM_DB_HEADER.PathBIOSProd];
                 // Project path to preboot files
                 pt_db[i].server_path_preboot = platform_data[i , ( int ) PLATFORM_DB_HEADER.Path_Preboot];
+
                 // Path to KSC
                 if ( platform_data[i, ( int ) PLATFORM_DB_HEADER.Path_KSC] != "NA")
                 {
@@ -1255,7 +1259,7 @@ namespace MergeBios
                     {
                         if ( temp[j].Equals("MIPI") )
                         {
-                            pt_ui[i].ui_mipi = true;
+                            pt_ui[i].ui_panel_mipi = true;
 
                         }
 

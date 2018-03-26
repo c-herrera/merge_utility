@@ -746,6 +746,31 @@ namespace MergeBios
 
             // assing bios search lines here for checked and unchecked state
             // this will refresh the list on the SBIOS box for both PROD and PREPROD
+            if (check_production.Checked == true)
+            {
+                log.Trace("State of check box " + check_production.ToString());
+                switch (platform.platform_TypeBranch)
+                {
+                    case (int)PLATFORM_BRANCH_ID.client:
+                        break;
+                    case (int)PLATFORM_BRANCH_ID.tablet:
+                        break;
+                }
+            }
+            else
+            {
+                log.Trace("State of check box " + check_production.ToString());
+                switch (platform.platform_TypeBranch)
+                {
+                    case (int)PLATFORM_BRANCH_ID.client:
+                        break;
+                    case (int)PLATFORM_BRANCH_ID.tablet:
+                        break;
+                }
+            }
+
+
+
         }
 
         /// <summary>
