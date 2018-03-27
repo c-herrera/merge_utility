@@ -280,13 +280,13 @@ namespace MergeBios
             // Section :GOP-VBIOS
             switch ( platform.ui_branch )
             {
-                case ( int ) PLATFORM_BRANCH_ID.client:
+                case ( int ) PLATFORM_BRANCH_TYPE.client:
                     log.Trace("Enabled Client options");
                     radio_gop.Enabled = platform.ui_enable_x64_gop;                    
                     radio_vbios.Enabled = platform.ui_enable_x64_vbios;
 
                     break;
-                case ( int ) PLATFORM_BRANCH_ID.tablet:
+                case ( int ) PLATFORM_BRANCH_TYPE.tablet:
                     log.Trace("Enabled Tablet options");
                     radio_gop.Enabled = platform.ui_enable_x32_gop;
                     radio_gop.Enabled = platform.ui_enable_x64_gop;
@@ -481,7 +481,7 @@ namespace MergeBios
 
             switch (platform.ui_branch)
             {
-                case (int)PLATFORM_BRANCH_ID.client:
+                case (int)PLATFORM_BRANCH_TYPE.client:
                     log.Trace("Inside switch > GOP > Client");
                     arch = (int)ARCH_TYPE.noarch;
                     if (radio_gop.Checked == true)
@@ -522,7 +522,7 @@ namespace MergeBios
                     radio_edp.Enabled = platform.ui_enable_lvds_option;
 
                     break;
-                case (int)PLATFORM_BRANCH_ID.tablet:
+                case (int)PLATFORM_BRANCH_TYPE.tablet:
                     log.Trace("Inside switch > GOP > Tablet");
                     radio_x32.Enabled = platform.ui_enable_x32_gop;
                     radio_x64.Enabled = platform.ui_enable_x64_gop;
@@ -548,7 +548,7 @@ namespace MergeBios
 
             switch (platform.ui_branch)
             {
-                case (int) PLATFORM_BRANCH_ID.client:
+                case (int) PLATFORM_BRANCH_TYPE.client:
                     arch = (int) ARCH_TYPE.noarch;
                     log.Trace("Inside switch > VBIOS > Client");
                     // Show Preboot list for client
@@ -591,7 +591,7 @@ namespace MergeBios
                     radio_edp.Enabled = platform.ui_enable_edp_option;
 
                     break;
-                case (int) PLATFORM_BRANCH_ID.tablet:
+                case (int) PLATFORM_BRANCH_TYPE.tablet:
                     log.Trace("Inside switch > VBIOS > Tablet.");
                     // Only enable the options
                     radio_x32.Enabled = platform.ui_enable_x32_vbios;
@@ -627,11 +627,11 @@ namespace MergeBios
 
             switch (platform.ui_branch)
             {
-                case (int) PLATFORM_BRANCH_ID.client:
+                case (int) PLATFORM_BRANCH_TYPE.client:
                     // Client platform never must fall here
                     log.Trace(" Inside swtich x32 > Client ?");
                     break;
-                case (int) PLATFORM_BRANCH_ID.tablet:
+                case (int) PLATFORM_BRANCH_TYPE.tablet:
                     log.Trace(" Inside swtich x32 > Tablet");
                     // Fill the system bios combo        
 
@@ -691,10 +691,10 @@ namespace MergeBios
 
             switch (platform.ui_branch)
             {
-                case (int) PLATFORM_BRANCH_ID.client:
+                case (int) PLATFORM_BRANCH_TYPE.client:
                     log.Trace(" Inside swtich x64 > Client ?");
                     break;
-                case (int) PLATFORM_BRANCH_ID.tablet:
+                case (int) PLATFORM_BRANCH_TYPE.tablet:
                     log.Trace(" Inside swtich x64 > Tablet");
                     // Fill the system bios combo                    
                     // Fill stepping combo, if any
@@ -751,9 +751,9 @@ namespace MergeBios
                 log.Trace("State of check box " + check_production.ToString());
                 switch (platform.platform_TypeBranch)
                 {
-                    case (int)PLATFORM_BRANCH_ID.client:
+                    case (int)PLATFORM_BRANCH_TYPE.client:
                         break;
-                    case (int)PLATFORM_BRANCH_ID.tablet:
+                    case (int)PLATFORM_BRANCH_TYPE.tablet:
                         break;
                 }
             }
@@ -762,9 +762,9 @@ namespace MergeBios
                 log.Trace("State of check box " + check_production.ToString());
                 switch (platform.platform_TypeBranch)
                 {
-                    case (int)PLATFORM_BRANCH_ID.client:
+                    case (int)PLATFORM_BRANCH_TYPE.client:
                         break;
-                    case (int)PLATFORM_BRANCH_ID.tablet:
+                    case (int)PLATFORM_BRANCH_TYPE.tablet:
                         break;
                 }
             }
