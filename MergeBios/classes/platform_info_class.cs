@@ -11,7 +11,7 @@ namespace MergeBios
     /// <summary>
     /// Platform full data ; loads from [platform_db.csv]
     /// </summary>
-    struct platform_struct_db
+    struct platform_Main_DB
     {
         public string platform_name;    // platform name from file
         public string platform_type;    // platform type from file
@@ -68,7 +68,7 @@ namespace MergeBios
     /// <summary>
     /// UI configuration data , loads from [platform_ui.csv]
     /// </summary>
-    struct platform_ui_config
+    struct platform_UI_Config
     {
         public string platform;
         public string type;
@@ -154,7 +154,7 @@ namespace MergeBios
     /// <summary>
     /// enum selector for the branch 
     /// </summary>
-    enum PLATFORM_BRANCH_ID
+    enum PLATFORM_BRANCH_TYPE
     {
         tablet, client
     };
@@ -178,7 +178,7 @@ namespace MergeBios
     /// <summary>
     /// ID for display types 
     /// </summary>
-    enum DISPLAY_TYPES_ID
+    enum PLATFORM_DISPLAY_TYPES
     {
         edp, mipi, dp, hdmi, lspcon ,usb_c, lvds
     };
@@ -202,7 +202,7 @@ namespace MergeBios
     /// <summary>
     /// ID for production IFWI types
     /// </summary>
-    enum PRODUCTION_ID
+    enum PRODUCTION_TYPE_ID
     {
         preproduction, production, both
     };
@@ -235,8 +235,8 @@ namespace MergeBios
     class Platform_Info
     {
         LoadCSV PlatformCSV = new LoadCSV();       // Read all attributes from csv file
-        platform_struct_db[] pt_db;            // Platform DB
-        platform_ui_config[] pt_ui;                   // Platform ui config
+        platform_Main_DB[] pt_db;            // Platform DB
+        platform_UI_Config[] pt_ui;                   // Platform ui config
 
         public string[] platform_merge_name;    // string for the ui file name
 
@@ -991,8 +991,8 @@ namespace MergeBios
             num_platforms_ui = num_r;
 
             // create enough space for all config
-            pt_db = new platform_struct_db[num_platforms_db];
-            pt_ui = new platform_ui_config[num_platforms_ui];
+            pt_db = new platform_Main_DB[num_platforms_db];
+            pt_ui = new platform_UI_Config[num_platforms_ui];
 
 
             for ( int i = 1 ; i < num_rows ; i++ )
@@ -1045,9 +1045,9 @@ namespace MergeBios
 
                 // Project path
                 pt_db[i].server_path_project = platform_data[i, ( int ) PLATFORM_DB_HEADER.Project_Path];
-                // Project path bios
+                // Project path bios, Mandatory
                 pt_db[i].server_path_bios = platform_data[i , ( int ) PLATFORM_DB_HEADER.PathBIOS];
-                // Projec path bios as prod if any
+                // Projec path bios as prod if any, Mandatory
                 pt_db[i].server_path_bios_prod = platform_data[i, (int)PLATFORM_DB_HEADER.PathBIOSProd];
                 // Project path to preboot files
                 pt_db[i].server_path_preboot = platform_data[i , ( int ) PLATFORM_DB_HEADER.Path_Preboot];
@@ -1069,9 +1069,9 @@ namespace MergeBios
                 // Branch info
                 pt_db[i].branch = platform_data[i , ( int ) PLATFORM_DB_HEADER.Branch];
                 if ( pt_db[i].branch.Equals("TABLET") )
-                    pt_db[i].type_branch = ( int ) PLATFORM_BRANCH_ID.tablet;
+                    pt_db[i].type_branch = ( int ) PLATFORM_BRANCH_TYPE.tablet;
                 if ( pt_db[i].branch.Equals("CLIENT") )
-                    pt_db[i].type_branch = ( int ) PLATFORM_BRANCH_ID.client;
+                    pt_db[i].type_branch = ( int ) PLATFORM_BRANCH_TYPE.client;
 
                 // Stepping info
                 if ( platform_data[i , ( int ) PLATFORM_DB_HEADER.CPU_Stepping] != "NA" )
@@ -1089,11 +1089,11 @@ namespace MergeBios
                 for (int j = 0 ; j < pt_db[i].production_types.Length ; j++ )
                 {
                     if ( pt_db[i].production_types[j] == "BOTH" )
-                        pt_db[i].release_sku_type = ( int ) PRODUCTION_ID.both;
+                        pt_db[i].release_sku_type = ( int ) PRODUCTION_TYPE_ID.both;
                     else if ( pt_db[i].production_types[j] == "PROD" )
-                        pt_db[i].release_sku_type = ( int ) PRODUCTION_ID.production;
+                        pt_db[i].release_sku_type = ( int ) PRODUCTION_TYPE_ID.production;
                     else if ( pt_db[i].production_types[j] == "PREPROD" )
-                        pt_db[i].release_sku_type = ( int ) PRODUCTION_ID.preproduction;
+                        pt_db[i].release_sku_type = ( int ) PRODUCTION_TYPE_ID.preproduction;
                 }
 
                 // Platform features
@@ -1206,7 +1206,6 @@ namespace MergeBios
 
             }
 
-
             // -----------------------------------------------------------------------------
             // -----------------------------------------------------------------------------
             // UI LOADING
@@ -1220,11 +1219,11 @@ namespace MergeBios
 
                 if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.branch_type] == "CLIENT" )
                 {
-                    pt_ui[i].branch = ( int ) PLATFORM_BRANCH_ID.client;
+                    pt_ui[i].branch = ( int ) PLATFORM_BRANCH_TYPE.client;
                 }
                 else
                 {
-                    pt_ui[i].branch = ( int ) PLATFORM_BRANCH_ID.tablet;
+                    pt_ui[i].branch = ( int ) PLATFORM_BRANCH_TYPE.tablet;
                 }
 
                 if ( platform_ui_config[i , ( int ) PLATFORM_UI_HEADER.enable_x32gop] == "YES" )
@@ -1440,7 +1439,7 @@ namespace MergeBios
             }
             catch (Exception excp)
             {
-                MessageBox.Show("Error" + excp.Message, "Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show($"Error { excp.Message} " "Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return 1;
         }
@@ -1464,8 +1463,8 @@ namespace MergeBios
                 }
             }
             catch (Exception excp)
-            {
-                MessageBox.Show("Error" + excp.Message, "Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            {                
+                MessageBox.Show($"Error { excp.Message} ", "Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return 1;
         }
@@ -1492,7 +1491,7 @@ namespace MergeBios
             }
             catch (Exception excp)
             {
-                MessageBox.Show("Error" + excp.Message, "Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show($"Error { excp.Message} ", "Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return 1;
         }

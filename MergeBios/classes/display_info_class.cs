@@ -26,7 +26,7 @@ namespace MergeBios
     /// <summary>
     /// Struct to hold all the display configs per platform
     /// </summary>
-    struct displays_list // Rename to St_Display
+    struct display_Info_DB 
     {
         public string platform;
         public string type;
@@ -52,7 +52,7 @@ namespace MergeBios
     /// <summary>
     /// Enum for CSV column selection for Output ports
     /// </summary>
-    enum DISPLAY_CSV_COLS
+    enum DISPLAY_DB_HEADER
     {
         platform,
         type,
@@ -69,21 +69,25 @@ namespace MergeBios
     /// <summary>
     /// enum for Column selection of display types
     /// </summary>
-    enum DISPLAY_LABELS
+    enum DISPLAY_LABEL_ID
     {
         Nodevices, edp, edp_drrs, edp_4k, mipi, dp, dp_only, dvi, hdmi, usb_c_type, vga
     };
 
-    enum DISPLAY_SELECTION
+    /// <summary>
+    /// enum for the Display selection comboBox
+    /// </summary>
+    enum DISPLAY_CMB_ID
     {
         no_device, lfp, display1, display2, display3, display4, display5
     };
+
 
     class Display_info
     {
         string[] display_type_names;  // names of devices
         string[,] display_names;      // array to hold all the info
-        displays_list[] display_db;   // display config db
+        display_Info_DB[] display_db;   // display config db
         int display_index;
         int num_display_configs;
 
@@ -145,35 +149,35 @@ namespace MergeBios
             display_index = 0;
             num_display_configs = num_rows;
 
-            display_db = new displays_list[num_rows];
+            display_db = new display_Info_DB[num_rows];
 
             for ( int i = 1 ; i < num_rows ; i++ )
             {
-                display_db[i].platform = display_names[i, ( int ) DISPLAY_CSV_COLS.platform];
-                display_db[i].type = display_names[i, ( int ) DISPLAY_CSV_COLS.type];
+                display_db[i].platform = display_names[i, ( int ) DISPLAY_DB_HEADER.platform];
+                display_db[i].type = display_names[i, ( int ) DISPLAY_DB_HEADER.type];
 
                 // PORT A MIPI
-                if ( display_names[i, ( int ) DISPLAY_CSV_COLS.mipi_lfp] != "NA" )
+                if ( display_names[i, ( int ) DISPLAY_DB_HEADER.mipi_lfp] != "NA" )
                 {
-                    display_db[i].lfp_mipi = display_names[i, ( int ) DISPLAY_CSV_COLS.mipi_lfp].Split('-');
+                    display_db[i].lfp_mipi = display_names[i, ( int ) DISPLAY_DB_HEADER.mipi_lfp].Split('-');
                     display_db[i].has_mipi = true;
                 }
                 else
                 {
                     display_db[i].lfp_mipi = new string[1];
-                    display_db[i].lfp_mipi[0] = display_names[i, ( int ) DISPLAY_CSV_COLS.mipi_lfp];
+                    display_db[i].lfp_mipi[0] = display_names[i, ( int ) DISPLAY_DB_HEADER.mipi_lfp];
                     display_db[i].has_mipi = false;
                 }
                 // PORT A EDP
-                if ( display_names[i, ( int ) DISPLAY_CSV_COLS.edp_lfp] != "NA" )
+                if ( display_names[i, ( int ) DISPLAY_DB_HEADER.edp_lfp] != "NA" )
                 {
-                    display_db[i].lfp_edp = display_names[i, ( int ) DISPLAY_CSV_COLS.edp_lfp].Split('-');
+                    display_db[i].lfp_edp = display_names[i, ( int ) DISPLAY_DB_HEADER.edp_lfp].Split('-');
                     display_db[i].has_edp = true;
                 }
                 else
                 {
                     display_db[i].lfp_edp = new string[1];
-                    display_db[i].lfp_edp[0] = display_names[i, ( int ) DISPLAY_CSV_COLS.edp_lfp];
+                    display_db[i].lfp_edp[0] = display_names[i, ( int ) DISPLAY_DB_HEADER.edp_lfp];
                     display_db[i].has_edp = false;
                 }
 
@@ -184,55 +188,55 @@ namespace MergeBios
 
 
                 // PORT B or Display 1
-                if ( display_names[i , ( int ) DISPLAY_CSV_COLS.display1B] != "NA" )
+                if ( display_names[i , ( int ) DISPLAY_DB_HEADER.display1B] != "NA" )
                 {
-                    display_db[i].display1_portB = display_names[i , ( int ) DISPLAY_CSV_COLS.display1B].Split('-');
+                    display_db[i].display1_portB = display_names[i , ( int ) DISPLAY_DB_HEADER.display1B].Split('-');
                     display_db[i].has_display1b = true;
                 }
                 else
                 {
                     display_db[i].display1_portB = new string[1];
-                    display_db[i].display1_portB[0] = display_names[i , ( int ) DISPLAY_CSV_COLS.display1B];
+                    display_db[i].display1_portB[0] = display_names[i , ( int ) DISPLAY_DB_HEADER.display1B];
                 }
 
                 // PORT C or Display 2
-                if ( display_names[i , ( int ) DISPLAY_CSV_COLS.display2C] != "NA" )
+                if ( display_names[i , ( int ) DISPLAY_DB_HEADER.display2C] != "NA" )
                 {
-                    display_db[i].display2_portC = display_names[i , ( int ) DISPLAY_CSV_COLS.display2C].Split('-');
+                    display_db[i].display2_portC = display_names[i , ( int ) DISPLAY_DB_HEADER.display2C].Split('-');
                     display_db[i].has_display2c = true;
                 }
                 else
                 {
                     display_db[i].display2_portC = new string[1];
-                    display_db[i].display2_portC[0] = display_names[i , ( int ) DISPLAY_CSV_COLS.display2C];
+                    display_db[i].display2_portC[0] = display_names[i , ( int ) DISPLAY_DB_HEADER.display2C];
                 }
 
                 // PORT D or Display 3
-                if ( display_names[i , ( int ) DISPLAY_CSV_COLS.display3D] != "NA" )
+                if ( display_names[i , ( int ) DISPLAY_DB_HEADER.display3D] != "NA" )
                 {
-                    display_db[i].display3_portD = display_names[i , ( int ) DISPLAY_CSV_COLS.display3D].Split('-');
+                    display_db[i].display3_portD = display_names[i , ( int ) DISPLAY_DB_HEADER.display3D].Split('-');
                     display_db[i].has_display3d = true;
                 }
                 else
                 {
                     display_db[i].display3_portD = new string[1];
-                    display_db[i].display3_portD[0] = display_names[i , ( int ) DISPLAY_CSV_COLS.display3D];
+                    display_db[i].display3_portD[0] = display_names[i , ( int ) DISPLAY_DB_HEADER.display3D];
                 }
 
                 // PORT E or Display 4
-                if ( display_names[i , ( int ) DISPLAY_CSV_COLS.display4E] != "NA" )
+                if ( display_names[i , ( int ) DISPLAY_DB_HEADER.display4E] != "NA" )
                 {
-                    display_db[i].display4_portE = display_names[i , ( int ) DISPLAY_CSV_COLS.display4E].Split('-');
+                    display_db[i].display4_portE = display_names[i , ( int ) DISPLAY_DB_HEADER.display4E].Split('-');
                     display_db[i].has_display4e = true;
                 }
                 else
                 {
                     display_db[i].display4_portE = new string[1];
-                    display_db[i].display4_portE[0] = display_names[i , ( int ) DISPLAY_CSV_COLS.display4E];
+                    display_db[i].display4_portE[0] = display_names[i , ( int ) DISPLAY_DB_HEADER.display4E];
                 }
 
 
-                if (display_names[i, (int) DISPLAY_CSV_COLS.select_mipi_option] != "NO")
+                if (display_names[i, (int) DISPLAY_DB_HEADER.select_mipi_option] != "NO")
                 {
                     display_db[i].has_mipi_selection = true;
                 }
@@ -274,22 +278,22 @@ namespace MergeBios
 
             switch( displaynumber)
             {
-                case (int)DISPLAY_SELECTION.no_device:                    
+                case (int)DISPLAY_CMB_ID.no_device:                    
                     break;
-                case (int)DISPLAY_SELECTION.lfp:
+                case (int)DISPLAY_CMB_ID.lfp:
                    // string temp = platform + "_" + preboot + " " +  display_combo[(int)DISPLAY_SELECTION.lfp] +  " " + display_type_names[(int)DISPLAY_TYPES.nodevice] + ssf_filedb;
                    //value = IniFileHelper.ReadValue(platform + "_" + preboot, "Display_LFP_No_Device", ssf_filedb);
                    // ssf = value.Split(',');
                     break;
-                case (int)DISPLAY_SELECTION.display1:
+                case (int)DISPLAY_CMB_ID.display1:
                     break;
-                case (int)DISPLAY_SELECTION.display2:
+                case (int)DISPLAY_CMB_ID.display2:
                     break;
-                case (int)DISPLAY_SELECTION.display3:
+                case (int)DISPLAY_CMB_ID.display3:
                     break;
-                case (int)DISPLAY_SELECTION.display4:
+                case (int)DISPLAY_CMB_ID.display4:
                     break;
-                case (int)DISPLAY_SELECTION.display5:
+                case (int)DISPLAY_CMB_ID.display5:
                     break;
             }
 
