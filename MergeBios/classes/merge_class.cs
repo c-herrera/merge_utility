@@ -118,7 +118,7 @@ namespace MergeBios
         /// <param name="destiny"></param>
         public void AuxM_copy_files (string source, string destiny)
         {
-            // TODO : copy instructions here
+            // TODO : Put instruction to copy files and folders
         }
 
         /// <summary>

@@ -218,7 +218,7 @@ namespace MergeBios
     /// <summary>
     /// Type of IFWI search
     /// </summary>
-    enum SEARCH_WORDS
+    enum SEARCH_OPTIONS
     {
         by_stitch, stepping, prefixfolder, suffixfolder, skipfoldername
     };
@@ -226,7 +226,7 @@ namespace MergeBios
     /// <summary>
     /// Merge name parts
     /// </summary>
-    enum MERGE_NAME_PARTS
+    enum MERGE_SECTIONS
     {
         custom_prefix, preboot_prefix, platform_name, type_name, sbiosver, preboot_ver, arch_ver, disp_lfp , disp1, disp2, disp3, disp4, disp5
     }
@@ -266,7 +266,7 @@ namespace MergeBios
         /// <summary>
         ///  Returns the current name of platform project
         /// </summary>
-        public string platform_Name
+        public string Project_Name
         {
             get
             {
@@ -277,7 +277,7 @@ namespace MergeBios
         /// <summary>
         /// Return the name of the platform type
         /// </summary>
-        public string platform_Type
+        public string Project_Type
         {
             get
             {
@@ -288,7 +288,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform architecture
         /// </summary>
-        public string platform_Arch
+        public string Project_Arch
         {
             get
             {
@@ -299,7 +299,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform preboot [label]
         /// </summary>
-        public string platform_Preboot
+        public string Preboot
         {
             get
             {
@@ -310,7 +310,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform Merge script
         /// </summary>
-        public string platform_MergeScript
+        public string MergeScript
         {
             get
             {
@@ -321,7 +321,7 @@ namespace MergeBios
         /// <summary>
         ///  Contains the full path to the project
         /// </summary>
-        public string platform_ProjectPath
+        public string Project_Path
         {
             get
             {
@@ -332,7 +332,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform path to system bios
         /// </summary>
-        public string platform_Path_to_SBIOS
+        public string ServerPath_SBIOS
         {
             get
             {
@@ -341,9 +341,20 @@ namespace MergeBios
         }
 
         /// <summary>
-        /// Return the platform path to preboot files
+        /// Return the platform path to production system bios
         /// </summary>
-        public string platform_Path_to_Preboot
+        public string ServerPath_Prod_SBIOS
+        {
+            get
+            {
+                return pt_db[data_index].server_path_bios_prod;
+            }
+        }
+
+        /// <summary>
+        /// Return the platform path to preboot files (Remote path)
+        /// </summary>
+        public string ServerPath_Preboot
         {
             get
             {
@@ -354,7 +365,7 @@ namespace MergeBios
         /// <summary>
         /// Returns the full path to KSC .bin files
         /// </summary>
-        public string platform_path_to_ksc
+        public string ServerPath_EC
         {
             get
             {
@@ -365,7 +376,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform path to custom ssf files
         /// </summary>
-        public string platform_Path_to_SSF
+        public string ServerPath_SSF
         {
             get
             {
@@ -376,7 +387,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform branch type [label]
         /// </summary>
-        public string platform_Branch_Type
+        public string Sys_Branch_Type
         {
             get
             {
@@ -387,7 +398,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform stepping [label]
         /// </summary>
-        public string[] platform_Stepping
+        public string[] Sys_Stepping
         {
             get
             {
@@ -398,7 +409,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform has production type [label]
         /// </summary>
-        public string[] platform_Productiontype
+        public string[] SBIOS_Productiontype
         {
             get
             {
@@ -409,7 +420,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform feature [MIPI-SEQ-CS] [label]
         /// </summary>
-        public string[] platform_Features
+        public string[] Sys_Features
         {
             get
             {
@@ -420,7 +431,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform default displays [not label]
         /// </summary>
-        public string[] platform_Default_Displays
+        public string[] Default_Displays
         {
             get
             {
@@ -431,7 +442,7 @@ namespace MergeBios
         /// <summary>
         /// Returns the argument send to dediprog command line for spi flashing
         /// </summary>
-        public string platform_dediprog_spi_vcc_arg
+        public string Dediprog_spi_vcc_arg
         {
             get
             {
@@ -442,7 +453,7 @@ namespace MergeBios
         /// <summary>
         /// Returns the argument send to dediprog command line for ec flashing
         /// </summary>
-        public string platform_dediprog_ec_vcc_arg
+        public string Dediprog_ec_vcc_arg
         {
             get
             {
@@ -453,7 +464,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform architecture is X64
         /// </summary>
-        public bool platform_is_x64
+        public bool Type_is_x64
         {
             get
             {
@@ -464,7 +475,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform architecture is X32
         /// </summary>
-        public bool platform_is_x32
+        public bool Type_is_x32
         {
             get
             {
@@ -475,7 +486,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform is NA [client]
         /// </summary>
-        public bool platform_noArch
+        public bool Type_is_noArch
         {
             get
             {
@@ -486,7 +497,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform ID [TBD]
         /// </summary>
-        public int platformID
+        public int Sys_ID
         {
             get
             {
@@ -497,7 +508,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform typeID [TBD]
         /// </summary>
-        public int platformTypeID
+        public int Sys_TypeID
         {
             get
             {
@@ -508,7 +519,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform branch [tablet|client]
         /// </summary>
-        public int platform_TypeBranch
+        public int Sys_BranchType
         {
             get
             {
@@ -519,7 +530,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform default architecture
         /// </summary>
-        public int platform_DefaultArch
+        public int Sys_DefaultArch
         {
             get
             {
@@ -530,7 +541,7 @@ namespace MergeBios
         /// <summary>
         /// Return if type has GOP
         /// </summary>
-        public int platformHasGOP
+        public int Sys_has_GOP
         {
             get
             {
@@ -541,7 +552,7 @@ namespace MergeBios
         /// <summary>
         /// Return if type has VBIOS
         /// </summary>
-        public int platformHasVBIOS
+        public int Sys_has_VBIOS
         {
             get
             {
@@ -552,7 +563,7 @@ namespace MergeBios
         /// <summary>
         /// Return the platform preboot [enum]
         /// </summary>
-        public int platformPrebootType
+        public int PrebootType
         {
             get
             {
@@ -563,7 +574,7 @@ namespace MergeBios
         /// <summary>
         /// Contains the bios filename prefix
         /// </summary>
-        public string platform_bios_file_prefix
+        public string Prefix_BIOS_file
         {
             get
             {
@@ -574,7 +585,7 @@ namespace MergeBios
         /// <summary>
         /// Contains the bios file extension
         /// </summary>
-        public string platform_bios_file_ext
+        public string Extension_BIOS_file
         {
             get
             {
@@ -585,7 +596,7 @@ namespace MergeBios
         /// <summary>
         /// Contains the merge bios result filename prefix
         /// </summary>
-        public string platform_merge_bios_prefix
+        public string Prefix_merge_BIOS
         {
             get
             {
@@ -596,7 +607,7 @@ namespace MergeBios
         /// <summary>
         /// Contains the merge bios file extension
         /// </summary>
-        public string platform_merge_bios_ext
+        public string Extension_merge_bios
         {
             get
             {
@@ -607,7 +618,7 @@ namespace MergeBios
         /// <summary>
         /// Contains the prefix folder to search the bios [only selected platforms]
         /// </summary>
-        public string[] platform_prefix_folder
+        public string[] Prefix_folder_name
         {
             get
             {
@@ -618,7 +629,7 @@ namespace MergeBios
         /// <summary>
         /// Contains the flash command of the platform
         /// </summary>
-        public string platform_flash_command
+        public string Other_flash_command
         {
             get
             {
@@ -629,7 +640,7 @@ namespace MergeBios
         /// <summary>
         /// Has the name of the designed modfile (from the bmp program)
         /// </summary>
-        public string platform_bmp_modfile_name
+        public string Common_modfile_name
         {
             get
             {
@@ -640,7 +651,7 @@ namespace MergeBios
         /// <summary>
         /// Has the name to skip on certain projects
         /// </summary>
-        public string platform_folder_to_skip
+        public string Folder_to_skip
         {
             get
             {
@@ -651,7 +662,7 @@ namespace MergeBios
         /// <summary>
         /// Holds the platform release sku type (PROD | PREPROD | BOTH )
         /// </summary>
-        public int platform_release_type
+        public int SKU_release_type
         {
             get
             {
@@ -662,7 +673,7 @@ namespace MergeBios
         /// <summary>
         /// Defines bios search by stepping
         /// </summary>
-        public bool search_by_stepping
+        public bool Search_by_stepping
         {
             get
             {
@@ -673,7 +684,7 @@ namespace MergeBios
         /// <summary>
         /// Define bios search by folder prefix
         /// </summary>
-        public bool search_by_prefix
+        public bool Search_by_prefix
         {
             get
             {
@@ -684,7 +695,7 @@ namespace MergeBios
         /// <summary>
         /// Define if a bios search will skip a certain folder
         /// </summary>
-        public bool search_and_skip
+        public bool Search_by_skip
         {
             get
             {
@@ -695,7 +706,7 @@ namespace MergeBios
         /// <summary>
         /// Define if a bios search will be focused on the folder suffix (last part)
         /// </summary>
-        public bool search_by_suffix
+        public bool Search_by_suffix
         {
             get
             {
@@ -706,7 +717,7 @@ namespace MergeBios
         /// <summary>
         /// Define search by skipword and suffix combo
         /// </summary>
-        public bool search_by_suffix_and_skipword
+        public bool Search_by_suffix_skipword
         {
             get
             {
@@ -716,6 +727,10 @@ namespace MergeBios
 
 
         #endregion
+
+
+        // UI Attributes
+        // TODO: Clean up UI attribute names
 
         #region Platform ui attribute accessors
         /// <summary>
@@ -973,10 +988,10 @@ namespace MergeBios
             platform_list = PlatformCSV.LoadCsv(Path.GetFullPath(Path.Combine(Application.StartupPath, "..\\..")) + "\\" + filename_platform_menu);
 
             // assign enough memory for the merge name
-            platform_merge_name = new string[(int)MERGE_NAME_PARTS.disp5 + 1];
+            platform_merge_name = new string[(int)MERGE_SECTIONS.disp5 + 1];
 
             // Put all to empty
-            for (int i = (int)MERGE_NAME_PARTS.custom_prefix ; i <= (int)MERGE_NAME_PARTS.disp5; i++)
+            for (int i = (int)MERGE_SECTIONS.custom_prefix ; i <= (int)MERGE_SECTIONS.disp5; i++)
             {
                 platform_merge_name[i] = string.Empty;
             }
@@ -1439,7 +1454,7 @@ namespace MergeBios
             }
             catch (Exception excp)
             {
-                MessageBox.Show($"Error { excp.Message} " "Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show($"Error { excp.Message} " ,"Error on Folder scan", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return 1;
         }
