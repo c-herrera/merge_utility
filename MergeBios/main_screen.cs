@@ -203,7 +203,7 @@ namespace MergeBios
 
             log.Trace("Finished to switch off the UI");
 
-            for (int i = (int)MERGE_NAME_PARTS.custom_prefix; i <= (int)MERGE_NAME_PARTS.disp5; i++)
+            for (int i = (int)MERGE_SECTIONS.custom_prefix; i <= (int)MERGE_SECTIONS.disp5; i++)
             {
                 platform.platform_merge_name[i] = string.Empty;
             }
@@ -211,7 +211,7 @@ namespace MergeBios
             log.Trace("Cleared string : " + lbl_merge_name.ToString());
 
             // string for the merge name
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.platform_name] = cmb_platform.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.platform_name] = cmb_platform.Text;
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -314,7 +314,7 @@ namespace MergeBios
             btn_dnx.Enabled = platform.ui_enable_dnx_option;
 
             // string for the merge name
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.type_name] = cmb_plt_type.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.type_name] = cmb_plt_type.Text;
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -326,7 +326,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_sbios_SelectedIndexChanged (object sender, EventArgs e)
         {
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.sbiosver] = cmb_sbios.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.sbiosver] = cmb_sbios.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
@@ -337,7 +337,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_preboot_SelectedIndexChanged (object sender, EventArgs e)
         {
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_ver] = cmb_preboot.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.preboot_ver] = cmb_preboot.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
@@ -348,7 +348,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_lfp_SelectedIndexChanged (object sender, EventArgs e)
         {
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.disp_lfp] = cmb_lfp.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
@@ -359,7 +359,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display1_SelectedIndexChanged (object sender, EventArgs e)
         {
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.disp1] = cmb_display1.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
@@ -370,7 +370,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display2_SelectedIndexChanged (object sender, EventArgs e)
         {
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.disp2] = cmb_display2.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
@@ -381,7 +381,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display3_SelectedIndexChanged (object sender, EventArgs e)
         {
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.disp3] = cmb_display3.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
@@ -392,7 +392,7 @@ namespace MergeBios
         /// <param name="e"></param>
         private void cmb_display4_SelectedIndexChanged (object sender, EventArgs e)
         {
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.Text;
+            platform.platform_merge_name[(int)MERGE_SECTIONS.disp4] = cmb_display4.Text;
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
 
@@ -490,20 +490,20 @@ namespace MergeBios
                         cmb_preboot.DataSource = null;
                         cmb_preboot.Enabled = true;
                         cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        platform.get_preboot_folders(platform.ServerPath_Preboot);
                         cmb_preboot.DataSource = platform.preboot_list;
                         cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
                     }
 
                     // works, prod word does not appear in list anymore
-                    if (platform.search_and_skip == true)
+                    if (platform.Search_by_skip == true)
                     {
                         // Fill the system bios combo                    
                         cmb_sbios.DataSource = null;
                         cmb_sbios.Enabled = true;
                         cmb_sbios.Items.Clear();
                         cmb_sbios.Update();
-                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS, string.Empty, platform.platform_folder_to_skip);
+                        platform.get_systembios_folders(platform.ServerPath_SBIOS, string.Empty, platform.Folder_to_skip);
                         cmb_sbios.DataSource = platform.bios_list;
                         cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
                     }
@@ -529,7 +529,7 @@ namespace MergeBios
                     break;
             }
             //string to create the merge bios filename
-            platform.platform_merge_name[(int)MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.gop];
+            platform.platform_merge_name[(int)MERGE_SECTIONS.preboot_prefix] = platform.preboot_names[(int)PREBOOT_TYPES_ID.gop];
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -560,20 +560,20 @@ namespace MergeBios
                         cmb_preboot.DataSource = null;
                         cmb_preboot.Enabled = true;
                         cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        platform.get_preboot_folders(platform.ServerPath_Preboot);
                         cmb_preboot.DataSource = platform.preboot_list;
                         cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
                     }
 
 
-                    if (platform.search_and_skip == true)
+                    if (platform.Search_by_skip == true)
                     {
                         // Fill the system bios combo                    
                         cmb_sbios.DataSource = null;
                         cmb_sbios.Enabled = true;
                         cmb_sbios.Items.Clear();
                         cmb_sbios.Update();
-                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS, string.Empty ,platform.platform_folder_to_skip);
+                        platform.get_systembios_folders(platform.ServerPath_SBIOS, string.Empty ,platform.Folder_to_skip);
                         cmb_sbios.DataSource = platform.bios_list;
                         cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
                     }
@@ -599,7 +599,7 @@ namespace MergeBios
                     break;
             }
             //string to create the bios marge name
-            platform.platform_merge_name[(int) MERGE_NAME_PARTS.preboot_prefix] = platform.preboot_names[(int) PREBOOT_TYPES_ID.vbios];
+            platform.platform_merge_name[(int) MERGE_SECTIONS.preboot_prefix] = platform.preboot_names[(int) PREBOOT_TYPES_ID.vbios];
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -641,11 +641,11 @@ namespace MergeBios
                         cmb_stepping.Items.Clear();
                         platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch);
 
-                        if (platform.platform_Stepping.Length > 0)
+                        if (platform.Sys_Stepping.Length > 0)
                         {
-                            for (int i = 0; i < platform.platform_Stepping.Length; i++)
+                            for (int i = 0; i < platform.Sys_Stepping.Length; i++)
                             {
-                                cmb_stepping.Items.Add(platform.platform_Stepping[i]);
+                                cmb_stepping.Items.Add(platform.Sys_Stepping[i]);
                             }
                         }
 
@@ -658,7 +658,7 @@ namespace MergeBios
                         cmb_sbios.DataSource = null;
                         cmb_sbios.Enabled = true;
                         cmb_sbios.Items.Clear();
-                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                        platform.get_systembios_folders(platform.ServerPath_SBIOS);
                         cmb_sbios.DataSource = platform.bios_list;
                         cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
                     }
@@ -671,14 +671,14 @@ namespace MergeBios
                         cmb_preboot.DataSource = null;
                         cmb_preboot.Enabled = true;
                         cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        platform.get_preboot_folders(platform.ServerPath_Preboot);
                         cmb_preboot.DataSource = platform.preboot_list;
                         cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
                     }
                     break;
             }
             //string to create the name of the merge
-            platform.platform_merge_name[(int) MERGE_NAME_PARTS.arch_ver] = radio_x32.Text;
+            platform.platform_merge_name[(int) MERGE_SECTIONS.arch_ver] = radio_x32.Text;
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -703,11 +703,11 @@ namespace MergeBios
                         cmb_stepping.Items.Clear();
                         platform.find_platform(cmb_platform.Text, cmb_plt_type.Text, (ARCH_TYPE) arch);
 
-                        if (platform.platform_Stepping.Length > 0)
+                        if (platform.Sys_Stepping.Length > 0)
                         {
-                            for (int i = 0; i < platform.platform_Stepping.Length; i++)
+                            for (int i = 0; i < platform.Sys_Stepping.Length; i++)
                             {
-                                cmb_stepping.Items.Add(platform.platform_Stepping[i]);
+                                cmb_stepping.Items.Add(platform.Sys_Stepping[i]);
                             }
                         }
                     }
@@ -717,7 +717,7 @@ namespace MergeBios
                         cmb_sbios.DataSource = null;
                         cmb_sbios.Enabled = true;
                         cmb_sbios.Items.Clear();
-                        platform.get_systembios_folders(platform.platform_Path_to_SBIOS);
+                        platform.get_systembios_folders(platform.ServerPath_SBIOS);
                         cmb_sbios.DataSource = platform.bios_list;
                         cmb_sbios.SelectedIndex = cmb_sbios.Items.Count - 1;
                     }
@@ -728,14 +728,14 @@ namespace MergeBios
                         cmb_preboot.DataSource = null;
                         cmb_preboot.Enabled = true;
                         cmb_preboot.Items.Clear();
-                        platform.get_preboot_folders(platform.platform_Path_to_Preboot);
+                        platform.get_preboot_folders(platform.ServerPath_Preboot);
                         cmb_preboot.DataSource = platform.preboot_list;
                         cmb_preboot.SelectedIndex = cmb_preboot.Items.Count - 1;
                     }
                     break;
             }
             //string to create the name of the merge
-            platform.platform_merge_name[(int) MERGE_NAME_PARTS.arch_ver] = radio_x64.Text;
+            platform.platform_merge_name[(int) MERGE_SECTIONS.arch_ver] = radio_x64.Text;
 
             lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
         }
@@ -749,7 +749,7 @@ namespace MergeBios
             if (check_production.Checked == true)
             {
                 log.Trace("State of check box " + check_production.ToString());
-                switch (platform.platform_TypeBranch)
+                switch (platform.Sys_BranchType)
                 {
                     case (int)PLATFORM_BRANCH_TYPE.client:
                         break;
@@ -760,7 +760,7 @@ namespace MergeBios
             else
             {
                 log.Trace("State of check box " + check_production.ToString());
-                switch (platform.platform_TypeBranch)
+                switch (platform.Sys_BranchType)
                 {
                     case (int)PLATFORM_BRANCH_TYPE.client:
                         break;
@@ -786,7 +786,7 @@ namespace MergeBios
 
             displays.Find_display_config(cmb_platform.Text, cmb_plt_type.Text);
 
-            for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int)MERGE_NAME_PARTS.disp5; i++)
+            for (int i = (int)MERGE_SECTIONS.disp_lfp; i < (int)MERGE_SECTIONS.disp5; i++)
             {
                 platform.platform_merge_name[i] = string.Empty;
             }
@@ -825,13 +825,13 @@ namespace MergeBios
                         else
                             cmb_lfp.DataSource = displays.edp_list;
 
-                        cmb_lfp.SelectedItem = platform.platform_Default_Displays[0];
+                        cmb_lfp.SelectedItem = platform.Default_Displays[0];
 
                         // string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp_lfp] = cmb_lfp.Text;
+                        platform.platform_merge_name[(int)MERGE_SECTIONS.disp_lfp] = cmb_lfp.Text;
                         lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
 
-                        log.Trace("Option loaded "  + platform.platform_Default_Displays[0]);
+                        log.Trace("Option loaded "  + platform.Default_Displays[0]);
                     }
 
                     if (cmb_display1.Enabled)
@@ -840,13 +840,13 @@ namespace MergeBios
                         cmb_display1.Items.Clear();
                         cmb_display1.DataSource = displays.port1b_displays;
 
-                        cmb_display1.SelectedItem = platform.platform_Default_Displays[1];
+                        cmb_display1.SelectedItem = platform.Default_Displays[1];
 
                         //string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp1] = cmb_display1.Text;
+                        platform.platform_merge_name[(int)MERGE_SECTIONS.disp1] = cmb_display1.Text;
                         lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
 
-                        log.Trace("Option loaded " + platform.platform_Default_Displays[1]);
+                        log.Trace("Option loaded " + platform.Default_Displays[1]);
                     }
 
                     if (cmb_display2.Enabled)
@@ -855,13 +855,13 @@ namespace MergeBios
                         cmb_display2.Items.Clear();
                         cmb_display2.DataSource = displays.port2c_displays;
 
-                        cmb_display2.SelectedItem = platform.platform_Default_Displays[2];
+                        cmb_display2.SelectedItem = platform.Default_Displays[2];
 
                         //string of the display part
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp2] = cmb_display2.Text;
+                        platform.platform_merge_name[(int)MERGE_SECTIONS.disp2] = cmb_display2.Text;
                         lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
 
-                        log.Trace("Option loaded " + platform.platform_Default_Displays[2]);
+                        log.Trace("Option loaded " + platform.Default_Displays[2]);
                     }
 
                     if (cmb_display3.Enabled)
@@ -870,13 +870,13 @@ namespace MergeBios
                         cmb_display3.Items.Clear();
                         cmb_display3.DataSource = displays.port3d_displays;
 
-                        cmb_display3.SelectedItem = platform.platform_Default_Displays[3];
+                        cmb_display3.SelectedItem = platform.Default_Displays[3];
 
                         //txt_display3.Text = cmb_display3.SelectedItem.ToString();
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp3] = cmb_display3.Text;
+                        platform.platform_merge_name[(int)MERGE_SECTIONS.disp3] = cmb_display3.Text;
                         lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
 
-                        log.Trace("Option loaded " + platform.platform_Default_Displays[3]);
+                        log.Trace("Option loaded " + platform.Default_Displays[3]);
                     }
 
                     if (cmb_display4.Enabled)
@@ -885,13 +885,13 @@ namespace MergeBios
                         cmb_display4.Items.Clear();
                         cmb_display4.DataSource = displays.port4e_displays;
 
-                        cmb_display4.SelectedItem = platform.platform_Default_Displays[4];
+                        cmb_display4.SelectedItem = platform.Default_Displays[4];
 
                         //txt_display4.Text = cmb_display4.SelectedItem.ToString();
-                        platform.platform_merge_name[(int)MERGE_NAME_PARTS.disp4] = cmb_display4.Text;
+                        platform.platform_merge_name[(int)MERGE_SECTIONS.disp4] = cmb_display4.Text;
                         lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
 
-                        log.Trace("Option loaded " + platform.platform_Default_Displays[4]);
+                        log.Trace("Option loaded " + platform.Default_Displays[4]);
                     }
                 }
                 lbl_merge_name.Text = string.Join(" ", platform.platform_merge_name);
@@ -921,7 +921,7 @@ namespace MergeBios
                 cmb_lfp.Items.Clear();
 
 
-                for (int i = (int)MERGE_NAME_PARTS.disp_lfp; i < (int)MERGE_NAME_PARTS.disp5; i++)
+                for (int i = (int)MERGE_SECTIONS.disp_lfp; i < (int)MERGE_SECTIONS.disp5; i++)
                 {
                     platform.platform_merge_name[i] = string.Empty;
                 }
@@ -961,22 +961,56 @@ namespace MergeBios
 
         private void chk_remote_folder_Click(object sender, EventArgs e)
         {
-            btn_apply_prefs.Enabled = true;
+            // Enables or disables the apply button, may use it later
+            //btn_apply_prefs.Enabled = chk_remote_folder.Checked;
+            log.Trace($"Event click on Remote button : { this.chk_remote_folder.ToString()} " );
+            if (chk_remote_folder.Checked == true)
+            {
+                btn_apply_prefs.Enabled = true;
+            }
+            else
+            {
+                btn_apply_prefs.Enabled = false;
+            }
         }
 
         private void chk_remote_tool_Click(object sender, EventArgs e)
         {
-            btn_apply_prefs.Enabled = true;
+            log.Trace($"Event click on Remote tool button : { this.chk_remote_tool.ToString()} ");
+            if (chk_remote_tool.Checked == true)
+            {
+                btn_apply_prefs.Enabled = true;
+            }
+            else
+            {
+                btn_apply_prefs.Enabled = false;
+            }           
         }
 
         private void chk_ask_flash_Click(object sender, EventArgs e)
         {
-            btn_apply_prefs.Enabled = true;
+            log.Trace($"Event click on Flash button : { this.chk_ask_flash.ToString()} ");
+            if (chk_ask_flash.Checked == true)
+            {
+                btn_apply_prefs.Enabled = true;
+            }
+            else
+            {
+                btn_apply_prefs.Enabled = false;
+            }            
         }
 
         private void chk_ask_save_Click(object sender, EventArgs e)
         {
-            btn_apply_prefs.Enabled = false;
+            log.Trace($"Event click on Save button : { this.chk_ask_save.ToString()} ");
+            if (chk_ask_save.Checked == true)
+            {
+                btn_apply_prefs.Enabled = true;
+            }
+            else
+            {
+                btn_apply_prefs.Enabled = false;
+            }
         }
     }
 }
