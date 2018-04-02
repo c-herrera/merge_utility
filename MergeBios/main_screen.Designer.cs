@@ -755,6 +755,7 @@
             // 
             // btn_apply_prefs
             // 
+            this.btn_apply_prefs.Enabled = false;
             this.btn_apply_prefs.Image = ((System.Drawing.Image)(resources.GetObject("btn_apply_prefs.Image")));
             this.btn_apply_prefs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_apply_prefs.Location = new System.Drawing.Point(26, 414);
@@ -790,7 +791,7 @@
             this.lbl_flash_tool.AutoSize = true;
             this.lbl_flash_tool.Location = new System.Drawing.Point(26, 157);
             this.lbl_flash_tool.Name = "lbl_flash_tool";
-            this.lbl_flash_tool.Size = new System.Drawing.Size(126, 13);
+            this.lbl_flash_tool.Size = new System.Drawing.Size(127, 13);
             this.lbl_flash_tool.TabIndex = 5;
             this.lbl_flash_tool.Text = "Select Flash Tool to use";
             // 
